@@ -1,0 +1,196 @@
+{
+  "precrafter": {
+    "nodes": [
+      {
+        "id": "node-topic",
+        "type": "custom",
+        "position": {
+          "x": 50,
+          "y": 150
+        },
+        "data": {
+          "label": "Topic Generator",
+          "type": "LLM",
+          "status": "idle",
+          "inputs": [],
+          "outputs": [
+            "output"
+          ],
+          "systemPrompt": "You are a creative brainstorming assistant. Reply only with the topic name.",
+          "userPrompt": "Give me a unique topic for a Cyberpunk story.",
+          "model": "gemini-3-pro-preview",
+          "temperature": 0.8
+        },
+        "width": 200,
+        "height": 100
+      },
+      {
+        "id": "node-outline",
+        "type": "custom",
+        "position": {
+          "x": 350,
+          "y": 150
+        },
+        "data": {
+          "label": "Story Outliner",
+          "type": "LLM",
+          "status": "idle",
+          "inputs": [
+            "input"
+          ],
+          "outputs": [
+            "output"
+          ],
+          "systemPrompt": "You are an expert storyteller. Create a concise 3-point outline.",
+          "userPrompt": "Create an outline for a story about: {{node-topic.output}}",
+          "model": "gemini-3-pro-preview",
+          "temperature": 0.7
+        },
+        "width": 200,
+        "height": 100
+      },
+      {
+        "id": "node-write",
+        "type": "custom",
+        "position": {
+          "x": 650,
+          "y": 150
+        },
+        "data": {
+          "label": "Chapter Writer",
+          "type": "LLM",
+          "status": "idle",
+          "inputs": [
+            "input"
+          ],
+          "outputs": [
+            "output"
+          ],
+          "systemPrompt": "You are a best-selling sci-fi author. Write an engaging opening paragraph.",
+          "userPrompt": "Write the intro based on this outline:\n{{node-outline.output}}",
+          "model": "gemini-3-pro-preview",
+          "temperature": 0.7
+        },
+        "width": 200,
+        "height": 100
+      }
+    ],
+    "edges": [
+      {
+        "id": "e1",
+        "source": "node-topic",
+        "target": "node-outline",
+        "animated": true,
+        "style": {
+          "stroke": "#06b6d4"
+        }
+      },
+      {
+        "id": "e2",
+        "source": "node-outline",
+        "target": "node-write",
+        "animated": true,
+        "style": {
+          "stroke": "#06b6d4"
+        }
+      }
+    ]
+  },
+  "crafter": {
+    "nodes": [
+      {
+        "id": "c-node-concept",
+        "type": "custom",
+        "position": {
+          "x": 50,
+          "y": 150
+        },
+        "data": {
+          "label": "Product Concept",
+          "type": "LLM",
+          "status": "idle",
+          "inputs": [],
+          "outputs": [
+            "output"
+          ],
+          "systemPrompt": "You are a product visionary.",
+          "userPrompt": "Invent a futuristic gadget for 2050.",
+          "model": "gemini-3-pro-preview",
+          "temperature": 0.9
+        },
+        "width": 200,
+        "height": 100
+      },
+      {
+        "id": "c-node-specs",
+        "type": "custom",
+        "position": {
+          "x": 350,
+          "y": 150
+        },
+        "data": {
+          "label": "Technical Specs",
+          "type": "LLM",
+          "status": "idle",
+          "inputs": [
+            "input"
+          ],
+          "outputs": [
+            "output"
+          ],
+          "systemPrompt": "You are a lead engineer.",
+          "userPrompt": "List 3 key technical specifications for: {{c-node-concept.output}}",
+          "model": "gemini-3-pro-preview",
+          "temperature": 0.5
+        },
+        "width": 200,
+        "height": 100
+      },
+      {
+        "id": "c-node-marketing",
+        "type": "custom",
+        "position": {
+          "x": 650,
+          "y": 150
+        },
+        "data": {
+          "label": "Marketing Copy",
+          "type": "LLM",
+          "status": "idle",
+          "inputs": [
+            "input"
+          ],
+          "outputs": [
+            "output"
+          ],
+          "systemPrompt": "You are a marketing guru.",
+          "userPrompt": "Write a catchy slogan for this product:\n{{c-node-concept.output}}\n\nSpecs:\n{{c-node-specs.output}}",
+          "model": "gemini-3-pro-preview",
+          "temperature": 0.8
+        },
+        "width": 200,
+        "height": 100
+      }
+    ],
+    "edges": [
+      {
+        "id": "ce1",
+        "source": "c-node-concept",
+        "target": "c-node-specs",
+        "animated": true,
+        "style": {
+          "stroke": "#06b6d4"
+        }
+      },
+      {
+        "id": "ce2",
+        "source": "c-node-specs",
+        "target": "c-node-marketing",
+        "animated": true,
+        "style": {
+          "stroke": "#06b6d4"
+        }
+      }
+    ]
+  }
+}

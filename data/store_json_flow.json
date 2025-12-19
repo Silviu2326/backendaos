@@ -1,0 +1,1196 @@
+{
+  "precrafter": {
+    "nodes": [
+      {
+        "id": "node-lead-input",
+        "type": "custom",
+        "position": {
+          "x": -451.2181680668824,
+          "y": 160
+        },
+        "data": {
+          "label": "Input: Raw Lead (SalesNav/PhantomBuster)",
+          "type": "JSON",
+          "status": "success",
+          "inputs": [],
+          "outputs": [
+            "raw_lead"
+          ],
+          "json": "{\n  \"person\": {\n    \"firstName\": \"Paul\",\n    \"lastName\": \"Burnett\",\n    \"title\": \"Chief Executive Officer\",\n    \"titleDescription\": \"Chief Executive Officer\",\n    \"personSummary\": \"Since 1985, Paul D. Burnett has dedicated his professional career to helping make a difference in the lives of others. A Texas family man and business owner of Burnett's Staffing, Paul is hands-on in every aspect of the firm. An acknowledged employment professional with industry expertise of molding individuals into team leaders that educate and guide their colleagues to compete at the highest level of recruiting, exceeding candidate and client expectations. Comprehensive background in staffing and recruitment as well as business and personnel management. Proven executive, financial, and operational skills with a passion for building careers and maintaining professional and personal relations.\",\n    \"durationInRole\": \"28 years\",\n    \"durationInCompany\": \"40 years\",\n    \"personLocation\": \"Dallas-Fort Worth, Texas\"\n  },\n  \"company\": {\n    \"companyName\": \"Burnett's Staffing\",\n    \"companyDescription\": \"Since 1966, Burnett's Staffing has been instrumental in connecting and introducing numerous employers and job seekers across the Dallas-Fort Worth area. Our core values revolve around making a meaningful impact by making a difference in the lives of others. As a family-owned and operated business, Burnett's Staffing consistently places highly qualified individuals into various office environments specializing in administrative, customer service, call centers, accounting, human resources, and marketing. Our team's commitment to service, honesty, professionalism, and integrity sets us apart. We are dedicated to delivering unparalleled support to employers and job seekers at every stage of their journey. We stand ready to assist you in your job search or aid in recruiting your next team member.\",\n    \"companyTagline\": \"Making a difference in the lives of others since 1966\",\n    \"industry\": \"Staffing and Recruiting\",\n    \"employeeCount\": \"124\",\n    \"companyLocation\": \"Dallas-Fort Worth, Texas\"\n  }\n}\n",
+          "outputData": "**FOR IMMEDIATE RELEASE**\n\n**Contact:**\n[Name of Media Contact]\n[Title]\n[Email Address]\n[Phone Number]\n[Website URL]\n\n### **Fitness First Launches Revolutionary Mobile App Combining Personalized Workouts with Expert Nutrition Advice**\n\n**[CITY, State] — [Date of Release]** — Achieving a balanced, healthy lifestyle just became more accessible. **Fitness First**, a new innovator in the health technology space, is proud to announce the official launch of its comprehensive mobile application. Available today on iOS and Android, Fitness First is designed to bridge the gap between physical training and dietary wellness by offering a holistic approach to personal health.\n\nIn a market saturated with generic workout generators, Fitness First stands out by focusing on the individual. The app provides a seamless ecosystem where users can train, track, and fuel their bodies using a single platform.\n\n“We realized that many people struggle to see results because they are either training hard with poor nutrition or eating well without a structured fitness plan,” said [Name of CEO/Founder], Founder of Fitness First. “Our goal was to eliminate the guesswork. With Fitness First, users have a personal trainer and a certified nutritionist in their pocket 24/7.”\n\n**Key Features of the Fitness First App Include:**\n\n*   **Personalized Workout Plans:** Upon sign-up, users complete a detailed assessment of their fitness level, available equipment, and specific goals (weight loss, muscle gain, or endurance). The app generates a tailored workout schedule that evolves as the user gets stronger.\n*   **Real-Time Progress Tracking:** The app features an intuitive dashboard that allows users to log reps, sets, and cardio metrics in real-time. Visual graphs and milestone badges help users stay motivated by seeing exactly how far they have come.\n*   **Nutrition Advice from Certified Experts:** Unlike apps that rely solely on databases, Fitness First connects users with guidance curated by certified nutritionists. Users receive meal plans and dietary advice that complement their specific workout intensity and body composition goals.\n\nWhether you are a beginner looking to start your journey or an athlete looking to break a plateau, Fitness First provides the data and expertise required to succeed.\n\n**Availability**\nThe Fitness First app is available for download immediately on the Apple App Store and Google Play Store. New users can enjoy a [Number]-day free trial to experience the premium features.\n\n**About Fitness First**\nFitness First is a [City]-based health technology company dedicated to democratizing access to elite fitness and nutrition guidance. By leveraging smart technology and expert knowledge, Fitness First empowers individuals to live happier, healthier, and longer lives.\n\n# # #"
+        },
+        "width": 200,
+        "height": 107,
+        "selected": false,
+        "positionAbsolute": {
+          "x": -451.2181680668824,
+          "y": 160
+        },
+        "dragging": false
+      },
+      {
+        "id": "node-company-understanding",
+        "type": "custom",
+        "position": {
+          "x": -120,
+          "y": 160
+        },
+        "data": {
+          "label": "1. Company Understanding",
+          "type": "LLM",
+          "status": "success",
+          "inputs": [
+            "raw_lead"
+          ],
+          "outputs": [
+            "company_understanding"
+          ],
+          "systemPrompt": "# ROLE: AOS Module 1 (Operational Analysis)  # GOAL Analyze the provided unstructured company data (Input) to extract two core components: 1) Business Model (how they create value + how they get paid) 2) Client Acquisition Operation (how they find and close clients)  # INPUT {company_input}  # STRICT RULES 1) THIRD PERSON ONLY:    Always refer to the analyzed company as \"They\" or by their name. NEVER use \"We\" (reserved for AOS).  2) NO HALLUCINATION:    If a mechanism is not explicitly stated but is logically necessary, label it as \"[Assumed]\".    If the text provides no basis at all, output \"unknown\" (NOT invented).  3) DUALITY:    Analyze Business Model separately from Client Acquisition Operation.    Do NOT mix acquisition steps into revenue steps.  4) CONCISENESS:    Strip fluff. Output must be structured and short.    For example steps, use ONLY the \"Logic | Action | Result\" format.  5) ICP EXTRACTION (CRITICAL):    In the definition fields you MUST name specific ICP sectors/industries and decision-maker roles explicitly    (e.g., \"Dental clinics\", \"Manufacturing\", \"Foodservice\"; \"CEO\", \"Operations Director\", \"HR Manager\").    Do NOT say generic \"clients\" or \"companies\" unless the input is truly generic.  6) OUTPUT ONLY JSON:    Return ONLY valid JSON. No markdown. No commentary.  7) EXACT SCHEMA:    Use exactly these keys and nesting (do not add or rename fields).   # IMPORTANT FORMATTING FOR example_steps_* - Must be EXACTLY 3 lines (3 steps). - Each line must contain ONLY:   Logic: ... | Action: ... | Result: ... - Do not add extra steps or sections.",
+          "userPrompt": "{ \"person\": {    \"firstName\": \"{{node-lead-input.person.firstName}}\",    \"lastName\": \"{{node-lead-input.person.lastName}}\",    \"title\": \"{{node-lead-input.person.title}}\",    \"titleDescription\": \"{{node-lead-input.person.titleDescription}}\",    \"personSummary\": \"{{node-lead-input.person.personSummary}}\",    \"durationInRole\": \"{{node-lead-input.person.durationInRole}}\",    \"durationInCompany\": \"{{node-lead-input.person.durationInCompany}}\",    \"personLocation\": \"{{node-lead-input.person.personLocation}}\" }, \"company\": {    \"companyName\": \"{{node-lead-input.company.companyName}}\",    \"companyDescription\": \"{{node-lead-input.company.companyDescription}}\",    \"companyTagline\": \"{{node-lead-input.company.companyTagline}}\",    \"industry\": \"{{node-lead-input.company.industry}}\",    \"employeeCount\": \"{{node-lead-input.company.employeeCount}}\",    \"companyLocation\": \"{{node-lead-input.company.companyLocation}}\",    \"companyRevenue\": {       \"minRevenue\": \"{{node-lead-input.company.companyRevenue.minRevenue}}\",       \"maxRevenue\": \"{{node-lead-input.company.companyRevenue.maxRevenue}}\"    },    \"headcountGrowth\": {       \"growth6Mth\": \"{{node-lead-input.company.headcountGrowth.growth6Mth}}\",       \"growth1Yr\": \"{{node-lead-input.company.headcountGrowth.growth1Yr}}\",       \"growth2Yr\": \"{{node-lead-input.company.headcountGrowth.growth2Yr}}\"    } } } ",
+          "model": "gemini-3-pro-preview",
+          "temperature": 0.4,
+          "schema": {
+            "type": "object",
+            "properties": {
+              "company_summary": {
+                "type": "string"
+              },
+              "what_they_sell": {
+                "type": "string"
+              },
+              "business_model": {
+                "type": "string"
+              },
+              "revenue_model": {
+                "type": "string"
+              },
+              "icp": {
+                "type": "object",
+                "properties": {
+                  "buyer_titles": {
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    }
+                  },
+                  "buyer_org_type": {
+                    "type": "string"
+                  },
+                  "geo": {
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    }
+                  },
+                  "industry": {
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "required": [
+                  "buyer_titles",
+                  "buyer_org_type",
+                  "geo",
+                  "industry"
+                ],
+                "additionalProperties": false
+              },
+              "positioning_claims": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              },
+              "sources": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "url": {
+                      "type": "string"
+                    },
+                    "note": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "url",
+                    "note"
+                  ],
+                  "additionalProperties": false
+                }
+              },
+              "confidence": {
+                "type": "integer",
+                "minimum": 0,
+                "maximum": 10
+              }
+            },
+            "required": [
+              "company_summary",
+              "what_they_sell",
+              "business_model",
+              "revenue_model",
+              "icp",
+              "positioning_claims",
+              "sources",
+              "confidence"
+            ],
+            "additionalProperties": false
+          },
+          "outputData": "```json\n{\n  \"companyName\": \"Fitness First\",\n  \"website\": \"unknown\",\n  \"industry\": \"Health Technology\",\n  \"subIndustry\": \"Mobile Health & Fitness Applications\",\n  \"description\": \"Fitness First is a health technology company that provides a comprehensive mobile application designed to bridge the gap between physical training and dietary wellness. The platform offers personalized workout plans, real-time progress tracking, and nutrition advice curated by certified experts.\",\n  \"location\": {\n    \"city\": \"unknown\",\n    \"state\": \"unknown\",\n    \"country\": \"unknown\"\n  },\n  \"foundingDate\": \"unknown\",\n  \"employeeCount\": \"unknown\",\n  \"revenueRange\": \"unknown\",\n  \"productsAndServices\": [\n    \"Fitness First Mobile App (iOS and Android)\",\n    \"Personalized Workout Plans\",\n    \"Real-Time Progress Tracking Dashboard\",\n    \"Expert Nutrition Advice and Meal Planning\"\n  ],\n  \"targetAudience\": [\n    \"Individuals seeking weight loss, muscle gain, or endurance\",\n    \"Beginners to fitness\",\n    \"Athletes looking to break plateaus\"\n  ],\n  \"keyPeople\": [\n    {\n      \"name\": \"unknown\",\n      \"title\": \"CEO/Founder\",\n      \"note\": \"Name listed as placeholder in source text\"\n    }\n  ],\n  \"valueProposition\": \"Combines training, tracking, and nutrition in a single ecosystem, moving away from generic generators to provide personalized guidance from certified nutritionists and tailored fitness assessments.\",\n  \"confidence\": 0.85,\n  \"sources\": [\n    {\n      \"url\": \"Provided Press Release\",\n      \"note\": \"Source text: 'Fitness First Launches Revolutionary Mobile App Combining Personalized Workouts with Expert Nutrition Advice'\"\n    }\n  ]\n}\n```"
+        },
+        "width": 200,
+        "height": 107,
+        "selected": true,
+        "dragging": false
+      },
+      {
+        "id": "node-persona-understanding",
+        "type": "custom",
+        "position": {
+          "x": 210,
+          "y": 160
+        },
+        "data": {
+          "label": "2. Persona Understanding",
+          "type": "LLM",
+          "status": "success",
+          "inputs": [
+            "raw_lead",
+            "company_understanding"
+          ],
+          "outputs": [
+            "persona_understanding"
+          ],
+          "systemPrompt": "# ROLE: PersonaUnderstanding\n# GOAL: Produce PersonaUnderstanding JSON EXACTLY matching the contract.\n# RULES:\n- Output MUST be valid JSON.\n- Infer only from role/title + company context given.\n- If unknown, use \"unknown\" and lower confidence.\n# OUTPUT: PersonaUnderstanding (contract) — return ONLY JSON.",
+          "userPrompt": "Generate PersonaUnderstanding for:\nLead: {{node-lead-input}}\nCompanyUnderstanding: {{node-company-understanding}}",
+          "model": "gemini-3-pro-preview",
+          "temperature": 0.5,
+          "schema": {
+            "type": "object",
+            "properties": {
+              "persona_label": {
+                "type": "string"
+              },
+              "archetype": {
+                "type": "string"
+              },
+              "motivations": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              },
+              "kpis": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              },
+              "priorities": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              },
+              "do": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              },
+              "dont": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              },
+              "confidence": {
+                "type": "integer",
+                "minimum": 0,
+                "maximum": 10
+              }
+            },
+            "required": [
+              "persona_label",
+              "archetype",
+              "motivations",
+              "kpis",
+              "priorities",
+              "do",
+              "dont",
+              "confidence"
+            ],
+            "additionalProperties": false
+          },
+          "outputData": "```json\n{\n  \"name\": \"unknown\",\n  \"title\": \"Media Contact\",\n  \"company\": \"Fitness First\",\n  \"email\": \"unknown\",\n  \"phone\": \"unknown\",\n  \"location\": \"unknown\",\n  \"socialProfiles\": {\n    \"linkedIn\": \"unknown\",\n    \"twitter\": \"unknown\"\n  },\n  \"professionalDetails\": {\n    \"role\": \"Public Relations / Communications\",\n    \"responsibilities\": [\n      \"Managing media inquiries\",\n      \"Distributing press releases\",\n      \"Coordinating the public launch of the mobile application\"\n    ],\n    \"department\": \"Marketing & Communications\",\n    \"seniority\": \"unknown\"\n  },\n  \"psychographics\": {\n    \"goals\": [\n      \"Maximize media coverage for the app launch\",\n      \"Successfully communicate the app's unique value proposition (training + nutrition)\",\n      \"Drive user downloads through public awareness\"\n    ],\n    \"painPoints\": [\n      \"Differentiating the app in a saturated market\",\n      \"Ensuring consistent messaging across channels\",\n      \"Managing timely responses to media requests\"\n    ],\n    \"motivations\": \"Building a strong brand reputation and successful product adoption.\"\n  },\n  \"communicationStyle\": {\n    \"tone\": \"Professional, Enthusiastic, Informative\",\n    \"preferredChannels\": [\n      \"Email\",\n      \"Press Releases\"\n    ]\n  },\n  \"confidence\": 0.6,\n  \"inferenceNotes\": \"The source text contains placeholders (e.g., '[Name of Media Contact]', '[Title]'). The persona is inferred as the designated Media Contact/PR Representative responsible for the press release.\"\n}\n```"
+        },
+        "width": 200,
+        "height": 135,
+        "selected": false,
+        "dragging": false
+      },
+      {
+        "id": "node-basecontribution",
+        "type": "custom",
+        "position": {
+          "x": 540,
+          "y": 160
+        },
+        "data": {
+          "label": "3. Feasibility + Base Contribution + Base Angle",
+          "type": "LLM",
+          "status": "success",
+          "inputs": [
+            "company_understanding",
+            "persona_understanding",
+            "raw_lead"
+          ],
+          "outputs": [
+            "base_contribution"
+          ],
+          "systemPrompt": "# ROLE: BaseContribution\n# GOAL: Produce BaseContribution JSON EXACTLY matching the contract.\n# RULES:\n- Output must be JSON.\n- Base contribution MUST be CAO-with-AOS.\n- Feasibility must be strict.\n- If unknown, use \"unknown\" and reduce confidence-like scores (intensity_score etc).\n# OUTPUT: BaseContribution (contract) — return ONLY JSON.",
+          "userPrompt": "Generate BaseContribution (incl. feasibility + base angle) for:\nCompanyUnderstanding: {{node-company-understanding}}\nPersonaUnderstanding: {{node-persona-understanding}}\nLead: {{node-lead-input}}",
+          "model": "gemini-3-pro-preview",
+          "temperature": 0.35,
+          "schema": {
+            "type": "object",
+            "properties": {
+              "cao_with_aos": {
+                "type": "object",
+                "properties": {
+                  "one_liner": {
+                    "type": "string"
+                  },
+                  "expanded": {
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    }
+                  },
+                  "icp_targeting_statement": {
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "one_liner",
+                  "expanded",
+                  "icp_targeting_statement"
+                ],
+                "additionalProperties": false
+              },
+              "base_angle": {
+                "type": "object",
+                "properties": {
+                  "one_liner": {
+                    "type": "string"
+                  },
+                  "intensity_score": {
+                    "type": "integer",
+                    "minimum": 0,
+                    "maximum": 10
+                  }
+                },
+                "required": [
+                  "one_liner",
+                  "intensity_score"
+                ],
+                "additionalProperties": false
+              },
+              "feasibility": {
+                "type": "object",
+                "properties": {
+                  "is_feasible": {
+                    "type": "boolean"
+                  },
+                  "reasons": {
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    }
+                  },
+                  "sales_nav_filter_ideas": {
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    }
+                  },
+                  "signal_availability": {
+                    "type": "object",
+                    "properties": {
+                      "linkedin": {
+                        "type": "boolean"
+                      },
+                      "internal_web": {
+                        "type": "boolean"
+                      },
+                      "external_web": {
+                        "type": "boolean"
+                      }
+                    },
+                    "required": [
+                      "linkedin",
+                      "internal_web",
+                      "external_web"
+                    ],
+                    "additionalProperties": false
+                  },
+                  "risks": {
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "required": [
+                  "is_feasible",
+                  "reasons",
+                  "sales_nav_filter_ideas",
+                  "signal_availability",
+                  "risks"
+                ],
+                "additionalProperties": false
+              }
+            },
+            "required": [
+              "cao_with_aos",
+              "base_angle",
+              "feasibility"
+            ],
+            "additionalProperties": false
+          },
+          "variants": [],
+          "activeVariantId": "master",
+          "outputData": "```json\n{\n  \"angle\": {\n    \"core_theme\": \"The Unified Health Ecosystem\",\n    \"narrative\": \"Moving beyond isolated fitness tracking to a holistic integration of personalized training and expert-curated nutrition.\",\n    \"hook\": \"Why generic workout generators fail: The necessity of bridging the gap between gym effort and kitchen discipline.\",\n    \"tone\": \"Innovative, Authoritative, Solution-Oriented\"\n  },\n  \"feasibility\": {\n    \"score\": 90,\n    \"assessment\": \"High\",\n    \"technical_viability\": \"The application is fully developed and currently available for download on major platforms (iOS and Android), confirming technical readiness.\",\n    \"market_viability\": \"While the fitness app market is saturated, the specific value proposition of combining expert nutrition with training addresses a common consumer pain point (fragmented health advice).\",\n    \"resource_requirements\": \"Requires active maintenance of the expert network (nutritionists) and app infrastructure, which appears to be established based on the launch announcement.\"\n  },\n  \"impact\": {\n    \"intensity_score\": 75,\n    \"scope\": \"Consumer Health & Wellness Market\",\n    \"potential_outcome\": \"High potential for user adoption among those dissatisfied with single-function apps; success relies heavily on effective differentiation from established competitors.\",\n    \"differentiation_factor\": \"The inclusion of 'expert-curated' nutrition advice rather than algorithmic meal generation distinguishes it from standard trackers.\"\n  },\n  \"relevance\": {\n    \"score\": 95,\n    \"alignment_check\": \"Directly aligns with the 'For Immediate Release' goal of the provided text, focusing specifically on the unique selling points identified in the press release (personalization + nutrition integration).\",\n    \"audience_fit\": \"Highly relevant for health technology journalists, fitness lifestyle editors, and early adopters looking for comprehensive health solutions.\"\n  },\n  \"confidence_score\": 0.85,\n  \"notes\": \"The feasibility score is high because the product is already launched. However, the 'unknown' placeholders for the CEO and location in the source text slightly reduce the completeness of the corporate profile, though they do not affect the product's functional feasibility.\"\n}\n```"
+        },
+        "width": 200,
+        "height": 183,
+        "selected": false,
+        "dragging": false
+      },
+      {
+        "id": "node-signals-perplexity",
+        "type": "custom",
+        "position": {
+          "x": 900,
+          "y": 160
+        },
+        "data": {
+          "label": "4. Signals (Perplexity único)",
+          "type": "LLM",
+          "status": "success",
+          "inputs": [
+            "company_understanding",
+            "persona_understanding",
+            "base_contribution",
+            "raw_lead"
+          ],
+          "outputs": [
+            "signals"
+          ],
+          "systemPrompt": "# ROLE: Signals (Perplexity)\n# GOAL: Find internal + external signals in ONE pass.\n# IMPORTANT:\n- Return ONLY JSON with signals[] of Signal objects matching the contract.\n- No emails. No solutions outside AOS.\n- Filter signals to be: role-relevant, company-relevant, orbit-fit to CAO-with-AOS, and preferably why-now.\n- Do NOT invent. If weak evidence: date:\"unknown\" and lower confidence.\n# OUTPUT: {\"signals\": [Signal,...]}",
+          "userPrompt": "Contexto:\nEmpresa: {{node-company-understanding}}\nPersona: {{node-persona-understanding}}\nBase contribution: {{node-basecontribution}}\nLead: {{node-lead-input}}\n\nInstrucciones:\nEncuentra señales internas (web oficial + LinkedIn) y externas (mercado/competidores/regulación/demanda).\nDevuelve solo JSON con signals[] (Signal contract exact).",
+          "model": "perplexity",
+          "temperature": 0.2,
+          "schema": {
+            "type": "object",
+            "properties": {
+              "signals": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "signal_id": {
+                      "type": "string"
+                    },
+                    "type": {
+                      "type": "string",
+                      "enum": [
+                        "internal_company",
+                        "internal_person",
+                        "internal_linkedin_metric",
+                        "external_market",
+                        "external_competitor"
+                      ]
+                    },
+                    "claim": {
+                      "type": "string"
+                    },
+                    "entity": {
+                      "type": "object",
+                      "properties": {
+                        "name": {
+                          "type": "string"
+                        },
+                        "kind": {
+                          "type": "string",
+                          "enum": [
+                            "company",
+                            "person",
+                            "competitor",
+                            "market"
+                          ]
+                        }
+                      },
+                      "required": [
+                        "name",
+                        "kind"
+                      ],
+                      "additionalProperties": false
+                    },
+                    "date": {
+                      "type": "string"
+                    },
+                    "evidence": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "url": {
+                            "type": "string"
+                          },
+                          "snippet": {
+                            "type": "string"
+                          }
+                        },
+                        "required": [
+                          "url",
+                          "snippet"
+                        ],
+                        "additionalProperties": false
+                      }
+                    },
+                    "persona_relevance": {
+                      "type": "integer",
+                      "minimum": 0,
+                      "maximum": 10
+                    },
+                    "orbit_fit": {
+                      "type": "integer",
+                      "minimum": 0,
+                      "maximum": 10
+                    },
+                    "potency": {
+                      "type": "integer",
+                      "minimum": 0,
+                      "maximum": 10
+                    },
+                    "confidence": {
+                      "type": "integer",
+                      "minimum": 0,
+                      "maximum": 10
+                    }
+                  },
+                  "required": [
+                    "signal_id",
+                    "type",
+                    "claim",
+                    "entity",
+                    "date",
+                    "evidence",
+                    "persona_relevance",
+                    "orbit_fit",
+                    "potency",
+                    "confidence"
+                  ],
+                  "additionalProperties": false
+                }
+              }
+            },
+            "required": [
+              "signals"
+            ],
+            "additionalProperties": false
+          },
+          "outputData": "```json\n{\n  \"signals\": [\n    {\n      \"signal\": \"Official Mobile App Launch\",\n      \"type\": \"Internal\",\n      \"source\": \"Provided Press Release\",\n      \"date\": \"Current\",\n      \"confidence\": \"High\",\n      \"description\": \"Fitness First has officially announced the release of its iOS and Android application, transitioning from development to commercial availability with a specific focus on integrating training with expert nutrition.\",\n      \"relevance\": \"Direct trigger for the Media Contact's current campaign; validates the 'technical viability' mentioned in the base contribution.\",\n      \"orbit\": \"Core Business\",\n      \"actionability\": \"Immediate: Basis for all press outreach and media kit creation.\"\n    },\n    {\n      \"signal\": \"Rise of GLP-1 Agonists & Muscle Retention Demand\",\n      \"type\": \"External\",\n      \"source\": \"Market Trend Analysis (Health Tech)\",\n      \"date\": \"2024\",\n      \"confidence\": \"High\",\n      \"description\": \"The explosion of weight-loss drugs (Ozempic/Wegovy) has created a specific market gap: users need high-protein nutrition and resistance training to prevent muscle loss (sarcopenia) while losing weight. Generic apps often fail to address this medical-adjacent need.\",\n      \"relevance\": \"Provides a timely 'news hook' for the Media Contact. Instead of just pitching 'another fitness app,' they can pitch 'the solution for the Ozempic muscle-loss problem' using their expert nutrition feature.\",\n      \"orbit\": \"Market Opportunity\",\n      \"actionability\": \"High: Can be used to pivot the narrative for specific health/medical journalists.\"\n    },\n    {\n      \"signal\": \"Consumer Shift from 'Algorithmic' to 'Expert-Verified' Content\",\n      \"type\": \"External\",\n      \"source\": \"Consumer Sentiment / Industry Reports\",\n      \"date\": \"2023-2024\",\n      \"confidence\": \"Medium\",\n      \"description\": \"Trust in purely AI-generated health advice is fluctuating due to hallucinations. There is a premium trend towards 'Human-in-the-loop' or 'Expert-Curated' systems, which aligns with Fitness First's value prop of using certified nutritionists rather than just databases.\",\n      \"relevance\": \"Supports the 'Differentiation Factor' in the base contribution. Helps the PR persona argue why this app is safer/better than free AI generators.\",\n      \"orbit\": \"Customer Psychology\",\n      \"actionability\": \"Medium: Key messaging point for differentiating against tech-heavy competitors.\"\n    },\n    {\n      \"signal\": \"Brand Identity Conflict (SEO/Trademark Risk)\",\n      \"type\": \"External\",\n      \"source\": \"Competitor Analysis\",\n      \"date\": \"Current\",\n      \"confidence\": \"High\",\n      \"description\": \"'Fitness First' is the name of a major global gym chain (founded 1993, UK/Global). Launching a new app with this identical name creates significant SEO competition and potential trademark confusion.\",\n      \"relevance\": \"Critical risk for the Media Contact's goal of 'Maximizing media coverage.' Journalists may confuse the app with the gym chain. The PR strategy must explicitly clarify this distinction or lean into a 'digital-first' identity.\",\n      \"orbit\": \"Risk / Brand Reputation\",\n      \"actionability\": \"High: Requires immediate preparation of FAQs or branding adjustments to distinguish from the gym chain.\"\n    }\n  ]\n}\n```"
+        },
+        "width": 200,
+        "height": 191,
+        "selected": false,
+        "dragging": false
+      },
+      {
+        "id": "node-angle-synthesizer",
+        "type": "custom",
+        "position": {
+          "x": 1260,
+          "y": 160
+        },
+        "data": {
+          "label": "5. Angle Synthesizer (1–3 ángulos)",
+          "type": "LLM",
+          "status": "success",
+          "inputs": [
+            "signals",
+            "base_contribution",
+            "company_understanding",
+            "persona_understanding"
+          ],
+          "outputs": [
+            "angles"
+          ],
+          "systemPrompt": "# ROLE: Angle Synthesizer\n# GOAL: Build 1–3 Angle objects from signals.\n# RULES:\n- Each angle MUST be orbit-fit to CAO-with-AOS.\n- Use signals_used as signal_id list.\n- If evidence is weak, reduce scores.confidence.\n- Return ONLY JSON: {\"angles\":[Angle,...]} matching the contract.\n# OUTPUT: angles[] (Angle contract exact).",
+          "userPrompt": "Create 1–3 angles from:\nSignals: {{node-signals-perplexity}}\nBaseContribution: {{node-basecontribution}}\nCompanyUnderstanding: {{node-company-understanding}}\nPersonaUnderstanding: {{node-persona-understanding}}",
+          "model": "gemini-3-pro-preview",
+          "temperature": 0.45,
+          "schema": {
+            "type": "object",
+            "properties": {
+              "angles": {
+                "type": "array",
+                "minItems": 1,
+                "maxItems": 3,
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "angle_id": {
+                      "type": "string"
+                    },
+                    "angle_type": {
+                      "type": "string",
+                      "enum": [
+                        "threat",
+                        "opportunity",
+                        "internal_pain"
+                      ]
+                    },
+                    "signals_used": {
+                      "type": "array",
+                      "items": {
+                        "type": "string"
+                      }
+                    },
+                    "situation": {
+                      "type": "array",
+                      "items": {
+                        "type": "string"
+                      }
+                    },
+                    "implication": {
+                      "type": "array",
+                      "items": {
+                        "type": "string"
+                      }
+                    },
+                    "bridge": {
+                      "type": "array",
+                      "items": {
+                        "type": "string"
+                      }
+                    },
+                    "hook": {
+                      "type": "array",
+                      "items": {
+                        "type": "string"
+                      }
+                    },
+                    "orbit_justification": {
+                      "type": "string"
+                    },
+                    "evidence_pack": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "url": {
+                            "type": "string"
+                          },
+                          "snippet": {
+                            "type": "string"
+                          }
+                        },
+                        "required": [
+                          "url",
+                          "snippet"
+                        ],
+                        "additionalProperties": false
+                      }
+                    },
+                    "scores": {
+                      "type": "object",
+                      "properties": {
+                        "implication_magnitude": {
+                          "type": "integer",
+                          "minimum": 0,
+                          "maximum": 10
+                        },
+                        "orbit_fit": {
+                          "type": "integer",
+                          "minimum": 0,
+                          "maximum": 10
+                        },
+                        "persona_fit": {
+                          "type": "integer",
+                          "minimum": 0,
+                          "maximum": 10
+                        },
+                        "novelty": {
+                          "type": "integer",
+                          "minimum": 0,
+                          "maximum": 10
+                        },
+                        "confidence": {
+                          "type": "integer",
+                          "minimum": 0,
+                          "maximum": 10
+                        }
+                      },
+                      "required": [
+                        "implication_magnitude",
+                        "orbit_fit",
+                        "persona_fit",
+                        "novelty",
+                        "confidence"
+                      ],
+                      "additionalProperties": false
+                    }
+                  },
+                  "required": [
+                    "angle_id",
+                    "angle_type",
+                    "signals_used",
+                    "situation",
+                    "implication",
+                    "bridge",
+                    "hook",
+                    "orbit_justification",
+                    "evidence_pack",
+                    "scores"
+                  ],
+                  "additionalProperties": false
+                }
+              }
+            },
+            "required": [
+              "angles"
+            ],
+            "additionalProperties": false
+          },
+          "outputData": "```json\n{\n  \"angles\": [\n    {\n      \"name\": \"The GLP-1 Muscle Defense\",\n      \"description\": \"Positioning the app not just as a fitness tool, but as a critical companion for the millions of users on weight-loss drugs (Ozempic/Wegovy) who face sarcopenia (muscle loss).\",\n      \"justification\": \"Leverages the high-confidence 'Rise of GLP-1 Agonists' signal to create a timely news hook. It solves the Media Contact's pain point of differentiation by pivoting from 'generic fitness' to 'medical-adjacent necessity'.\",\n      \"narrative_arc\": \"While new weight-loss drugs are revolutionizing health, they carry a hidden risk: muscle stripping. Fitness First fills the gap where prescriptions end, offering the specific resistance training and high-protein nutritional guardrails needed to maintain metabolic health during rapid weight loss.\",\n      \"audience_segment\": \"Health & Science Reporters, Medical Lifestyle Editors, Wellness Trend Analysts\",\n      \"signals_used\": [\n        \"Rise of GLP-1 Agonists & Muscle Retention Demand\",\n        \"Official Mobile App Launch\"\n      ],\n      \"scores\": {\n        \"feasibility\": 0.85,\n        \"impact\": 0.95,\n        \"confidence\": 0.90,\n        \"relevance\": 0.95\n      }\n    },\n    {\n      \"name\": \"Verified Expertise vs. AI Hallucinations\",\n      \"description\": \"Contrasting the app's 'Human-in-the-loop' expert nutrition against the market flood of purely algorithmic, potentially unsafe AI health generators.\",\n      \"justification\": \"Directly addresses the 'Consumer Shift' signal regarding trust. It turns the 'saturated market' challenge into an asset by framing the app as the 'safe, verified' alternative to black-box AI.\",\n      \"narrative_arc\": \"In an era where AI chatbots hallucinate diet advice, Fitness First doubles down on human verification. By integrating certified nutritionists into the digital loop, the platform offers a premium safety net that purely algorithmic competitors cannot match.\",\n      \"audience_segment\": \"Tech Ethics Writers, Consumer Safety Advocates, Parents/Family Health Editors\",\n      \"signals_used\": [\n        \"Consumer Shift from 'Algorithmic' to 'Expert-Verified' Content\",\n        \"Official Mobile App Launch\"\n      ],\n      \"scores\": {\n        \"feasibility\": 0.90,\n        \"impact\": 0.80,\n        \"confidence\": 0.85,\n        \"relevance\": 0.90\n      }\n    },\n    {\n      \"name\": \"The Unified Ecosystem Launch\",\n      \"description\": \"A 'Core Business' angle focusing on the consolidation of fragmented health tools (training + nutrition) into a single, technically viable interface.\",\n      \"justification\": \"Builds directly on the Base Contribution and the 'Official Mobile App Launch' signal. It targets users suffering from 'app fatigue' who currently use separate apps for gym logging and calorie counting.\",\n      \"narrative_arc\": \"The current fitness app landscape is fragmented, forcing users to toggle between workout logs and calorie counters. Fitness First's launch validates the technical viability of a unified ecosystem, bridging the gap between gym effort and kitchen discipline in one seamless interface.\",\n      \"audience_segment\": \"General Tech Reviewers, App Store Editors, Fitness Lifestyle Bloggers\",\n      \"signals_used\": [\n        \"Official Mobile App Launch\"\n      ],\n      \"scores\": {\n        \"feasibility\": 0.95,\n        \"impact\": 0.75,\n        \"confidence\": 0.90,\n        \"relevance\": 0.85\n      }\n    }\n  ]\n}\n```"
+        },
+        "width": 200,
+        "height": 191,
+        "selected": false,
+        "dragging": false
+      },
+      {
+        "id": "node-stronger-than-base",
+        "type": "custom",
+        "position": {
+          "x": 1620,
+          "y": 160
+        },
+        "data": {
+          "label": "6. Stronger-than-Base Checker",
+          "type": "LLM",
+          "status": "success",
+          "inputs": [
+            "angles",
+            "base_contribution"
+          ],
+          "outputs": [
+            "selection"
+          ],
+          "systemPrompt": "# ROLE: Stronger-than-Base Checker\n# GOAL: Select ANGLE vs BASE_ONLY.\n# RULES:\n- Choose ANGLE only if it clearly reinforces/beats base_angle.\n- Must respect orbit-fit.\n- Return ONLY JSON matching contract.\n# OUTPUT: selection JSON (contract exact).",
+          "userPrompt": "Decide selection based on:\nAngles: {{node-angle-synthesizer}}\nBaseContribution: {{node-basecontribution}}",
+          "model": "gemini-3-pro-preview",
+          "temperature": 0.2,
+          "schema": {
+            "type": "object",
+            "properties": {
+              "selected": {
+                "type": "object",
+                "properties": {
+                  "mode": {
+                    "type": "string",
+                    "enum": [
+                      "ANGLE",
+                      "BASE_ONLY"
+                    ]
+                  },
+                  "angle_id": {
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "mode",
+                  "angle_id"
+                ],
+                "additionalProperties": false
+              },
+              "rationale": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              },
+              "scores": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "angle_id": {
+                      "type": "string"
+                    },
+                    "stronger_than_base": {
+                      "type": "boolean"
+                    },
+                    "why": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "angle_id",
+                    "stronger_than_base",
+                    "why"
+                  ],
+                  "additionalProperties": false
+                }
+              }
+            },
+            "required": [
+              "selected",
+              "rationale",
+              "scores"
+            ],
+            "additionalProperties": false
+          },
+          "outputData": "```json\n{\n  \"selection\": \"ANGLE\",\n  \"selected_angle_name\": \"The GLP-1 Muscle Defense\",\n  \"reasoning\": \"This angle significantly outperforms the Base Contribution by attaching the product launch to a high-velocity cultural trend (GLP-1 agonists/Ozempic). While the Base Contribution focuses on a functional benefit ('Unified Ecosystem'), which is a common claim in the saturated fitness market (Impact 75), the GLP-1 angle creates a specific, urgent 'medical-adjacent' use case (Impact 95). It transforms the app from a 'nice-to-have' utility into a 'must-have' safety tool for a growing demographic, offering a much sharper hook for media coverage.\"\n}\n```"
+        },
+        "width": 200,
+        "height": 135,
+        "selected": false,
+        "dragging": false
+      },
+      {
+        "id": "node-crafter-architect",
+        "type": "custom",
+        "position": {
+          "x": 1980,
+          "y": 160
+        },
+        "data": {
+          "label": "7. Crafter Architect (Paragraph Map)",
+          "type": "LLM",
+          "status": "success",
+          "inputs": [
+            "selection",
+            "angles",
+            "signals",
+            "base_contribution",
+            "company_understanding",
+            "persona_understanding",
+            "raw_lead"
+          ],
+          "outputs": [
+            "crafter_architect"
+          ],
+          "systemPrompt": "# ROLE: Crafter Architect\n# GOAL: Build the canonical Crafter Architect JSON (maps 1:1 to email paragraphs).\n# HARD RULES:\n- Each sentence is its own paragraph item (one_sentence_per_paragraph=true).\n- Fixed order: Greeting, Hook, Situation, Implication, Bridge, Offer phrase, Details, CTA.\n- NO new facts. NO new angles.\n- If selection.mode==ANGLE, use that angle's hook/situation/implication/bridge and include evidence.\n- If BASE_ONLY, use base_angle logic + general role pressure, without inventing events.\n# OUTPUT: Crafter Architect JSON (contract exact) — return ONLY JSON.",
+          "userPrompt": "Build Crafter Architect JSON using:\nSelection: {{node-stronger-than-base}}\nAngles: {{node-angle-synthesizer}}\nSignals: {{node-signals-perplexity}}\nBaseContribution: {{node-basecontribution}}\nCompanyUnderstanding: {{node-company-understanding}}\nPersonaUnderstanding: {{node-persona-understanding}}\nLead: {{node-lead-input}}",
+          "model": "gemini-3-pro-preview",
+          "temperature": 0.35,
+          "schema": {
+            "type": "object",
+            "properties": {
+              "meta": {
+                "type": "object",
+                "properties": {
+                  "lead_id": {
+                    "type": "string"
+                  },
+                  "language": {
+                    "type": "string",
+                    "enum": [
+                      "es",
+                      "en"
+                    ]
+                  },
+                  "region": {
+                    "type": "string"
+                  },
+                  "contact_name": {
+                    "type": "string"
+                  },
+                  "company_name": {
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "lead_id",
+                  "language",
+                  "region",
+                  "contact_name",
+                  "company_name"
+                ],
+                "additionalProperties": false
+              },
+              "constraints": {
+                "type": "object",
+                "properties": {
+                  "one_sentence_per_paragraph": {
+                    "type": "boolean"
+                  },
+                  "no_new_facts": {
+                    "type": "boolean"
+                  },
+                  "no_new_angles": {
+                    "type": "boolean"
+                  }
+                },
+                "required": [
+                  "one_sentence_per_paragraph",
+                  "no_new_facts",
+                  "no_new_angles"
+                ],
+                "additionalProperties": false
+              },
+              "paragraphs": {
+                "type": "object",
+                "properties": {
+                  "greeting": {
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    }
+                  },
+                  "hook": {
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    }
+                  },
+                  "situation": {
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    }
+                  },
+                  "implication": {
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    }
+                  },
+                  "bridge": {
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    }
+                  },
+                  "offer_phrase": {
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    }
+                  },
+                  "details": {
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    },
+                    "minItems": 3,
+                    "maxItems": 3
+                  },
+                  "cta": {
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    },
+                    "minItems": 3,
+                    "maxItems": 3
+                  }
+                },
+                "required": [
+                  "greeting",
+                  "hook",
+                  "situation",
+                  "implication",
+                  "bridge",
+                  "offer_phrase",
+                  "details",
+                  "cta"
+                ],
+                "additionalProperties": false
+              },
+              "do_dont": {
+                "type": "object",
+                "properties": {
+                  "do": {
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    }
+                  },
+                  "dont": {
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "required": [
+                  "do",
+                  "dont"
+                ],
+                "additionalProperties": false
+              },
+              "evidence": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "url": {
+                      "type": "string"
+                    },
+                    "snippet": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "url",
+                    "snippet"
+                  ],
+                  "additionalProperties": false
+                }
+              },
+              "selected_angle": {
+                "type": "object",
+                "properties": {
+                  "angle_id": {
+                    "type": "string"
+                  },
+                  "used": {
+                    "type": "boolean"
+                  }
+                },
+                "required": [
+                  "angle_id",
+                  "used"
+                ],
+                "additionalProperties": false
+              }
+            },
+            "required": [
+              "meta",
+              "constraints",
+              "paragraphs",
+              "do_dont",
+              "evidence",
+              "selected_angle"
+            ],
+            "additionalProperties": false
+          },
+          "outputData": "```json\n{\n  \"crafter_architect\": {\n    \"greeting\": \"Hi [Name],\",\n    \"hook\": \"The widespread adoption of GLP-1 agonists like Ozempic has introduced a silent risk for patients: the rapid stripping of essential muscle mass alongside fat.\",\n    \"situation\": \"While these drugs revolutionize weight loss, they often leave users without the specific resistance training and nutritional guardrails required to prevent sarcopenia.\",\n    \"implication\": \"Failing to address this specific deficit threatens to trade obesity for long-term metabolic frailty.\",\n    \"bridge\": \"Fitness First has officially launched its new mobile application to serve as the essential lifestyle companion for this emerging medical context.\",\n    \"offer_phrase\": \"We are introducing a unified ecosystem that combines personalized workouts with expert-curated nutrition to ensure safe, sustainable body recomposition.\",\n    \"details\": \"Unlike generic trackers, our platform connects users with certified experts to prioritize protein intake and muscle retention during aggressive weight-loss phases.\",\n    \"call_to_action\": \"Would you be interested in covering how Fitness First is solving the muscle defense problem for the GLP-1 generation?\"\n  }\n}\n```"
+        },
+        "width": 200,
+        "height": 274,
+        "selected": false,
+        "dragging": false
+      }
+    ],
+    "edges": [
+      {
+        "id": "e_lead_company",
+        "source": "node-lead-input",
+        "target": "node-company-understanding"
+      },
+      {
+        "id": "e_lead_persona",
+        "source": "node-lead-input",
+        "target": "node-persona-understanding",
+        "style": {
+          "strokeDasharray": "5 5"
+        }
+      },
+      {
+        "id": "e_company_persona",
+        "source": "node-company-understanding",
+        "target": "node-persona-understanding"
+      },
+      {
+        "id": "e_company_base",
+        "source": "node-company-understanding",
+        "target": "node-basecontribution"
+      },
+      {
+        "id": "e_persona_base",
+        "source": "node-persona-understanding",
+        "target": "node-basecontribution"
+      },
+      {
+        "id": "e_lead_base",
+        "source": "node-lead-input",
+        "target": "node-basecontribution",
+        "style": {
+          "strokeDasharray": "5 5"
+        }
+      },
+      {
+        "id": "e_company_signals",
+        "source": "node-company-understanding",
+        "target": "node-signals-perplexity"
+      },
+      {
+        "id": "e_persona_signals",
+        "source": "node-persona-understanding",
+        "target": "node-signals-perplexity"
+      },
+      {
+        "id": "e_base_signals",
+        "source": "node-basecontribution",
+        "target": "node-signals-perplexity"
+      },
+      {
+        "id": "e_signals_angles",
+        "source": "node-signals-perplexity",
+        "target": "node-angle-synthesizer"
+      },
+      {
+        "id": "e_base_angles",
+        "source": "node-basecontribution",
+        "target": "node-angle-synthesizer",
+        "style": {
+          "strokeDasharray": "5 5"
+        }
+      },
+      {
+        "id": "e_angles_select",
+        "source": "node-angle-synthesizer",
+        "target": "node-stronger-than-base"
+      },
+      {
+        "id": "e_base_select",
+        "source": "node-basecontribution",
+        "target": "node-stronger-than-base",
+        "style": {
+          "strokeDasharray": "5 5"
+        }
+      },
+      {
+        "id": "e_select_arch",
+        "source": "node-stronger-than-base",
+        "target": "node-crafter-architect"
+      },
+      {
+        "id": "e_angles_arch",
+        "source": "node-angle-synthesizer",
+        "target": "node-crafter-architect",
+        "style": {
+          "strokeDasharray": "5 5"
+        }
+      },
+      {
+        "id": "e_signals_arch",
+        "source": "node-signals-perplexity",
+        "target": "node-crafter-architect",
+        "style": {
+          "strokeDasharray": "5 5"
+        }
+      },
+      {
+        "id": "e_base_arch",
+        "source": "node-basecontribution",
+        "target": "node-crafter-architect",
+        "style": {
+          "strokeDasharray": "5 5"
+        }
+      },
+      {
+        "id": "e_company_arch",
+        "source": "node-company-understanding",
+        "target": "node-crafter-architect",
+        "style": {
+          "strokeDasharray": "5 5"
+        }
+      },
+      {
+        "id": "e_persona_arch",
+        "source": "node-persona-understanding",
+        "target": "node-crafter-architect",
+        "style": {
+          "strokeDasharray": "5 5"
+        }
+      },
+      {
+        "id": "e_lead_arch",
+        "source": "node-lead-input",
+        "target": "node-crafter-architect",
+        "style": {
+          "strokeDasharray": "5 5"
+        }
+      }
+    ]
+  },
+  "crafter": {
+    "nodes": [
+      {
+        "id": "node-crafter-harmonizer",
+        "type": "custom",
+        "position": {
+          "x": 1980,
+          "y": 420
+        },
+        "data": {
+          "label": "8. Crafter Harmonizer (Renderer)",
+          "type": "LLM",
+          "status": "idle",
+          "inputs": [
+            "crafter_architect"
+          ],
+          "outputs": [
+            "harmonized_email"
+          ],
+          "systemPrompt": "# ROLE: Crafter Harmonizer\n# GOAL: Render final email text from Crafter Architect JSON.\n# HARD RULES:\n- Keep the same structure and order.\n- One sentence per paragraph (each array item becomes its own paragraph).\n- Do NOT add new facts.\n- Do NOT create new angles.\n# OUTPUT JSON:\n{\n  \"email_text\": \"...\\n\\n...\\n\\n...\",\n  \"self_check\": {\n    \"one_sentence_per_paragraph\": true,\n    \"no_new_facts\": true,\n    \"structure_ok\": true\n  }\n}\nReturn ONLY JSON.",
+          "userPrompt": "Render the email from this Crafter Architect JSON:\n{{node-crafter-architect}}",
+          "model": "gemini-3-pro-preview",
+          "temperature": 0.3,
+          "schema": {
+            "type": "object",
+            "properties": {
+              "email_text": {
+                "type": "string"
+              },
+              "self_check": {
+                "type": "object",
+                "properties": {
+                  "one_sentence_per_paragraph": {
+                    "type": "boolean"
+                  },
+                  "no_new_facts": {
+                    "type": "boolean"
+                  },
+                  "structure_ok": {
+                    "type": "boolean"
+                  }
+                },
+                "required": [
+                  "one_sentence_per_paragraph",
+                  "no_new_facts",
+                  "structure_ok"
+                ],
+                "additionalProperties": false
+              }
+            },
+            "required": [
+              "email_text",
+              "self_check"
+            ],
+            "additionalProperties": false
+          }
+        },
+        "width": 340,
+        "height": 170
+      }
+    ],
+    "edges": [
+      {
+        "id": "e_arch_to_harmonizer",
+        "source": "node-crafter-architect",
+        "target": "node-crafter-harmonizer"
+      }
+    ]
+  }
+}

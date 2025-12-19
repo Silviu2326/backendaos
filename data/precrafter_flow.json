@@ -1,0 +1,265 @@
+{
+  "precrafter": {
+    "nodes": [
+      {
+        "id": "node-normalization",
+        "type": "custom",
+        "position": { "x": 0, "y": 150 },
+        "data": {
+          "label": "A. Lead Normalization",
+          "type": "LLM",
+          "status": "idle",
+          "inputs": ["raw_lead_data"],
+          "outputs": ["lead_profile_normalized"],
+          "systemPrompt": "You are a Data Normalization Expert. Your goal is to standardize raw lead data into a unified 'Lead Profile Normalized' JSON format. Output strictly valid JSON conforming to the schema defined in the system documentation (Company, Person, Offering, Campaign Settings).",
+          "userPrompt": "Normalize the following raw lead data into the standard schema:\n\n{{input}}",
+          "model": "gemini-3-pro-preview",
+          "temperature": 0.1
+        },
+        "width": 250,
+        "height": 150
+      },
+      {
+        "id": "node-feasibility",
+        "type": "custom",
+        "position": { "x": 300, "y": 150 },
+        "data": {
+          "label": "B. Feasibility Gate",
+          "type": "LLM",
+          "status": "idle",
+          "inputs": ["lead_profile_normalized"],
+          "outputs": ["feasibility_report"],
+          "systemPrompt": "You are a Feasibility Gatekeeper (Stop-the-line). Your goal is to filter leads that do not meet minimum quality requirements. Output strictly valid JSON with 'status' (PASS/DROP) and 'checks'.",
+          "userPrompt": "Analyze the following normalized lead profile and determine feasibility:\n\n{{node-normalization.lead_profile_normalized}}",
+          "model": "gemini-3-pro-preview",
+          "temperature": 0.1
+        },
+        "width": 250,
+        "height": 150
+      },
+      {
+        "id": "node-signal-harvesting",
+        "type": "custom",
+        "position": { "x": 600, "y": 150 },
+        "data": {
+          "label": "C. Signal Harvesting",
+          "type": "LLM",
+          "status": "idle",
+          "inputs": ["lead_profile_normalized"],
+          "outputs": ["signal_bank"],
+          "systemPrompt": "You are an Elite Intelligence Researcher. Your goal is to find verifiable signals for a company using the provided search parameters. Output strictly valid JSON containing a 'signal_bank'.",
+          "userPrompt": "Find recent (last 180 days) verifiable signals for the company \"{{node-normalization.lead_profile_normalized.company.name}}\" ({{node-normalization.lead_profile_normalized.company.website}}). Focus on Company Moves, Hiring, Product/Tech, Market Pressure, and Personal signals.",
+          "model": "gemini-3-pro-preview",
+          "temperature": 0.2
+        },
+        "width": 250,
+        "height": 150
+      },
+      {
+        "id": "node-hit-filter",
+        "type": "custom",
+        "position": { "x": 900, "y": 150 },
+        "data": {
+          "label": "D. HIT Filter",
+          "type": "LLM",
+          "status": "idle",
+          "inputs": ["signal_bank"],
+          "outputs": ["hit_filter_results"],
+          "systemPrompt": "You are a Signal Prioritization Analyst. Your goal is to classify signals by impact and relevance (HIT, INCLUDE, STORE, UNCLEAR, EXCLUDE). Output strictly valid JSON.",
+          "userPrompt": "Classify the following harvested signals based on their relevance to the business contribution:\n\n{{node-signal-harvesting.signal_bank}}",
+          "model": "gemini-3-pro-preview",
+          "temperature": 0.2
+        },
+        "width": 250,
+        "height": 150
+      },
+      {
+        "id": "node-whynow",
+        "type": "custom",
+        "position": { "x": 1200, "y": 150 },
+        "data": {
+          "label": "E. Why Now Engine",
+          "type": "LLM",
+          "status": "idle",
+          "inputs": ["hit_filter_results"],
+          "outputs": ["why_now_block"],
+          "systemPrompt": "# ROLE: Chief Intelligence Analyst\n# GOAL: Select the single most powerful signal (the winning HIT) and transform it into a compelling \"Why Now\" argument.\n# INPUT: hit_filter_results.json\n# OUTPUT: why_now_block.json\n\nAnalyze the provided classified signals. Select the signal with the 'HIT' classification that has the highest confidence score. If there are multiple HITs, choose the one with the most direct link to a business pain point.\n\nBased on this winning signal, generate the 'why_now_block' by following these rules:\n1.  **why_now_one_liner**: A single, hard-hitting sentence stating the reason for contact. No fluff.\n2.  **why_now_reasoning**: 2-3 sentences providing the immediate context of the signal. Pure facts.\n3.  **risk_if_ignored**: The tangible, negative business consequence of inaction.\n4.  **business_value**: The tangible, positive business impact of taking action.\n\nReturn a single, valid JSON object according to the `why_now_block.json` schema.",
+          "userPrompt": "Analyze the provided classified signals: {{node-hit-filter.hit_filter_results}}",
+          "model": "gemini-3-pro-preview",
+          "temperature": 0.5
+        },
+        "width": 250,
+        "height": 150
+      },
+      {
+        "id": "node-angles",
+        "type": "custom",
+        "position": { "x": 1500, "y": 150 },
+        "data": {
+          "label": "F. Angle Generator",
+          "type": "LLM",
+          "status": "idle",
+          "inputs": ["why_now_block", "lead_profile_normalized", "hit_filter_results"],
+          "outputs": ["angles_block"],
+          "systemPrompt": "# ROLE: Master Strategist\n# GOAL: Generate three distinct, high-impact sales angles based on the provided intelligence.\n# INPUT: why_now_block.json, lead_profile_normalized.json, hit_filter_results.json\n# OUTPUT: angles_block.json\n\nGenerate exactly three sales angles following this strict hierarchy and rules:\n\n1.  **best_angle**: Must use the 'winning_signal' from the `why_now_block`. The narrative must connect this signal to a core business problem and how our contribution solves it.\n2.  **second_best_angle**: Must use a different signal classified as 'INCLUDE' from `hit_filter_results.json`. It must present an alternative logical argument.\n3.  **identity_angle**: Must NOT use any external signal. The hook must appeal directly to the person's role/mandate. The narrative must focus on a classic pain point for that specific role.\n\nReturn a single, valid JSON object according to the `angles_block.json` schema.",
+          "userPrompt": "Generate sales angles using:\nWhy Now Block: {{node-whynow.why_now_block}}\nLead Profile: {{node-normalization.lead_profile_normalized}}\nHIT Results: {{node-hit-filter.hit_filter_results}}",
+          "model": "gemini-3-pro-preview",
+          "temperature": 0.7
+        },
+        "width": 250,
+        "height": 150
+      },
+      {
+        "id": "node-personalization",
+        "type": "custom",
+        "position": { "x": 1200, "y": 400 },
+        "data": {
+          "label": "G. Personalization Map",
+          "type": "LLM",
+          "status": "idle",
+          "inputs": ["lead_profile_normalized"],
+          "outputs": ["personalization_map"],
+          "systemPrompt": "# ROLE: Corporate Anthropologist\n# GOAL: Create a usable map of personalization points to make the email sound hyper-human and deeply researched.\n# INPUT: lead_profile_normalized.json\n# OUTPUT: personalization_map.json\n\nAnalyze the normalized lead profile to infer the following personalization points:\n1.  **role_kpi_pressure**\n2.  **day_to_day_context**\n3.  **language_mirroring**\n4.  **objections_likely**\n5.  **social_proof_style**\n6.  **personal_hook_options**\n\nReturn a single, valid JSON object according to the `personalization_map.json` schema.",
+          "userPrompt": "Analyze the normalized lead profile: {{node-normalization.lead_profile_normalized}}",
+          "model": "gemini-3-pro-preview",
+          "temperature": 0.6
+        },
+        "width": 250,
+        "height": 150
+      },
+      {
+        "id": "node-crafter-package",
+        "type": "custom",
+        "position": { "x": 1800, "y": 150 },
+        "data": {
+          "label": "H. Crafter Package",
+          "type": "LLM",
+          "status": "idle",
+          "inputs": ["why_now_block", "angles_block", "personalization_map", "lead_profile_normalized"],
+          "outputs": ["crafter_package"],
+          "systemPrompt": "# ROLE: Head of Campaign Operations\n# GOAL: Assemble the final, complete package for the Crafter, leaving zero room for interpretation or creative work.\n# INPUT: why_now_block.json, angles_block.json, personalization_map.json, lead_profile_normalized.json\n# OUTPUT: crafter_package.json\n\nSelect the `best_angle` from the `angles_block`. Synthesize all provided intelligence into the final `crafter_package.json`. Follow these instructions relentlessly:\n- **subject_lines**\n- **icebreaker**\n- **bridge**\n- **contribution**\n- **details**\n- **cta**\n- **proof_pack**\n- **compliance_flags**\n- **confidence_overall**\n\nReturn a single, valid JSON object according to the `crafter_package.json` schema.",
+          "userPrompt": "Assemble the Crafter Package using:\nAngles: {{node-angles.angles_block}}\nWhy Now: {{node-whynow.why_now_block}}\nPersonalization: {{node-personalization.personalization_map}}\nLead Profile: {{node-normalization.lead_profile_normalized}}",
+          "model": "gemini-3-pro-preview",
+          "temperature": 0.4
+        },
+        "width": 250,
+        "height": 150
+      },
+      {
+        "id": "node-validator",
+        "type": "custom",
+        "position": { "x": 2100, "y": 150 },
+        "data": {
+          "label": "I. Coherence Validator",
+          "type": "LLM",
+          "status": "idle",
+          "inputs": ["crafter_package"],
+          "outputs": ["qa_report"],
+          "systemPrompt": "# ROLE: Implacable QA Automaton\n# GOAL: Perform a final, ruthless validation of the crafter package. No mercy.\n# INPUT: crafter_package.json\n# OUTPUT: qa_report.json\n\nExecute the following validation checks on the `crafter_package.json` and generate the `qa_report.json`:\n1.  **Relevance Score**\n2.  **Personalization Score**\n3.  **is_why_now_verified**\n4.  **is_free_of_hallucinations**\n5.  **is_narrative_tight**\n\nReturn a single, valid JSON object according to the `qa_report.json` schema.",
+          "userPrompt": "Validate the crafter package: {{node-crafter-package.crafter_package}}",
+          "model": "gemini-3-pro-preview",
+          "temperature": 0.1
+        },
+        "width": 250,
+        "height": 150
+      }
+    ],
+    "edges": [
+      {
+        "id": "e_norm_feas",
+        "source": "node-normalization",
+        "target": "node-feasibility",
+        "animated": true,
+        "style": { "stroke": "#06b6d4" }
+      },
+      {
+        "id": "e_feas_sig",
+        "source": "node-feasibility",
+        "target": "node-signal-harvesting",
+        "animated": true,
+        "style": { "stroke": "#06b6d4" }
+      },
+      {
+        "id": "e_sig_hit",
+        "source": "node-signal-harvesting",
+        "target": "node-hit-filter",
+        "animated": true,
+        "style": { "stroke": "#06b6d4" }
+      },
+      {
+        "id": "e_hit_why",
+        "source": "node-hit-filter",
+        "target": "node-whynow",
+        "animated": true,
+        "style": { "stroke": "#06b6d4" }
+      },
+      {
+        "id": "e_why_ang",
+        "source": "node-whynow",
+        "target": "node-angles",
+        "animated": true,
+        "style": { "stroke": "#06b6d4" }
+      },
+      {
+        "id": "e_norm_ang",
+        "source": "node-normalization",
+        "target": "node-angles",
+        "animated": true,
+        "style": { "stroke": "#94a3b8", "strokeDasharray": "5,5" }
+      },
+      {
+        "id": "e_hit_ang",
+        "source": "node-hit-filter",
+        "target": "node-angles",
+        "animated": true,
+        "style": { "stroke": "#94a3b8", "strokeDasharray": "5,5" }
+      },
+      {
+        "id": "e_norm_pers",
+        "source": "node-normalization",
+        "target": "node-personalization",
+        "animated": true,
+        "style": { "stroke": "#06b6d4" }
+      },
+      {
+        "id": "e_ang_craft",
+        "source": "node-angles",
+        "target": "node-crafter-package",
+        "animated": true,
+        "style": { "stroke": "#06b6d4" }
+      },
+      {
+        "id": "e_why_craft",
+        "source": "node-whynow",
+        "target": "node-crafter-package",
+        "animated": true,
+        "style": { "stroke": "#94a3b8", "strokeDasharray": "5,5" }
+      },
+      {
+        "id": "e_pers_craft",
+        "source": "node-personalization",
+        "target": "node-crafter-package",
+        "animated": true,
+        "style": { "stroke": "#94a3b8", "strokeDasharray": "5,5" }
+      },
+      {
+        "id": "e_norm_craft",
+        "source": "node-normalization",
+        "target": "node-crafter-package",
+        "animated": true,
+        "style": { "stroke": "#94a3b8", "strokeDasharray": "5,5" }
+      },
+      {
+        "id": "e_craft_val",
+        "source": "node-crafter-package",
+        "target": "node-validator",
+        "animated": true,
+        "style": { "stroke": "#06b6d4" }
+      }
+    ]
+  },
+  "crafter": {
+    "nodes": [],
+    "edges": []
+  }
+}
