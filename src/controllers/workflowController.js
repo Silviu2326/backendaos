@@ -74,8 +74,37 @@ exports.getVersion = async (req, res) => {
 };
 
 exports.runNode = async (req, res) => {
+    console.log('[Controller] runNode called');
+    console.log('[Controller] Request Body keys:', Object.keys(req.body));
+    if (req.body.debug) console.log('[Controller] Frontend Debug:', req.body.debug);
+    
     const { node, context } = req.body;
-    console.log(`[Controller] runNode: executing node ${node?.id} with model ${node?.data?.model || 'default'}`);
+    
+    if (node) {
+        console.log('[Controller] Node received:', {
+            id: node.id,
+            model: node.model,
+            dataModel: node.data?.model,
+            type: node.type,
+            keys: Object.keys(node)
+        });
+    } else {
+        console.error('[Controller] Node object is MISSING in request body');
+    }
+
+    let model = node?.model || node?.data?.model;
+    
+    // Fallback based on Node Type if model is not explicitly provided
+    if (!model) {
+        if (node?.type === 'PERPLEXITY') {
+            model = 'sonar';
+        } else {
+            model = 'gemini-3-pro-preview';
+        }
+        console.log(`[Controller] Model inferred from type '${node?.type}': ${model}`);
+    }
+
+    console.log(`[Controller] runNode: executing node ${node?.id} with model ${model}`);
 
     if (!node) return res.status(400).json({ error: 'Node data required' });
 
@@ -93,7 +122,12 @@ exports.runNode = async (req, res) => {
                 const property = parts.slice(1).join('.');
 
                 if (ctx && ctx[nodeId]) {
-                    const nodeOutput = ctx[nodeId];
+                    // Support both old format (string) and new format ({input, output})
+                    let nodeOutput = ctx[nodeId];
+                    if (typeof nodeOutput === 'object' && nodeOutput.output !== undefined) {
+                        nodeOutput = nodeOutput.output;
+                    }
+
                     if (property) {
                         try {
                             const parsed = JSON.parse(nodeOutput);
@@ -101,12 +135,12 @@ exports.runNode = async (req, res) => {
                             return val !== undefined ? val : match;
                         } catch (e) {
                             if (property === 'output') return nodeOutput;
-                            return match; 
+                            return match;
                         }
                     }
                     return nodeOutput;
                 }
-                return match; 
+                return match;
             });
         };
 
@@ -124,15 +158,26 @@ exports.runNode = async (req, res) => {
         const userPrompt = replaceVariables(node.userPrompt || node.data?.userPrompt, context);
 
         const output = await llmService.generate({
-            model: node.data?.model || 'gemini-3-pro-preview',
+            model: model,
             systemPrompt,
             userPrompt,
             temperature: node.temperature || node.data?.temperature,
             recency: node.data?.recency,
-            citations: node.data?.citations
+            citations: node.data?.citations,
+            schema: node.schema || node.data?.schema
         });
 
-        res.json({ success: true, output });
+        // Return both input and output for better run tracking
+        res.json({
+            success: true,
+            output,
+            input: {
+                systemPrompt,
+                userPrompt,
+                temperature: node.temperature || node.data?.temperature,
+                model: model
+            }
+        });
     } catch (error) {
         res.status(500).json({ error: error.message });
     }
@@ -195,6 +240,97 @@ exports.chat = async (req, res) => {
 
         res.json({ success: true, output });
     } catch (error) {
+        res.status(500).json({ error: error.message });
+    }
+};
+
+exports.generateVariations = async (req, res) => {
+    const { node, instructions } = req.body;
+
+    if (!node || !instructions || !Array.isArray(instructions)) {
+        return res.status(400).json({ error: 'Node and instructions array required' });
+    }
+
+    try {
+        const variations = await Promise.all(
+            instructions.map(async (instruction, index) => {
+                // If instruction is empty, provide a robust default to ensure AI generation
+                const effectiveInstruction = instruction.trim() 
+                    ? instruction 
+                    : "Improve the prompt's clarity and effectiveness while maintaining the original intent.";
+
+                const systemPrompt = `You are an expert prompt engineer. Your task is to improve and modify prompts based on specific instructions.
+
+CRITICAL RULE: You must NOT change the output schema or data structure defined in the original prompts. The output format (JSON structure, keys, etc.) must remain EXACTLY the same. Only modify the instructions, reasoning, or content generation logic within the system and user prompts to satisfy the user's request.
+
+You will receive:
+1. An original system prompt
+2. An original user prompt
+3. The Target Output Schema (MUST BE PRESERVED)
+4. A specific instruction for modification
+
+Generate improved versions that follow the instruction while STRICTLY maintaining the output schema and core purpose.
+
+Output ONLY a JSON object with this structure:
+{
+  "systemPrompt": "improved system prompt here",
+  "userPrompt": "improved user prompt here"
+}
+
+Do NOT include any explanation or text outside the JSON.`;
+
+                const userPrompt = `Original System Prompt:
+${node.systemPrompt || 'None'}
+
+Original User Prompt:
+${node.userPrompt || 'None'}
+
+Target Output Schema (MUST BE PRESERVED):
+${JSON.stringify(node.schema || node.data?.schema || {}, null, 2)}
+
+Instruction for modification: ${effectiveInstruction}
+
+Generate improved prompts following the instruction above. Output ONLY the JSON object.`;
+
+                const output = await llmService.generate({
+                    model: 'gemini-3-pro-preview',
+                    systemPrompt,
+                    userPrompt,
+                    temperature: 0.7,
+                    schema: {
+                        type: 'object',
+                        properties: {
+                            systemPrompt: { type: 'string' },
+                            userPrompt: { type: 'string' }
+                        },
+                        required: ['systemPrompt', 'userPrompt']
+                    }
+                });
+
+                let parsed;
+                try {
+                    parsed = JSON.parse(output);
+                } catch (e) {
+                    console.error("Failed to parse AI output for variation:", output);
+                    // Fallback to original if parsing fails
+                    parsed = { systemPrompt: node.systemPrompt, userPrompt: node.userPrompt };
+                }
+
+                return {
+                    id: `v_ai_${Date.now()}_${index}`,
+                    label: `${instruction.substring(0, 20)}${instruction.length > 20 ? '...' : ''}`,
+                    systemPrompt: parsed.systemPrompt,
+                    userPrompt: parsed.userPrompt,
+                    temperature: node.temperature || 0.7,
+                    instruction: instruction,
+                    schema: node.schema || node.data?.schema // Explicitly preserve the schema
+                };
+            })
+        );
+
+        res.json({ success: true, variations });
+    } catch (error) {
+        console.error('Error generating variations:', error);
         res.status(500).json({ error: error.message });
     }
 };
