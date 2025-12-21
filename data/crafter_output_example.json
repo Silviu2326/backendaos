@@ -1,0 +1,45 @@
+{
+  "architecture_mode": "ANGLE",
+  "hook": {
+    "intent_sentence": "Your 40-year legacy and Forbes recognition are underutilized assets.",
+    "source": "selected_angle",
+    "certainty_level": "HIGH"
+  },
+  "situation": {
+    "fact_sentence": "American Recruiters has operated since 1982 and holds Forbes recognition.",
+    "signal_ids_used": [
+      "sig_003",
+      "sig_001"
+    ]
+  },
+  "implication": {
+    "cost_sentence": "In a volatile market, failing to leverage this trust makes franchise sales harder than they need to be.",
+    "angle_type": "PAIN"
+  },
+  "bridge": {
+    "outcome_sentence": "You can de-risk the investment decision for prospective franchisees by leading with this authority.",
+    "implied_requirement": "You need to front-load your legacy in the outreach."
+  },
+  "contribution": {
+    "line_1": "We will build a dual-track Client Acquisition Operation.",
+    "line_2": "We source HR Directors and VPs in Healthcare and Foodservice.",
+    "line_3": null
+  },
+  "details": {
+    "lead_sourcing": "Precise list building of entrepreneurs and business owners.",
+    "personalization": "1:1 personalized messaging based on hiring intent signals.",
+    "execution": "End-to-end inbox management.",
+    "dfy_statement": "We handle the entire infrastructure setup and execution."
+  },
+  "cta": {
+    "sentence_1": "Are you open to a conversation about modernizing your outreach?",
+    "sentence_2": "Worth exploring how we can leverage your Forbes status?",
+    "sentence_3": "Can we send over a breakdown of the strategy?",
+    "sentence_4": "Thoughts on this approach?"
+  },
+  "compliance_checks": {
+    "no_new_facts": true,
+    "inside_base_contribution": true,
+    "no_competitor_invention": true
+  }
+}

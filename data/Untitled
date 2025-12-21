@@ -1,0 +1,20 @@
+{
+  "person": {
+    "firstName": "Paul",
+    "lastName": "Burnett",
+    "title": "Chief Executive Officer",
+    "titleDescription": "Chief Executive Officer",
+    "personSummary": "Since 1985, Paul D. Burnett has dedicated his professional career to helping make a difference in the lives of others. A Texas family man and business owner of Burnett's Staffing, Paul is hands-on in every aspect of the firm. An acknowledged employment professional with industry expertise of molding individuals into team leaders that educate and guide their colleagues to compete at the highest level of recruiting, exceeding candidate and client expectations. Comprehensive background in staffing and recruitment as well as business and personnel management. Proven executive, financial, and operational skills with a passion for building careers and maintaining professional and personal relations.",
+    "durationInRole": "28 years",
+    "durationInCompany": "40 years",
+    "personLocation": "Dallas-Fort Worth, Texas"
+  },
+  "company": {
+    "companyName": "Burnett's Staffing",
+    "companyDescription": "Since 1966, Burnett's Staffing has been instrumental in connecting and introducing numerous employers and job seekers across the Dallas-Fort Worth area. Our core values revolve around making a meaningful impact by making a difference in the lives of others. As a family-owned and operated business, Burnett's Staffing consistently places highly qualified individuals into various office environments specializing in administrative, customer service, call centers, accounting, human resources, and marketing. Our team's commitment to service, honesty, professionalism, and integrity sets us apart. We are dedicated to delivering unparalleled support to employers and job seekers at every stage of their journey. We stand ready to assist you in your job search or aid in recruiting your next team member.",
+    "companyTagline": "Making a difference in the lives of others since 1966",
+    "industry": "Staffing and Recruiting",
+    "employeeCount": "124",
+    "companyLocation": "Dallas-Fort Worth, Texas"
+  }
+}

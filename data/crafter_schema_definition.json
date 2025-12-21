@@ -1,0 +1,189 @@
+{
+  "type": "object",
+  "properties": {
+    "architecture_mode": {
+      "type": "string",
+      "enum": [
+        "ANGLE",
+        "BASE_ONLY"
+      ]
+    },
+    "hook": {
+      "type": "object",
+      "properties": {
+        "intent_sentence": {
+          "type": "string"
+        },
+        "source": {
+          "type": "string",
+          "enum": [
+            "selected_angle",
+            "base_angle"
+          ]
+        },
+        "certainty_level": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "intent_sentence",
+        "source",
+        "certainty_level"
+      ]
+    },
+    "situation": {
+      "type": "object",
+      "properties": {
+        "fact_sentence": {
+          "type": "string"
+        },
+        "signal_ids_used": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      },
+      "required": [
+        "fact_sentence",
+        "signal_ids_used"
+      ]
+    },
+    "implication": {
+      "type": "object",
+      "properties": {
+        "cost_sentence": {
+          "type": "string"
+        },
+        "angle_type": {
+          "type": "string",
+          "enum": [
+            "THREAT",
+            "OPPORTUNITY",
+            "PAIN"
+          ]
+        }
+      },
+      "required": [
+        "cost_sentence",
+        "angle_type"
+      ]
+    },
+    "bridge": {
+      "type": "object",
+      "properties": {
+        "outcome_sentence": {
+          "type": "string"
+        },
+        "implied_requirement": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "outcome_sentence",
+        "implied_requirement"
+      ]
+    },
+    "contribution": {
+      "type": "object",
+      "properties": {
+        "line_1": {
+          "type": "string"
+        },
+        "line_2": {
+          "type": "string",
+          "nullable": true
+        },
+        "line_3": {
+          "type": "string",
+          "nullable": true
+        }
+      },
+      "required": [
+        "line_1",
+        "line_2",
+        "line_3"
+      ]
+    },
+    "details": {
+      "type": "object",
+      "properties": {
+        "lead_sourcing": {
+          "type": "string"
+        },
+        "personalization": {
+          "type": "string"
+        },
+        "execution": {
+          "type": "string"
+        },
+        "dfy_statement": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "lead_sourcing",
+        "personalization",
+        "execution",
+        "dfy_statement"
+      ]
+    },
+    "cta": {
+      "type": "object",
+      "properties": {
+        "sentence_1": {
+          "type": "string"
+        },
+        "sentence_2": {
+          "type": "string"
+        },
+        "sentence_3": {
+          "type": "string"
+        },
+        "sentence_4": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "sentence_1",
+        "sentence_2",
+        "sentence_3",
+        "sentence_4"
+      ]
+    },
+    "compliance_checks": {
+      "type": "object",
+      "properties": {
+        "no_new_facts": {
+          "type": "boolean"
+        },
+        "inside_base_contribution": {
+          "type": "boolean"
+        },
+        "no_volume_overpromise": {
+          "type": "boolean"
+        },
+        "architecture_valid": {
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "no_new_facts",
+        "inside_base_contribution",
+        "no_volume_overpromise",
+        "architecture_valid"
+      ]
+    }
+  },
+  "required": [
+    "architecture_mode",
+    "hook",
+    "situation",
+    "implication",
+    "bridge",
+    "contribution",
+    "details",
+    "cta",
+    "compliance_checks"
+  ]
+}

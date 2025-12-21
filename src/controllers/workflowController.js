@@ -116,10 +116,22 @@ exports.runNode = async (req, res) => {
         // Variable Substitution Helper
         const replaceVariables = (text, ctx) => {
             if (!text) return '';
-            return text.replace(/{{([\w\.-]+)}}/g, (match, variable) => {
-                const parts = variable.split('.');
+            
+            // Debug: Log context availability once per call if context exists
+            // (Using a simple check to avoid spamming logs for every string)
+            if (ctx && Object.keys(ctx).length > 0 && text.includes('{{')) {
+                 console.log(`[Controller] replaceVariables: Context keys available: [${Object.keys(ctx).join(', ')}]`);
+            } else if (text.includes('{{')) {
+                 console.warn('[Controller] replaceVariables: Context is empty or null, but variables are present in text.');
+            }
+
+            // Allow optional spaces inside brackets: {{ variable }}
+            return text.replace(/{{ ?([\w\.-]+) ?}}/g, (match, variable) => {
+                const parts = variable.trim().split('.');
                 const nodeId = parts[0];
                 const property = parts.slice(1).join('.');
+
+                console.log(`[Controller] Attempting to resolve variable: '${variable}' (Node: ${nodeId}, Prop: ${property})`);
 
                 if (ctx && ctx[nodeId]) {
                     // Support both old format (string) and new format ({input, output})
@@ -130,26 +142,59 @@ exports.runNode = async (req, res) => {
 
                     if (property) {
                         try {
-                            const parsed = JSON.parse(nodeOutput);
+                            // Attempt to parse JSON. 
+                            let jsonString = nodeOutput;
+                            if (typeof jsonString === 'string') {
+                                // 1. Try extracting from markdown code blocks first
+                                const jsonBlockMatch = jsonString.match(/```(?:json)?\s*([\s\S]*?)\s*```/);
+                                if (jsonBlockMatch) {
+                                    jsonString = jsonBlockMatch[1];
+                                } else {
+                                    // 2. Fallback: Find outermost JSON object if no code blocks are present
+                                    // This handles cases like "Here is the data: { ... } **Disclaimer**..."
+                                    const firstOpen = jsonString.indexOf('{');
+                                    const lastClose = jsonString.lastIndexOf('}');
+                                    if (firstOpen !== -1 && lastClose > firstOpen) {
+                                        jsonString = jsonString.substring(firstOpen, lastClose + 1);
+                                    }
+                                }
+                            }
+
+                            const parsed = JSON.parse(jsonString);
                             const val = resolvePath(parsed, property);
-                            return val !== undefined ? val : match;
+                            
+                            if (val !== undefined) {
+                                const replacement = typeof val === 'object' ? JSON.stringify(val, null, 2) : String(val);
+                                console.log(`[Controller] Resolved '${variable}' to: ${replacement.substring(0, 50)}${replacement.length > 50 ? '...' : ''}`);
+                                return replacement;
+                            }
+                            console.warn(`[Controller] Variable substitution: Property '${property}' not found in node '${nodeId}' output.`);
+                            return match;
                         } catch (e) {
+                            console.warn(`[Controller] Variable substitution failed for '${variable}': Output of '${nodeId}' is not valid JSON. Error: ${e.message}`);
                             if (property === 'output') return nodeOutput;
                             return match;
                         }
                     }
                     return nodeOutput;
                 }
+                console.warn(`[Controller] Variable substitution: Node '${nodeId}' not found in context.`);
                 return match;
             });
         };
 
-        if (node.data?.type === 'JSON') {
-            return res.json({ success: true, output: node.data.json || '{}' });
+        console.log(`[Controller] runNode: executing node ${node?.id} with model ${model}, type: ${node?.data?.type || node?.type}`);
+
+        // Check for JSON type in both node.data.type and node.type (flattened)
+        if (node.data?.type === 'JSON' || node.type === 'JSON') {
+            console.log(`[Controller] Returning static JSON for node ${node.id}`);
+            // Support both nested and flattened json content
+            const jsonContent = node.data?.json || node.json || '{}';
+            return res.json({ success: true, output: jsonContent });
         }
 
-        if (node.data?.type === 'JSON_BUILDER') {
-            const template = node.data.json || '{}';
+        if (node.data?.type === 'JSON_BUILDER' || node.type === 'JSON_BUILDER') {
+            const template = node.data?.json || node.json || '{}';
             const output = replaceVariables(template, context);
             return res.json({ success: true, output });
         }

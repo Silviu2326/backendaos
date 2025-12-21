@@ -151,7 +151,116 @@ class LLMService {
         if (schema) {
             try {
                 parsedSchema = typeof schema === 'string' ? JSON.parse(schema) : schema;
-                console.log('[LLMService] Using structured output schema');
+                console.log('[LLMService] Using structured output schema. Keys:', Object.keys(parsedSchema));
+                
+                // Helper to recursively normalize schema for Gemini
+                const normalizeSchema = (s) => {
+                    if (s === undefined || s === null) return { type: "string" }; // Default to string for missing/null
+
+                    // Case 1: The "schema" is actually a primitive value (string, boolean, number)
+                    // This happens when data is injected into the schema field.
+                    // We must convert it to a valid Type Definition.
+                    const validTypes = ['string', 'number', 'integer', 'boolean', 'object', 'array', 'null'];
+                    
+                    if (typeof s === 'string') {
+                        if (validTypes.includes(s)) return { type: s }; // It was just "string" -> { type: "string" }
+                        
+                        // MAGIC FEATURE: Treat the string value as a DESCRIPTION/INSTRUCTION for the field.
+                        // This allows users to define schemas using an "Example JSON" where values explain what to generate.
+                        // e.g. "intent_sentence": "Write a punchy hook here" -> { type: "string", description: "Write a punchy hook here" }
+                        console.log(`[LLMService] Transforming value "${s.substring(0, 30)}..." into schema description.`);
+                        return { type: "string", description: s };
+                    }
+
+                    if (typeof s === 'boolean') {
+                         console.warn(`[LLMService] invalid schema boolean value "${s}". Replacing with { type: "boolean" }`);
+                         return { type: "boolean" };
+                    }
+
+                    if (typeof s === 'number') {
+                         console.warn(`[LLMService] invalid schema number value "${s}". Replacing with { type: "number" }`);
+                         return { type: "number" };
+                    }
+
+                    // Case 2: It is an object
+                    if (typeof s === 'object') {
+                        // Check if it looks like a schema definition
+                        const isSchemaObject = s.type || s.properties || s.items || s.enum;
+
+                        // If it's an array, it's not a valid schema root (unless it's an enum, but usually schema is object)
+                        if (Array.isArray(s)) {
+                             console.warn(`[LLMService] invalid schema array found. Defaulting to { type: "array", items: { type: "string" } }`);
+                             return { type: "array", items: { type: "string" } };
+                        }
+
+                        // If it has NO schema keywords, assume it is a nested properties map
+                        if (!isSchemaObject) {
+                            const keys = Object.keys(s);
+                            return {
+                                type: "object",
+                                properties: keys.reduce((acc, key) => {
+                                    acc[key] = normalizeSchema(s[key]);
+                                    return acc;
+                                }, {}),
+                                required: keys // FORCE all fields to be generated
+                            };
+                        }
+
+                        // If it HAS schema keywords, validate them recursively
+                        if (s.properties) {
+                            Object.keys(s.properties).forEach(key => {
+                                s.properties[key] = normalizeSchema(s.properties[key]);
+                            });
+                        }
+                        
+                        if (s.items) {
+                            s.items = normalizeSchema(s.items);
+                        } else if (s.type === 'array') {
+                            // Fix: Arrays MUST have items. If missing, default to string items.
+                            console.warn(`[LLMService] Array schema missing 'items'. Defaulting to string items.`);
+                            s.items = { type: "string" };
+                        }
+
+                        // Fix invalid 'type' values inside the object
+                        if (s.type && !validTypes.includes(s.type)) {
+                            console.warn(`[LLMService] Invalid type "${s.type}" in object. Resetting to "string".`);
+                            s.type = "string";
+                            delete s.properties;
+                            delete s.items;
+                        }
+
+                        // Ensure type is present
+                        if (!s.type) {
+                            if (s.properties) s.type = "object";
+                            else if (s.items) s.type = "array";
+                            else s.type = "string"; // Fallback
+                        }
+
+                        return s;
+                    }
+                    
+                    return { type: "string" }; // Catch-all
+                };
+
+                // Auto-fix: If schema is just a list of properties without "type": "object", wrap it.
+                // Gemini STRICTLY requires the root to be a Schema object.
+                if (parsedSchema && !parsedSchema.type && !parsedSchema.properties) {
+                    console.log('[LLMService] Detected simplified schema root. Wrapping in standard JSON Schema format.');
+                    const rootKeys = Object.keys(parsedSchema);
+                    parsedSchema = {
+                        type: "object",
+                        properties: rootKeys.reduce((acc, key) => {
+                             acc[key] = normalizeSchema(parsedSchema[key]);
+                             return acc;
+                        }, {}),
+                        required: rootKeys // CRITICAL FIX: Force generation of all root fields
+                    };
+                } else {
+                     // Even if root is fine, traverse down to fix nested objects
+                     parsedSchema = normalizeSchema(parsedSchema);
+                }
+
+                if (parsedSchema.type) console.log('[LLMService] Schema type:', parsedSchema.type);
             } catch (e) {
                 console.warn('[LLMService] Failed to parse schema, ignoring:', e.message);
             }

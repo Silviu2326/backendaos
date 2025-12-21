@@ -16,7 +16,10 @@
       "angle_id": "ang_identity_legacy_trust",
       "angle_type": "identity",
       "why_now_thesis": "Your 40-year legacy and Forbes recognition are underutilized assets that can significantly de-risk the investment decision for prospective franchisees in a volatile economic climate.",
-      "supporting_signals": ["sig_003", "sig_001"],
+      "supporting_signals": [
+        "sig_003",
+        "sig_001"
+      ],
       "situation_facts": [
         "American Recruiters has operated since 1982 and holds Forbes recognition as a top recruiting firm.",
         "The franchise offering is positioned as a stable, home-based investment with a $49,500 entry fee."
@@ -49,7 +52,11 @@
       "angle_id": "ang_threat_database_velocity",
       "angle_type": "threat",
       "why_now_thesis": "The 'instant clientbase advantage' promised to new franchisees creates an operational imperative to continuously flood the shared database with fresh, active job orders to prevent value-prop decay.",
-      "supporting_signals": ["sig_002", "sig_005", "sig_001"],
+      "supporting_signals": [
+        "sig_002",
+        "sig_005",
+        "sig_001"
+      ],
       "situation_facts": [
         "Franchise sales materials promise a 'shared database' that allows new owners to access client opportunities on day one.",
         "There is a chronic talent shortage in healthcare, creating high demand for recruiting services.",
@@ -87,7 +94,11 @@
       "angle_id": "ang_opp_market_gap_arbitrage",
       "angle_type": "opportunity",
       "why_now_thesis": "The sub-$50k investment threshold creates a specific arbitrage opportunity to capture entrepreneurs priced out of larger staffing franchises who are seeking recession-resistant exposure.",
-      "supporting_signals": ["sig_001", "sig_006", "sig_005"],
+      "supporting_signals": [
+        "sig_001",
+        "sig_006",
+        "sig_005"
+      ],
       "situation_facts": [
         "American Recruiters' initial franchise fee is $49,500, positioned as a low-investment model.",
         "Competitors like Spherion often require higher investment ranges and different operational footprints.",
@@ -141,7 +152,11 @@
     "angle_id": "base_001",
     "angle_type": "internal_pain",
     "why_now_thesis": "Scaling a dual-track business (franchise sales + recruiting placements) via manual human effort creates a growth ceiling defined by headcount costs rather than market demand.",
-    "supporting_signals": ["sig_001", "sig_007", "sig_004"],
+    "supporting_signals": [
+      "sig_001",
+      "sig_007",
+      "sig_004"
+    ],
     "situation_facts": [
       "You operate a complex dual-funnel model: selling franchise licenses to entrepreneurs while simultaneously needing to secure job orders from healthcare and foodservice clients.",
       "With ~90 employees, scaling these two distinct motions traditionally requires hiring more internal recruiters or franchise sales reps, which is expensive and slow to ramp."
@@ -159,7 +174,10 @@
     "evidence_pack": [],
     "baseline_meta": {
       "segment": "mid_big_company",
-      "selected_pain_points": ["mb_02", "mb_05"],
+      "selected_pain_points": [
+        "mb_02",
+        "mb_05"
+      ],
       "baseline_bar": 7
     }
   }
