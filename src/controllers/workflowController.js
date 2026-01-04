@@ -1,7 +1,25 @@
 const WorkflowModel = require('../models/WorkflowModel');
 const llmService = require('../services/llmService');
+const fs = require('fs').promises;
+const path = require('path');
 
 const VALID_TYPES = ['precrafter', 'crafter'];
+const AUDIT_DIR = path.join(__dirname, '../../data/audit_logs');
+
+// Helper: Save Audit Log
+const saveAuditLog = async (data) => {
+    try {
+        await fs.mkdir(AUDIT_DIR, { recursive: true });
+        const timestamp = new Date().toISOString().replace(/[:.]/g, '-');
+        const filename = `audit_${timestamp}_${Math.random().toString(36).substr(2, 5)}.json`;
+        const filepath = path.join(AUDIT_DIR, filename);
+
+        await fs.writeFile(filepath, JSON.stringify(data, null, 2));
+        console.log(`[Audit] Log saved: ${filename}`);
+    } catch (error) {
+        console.error('[Audit] Failed to save log:', error);
+    }
+};
 
 // GET /api/workflows/:type
 // Returns the latest version
@@ -77,9 +95,9 @@ exports.runNode = async (req, res) => {
     console.log('[Controller] runNode called');
     console.log('[Controller] Request Body keys:', Object.keys(req.body));
     if (req.body.debug) console.log('[Controller] Frontend Debug:', req.body.debug);
-    
+
     const { node, context } = req.body;
-    
+
     if (node) {
         console.log('[Controller] Node received:', {
             id: node.id,
@@ -93,7 +111,7 @@ exports.runNode = async (req, res) => {
     }
 
     let model = node?.model || node?.data?.model;
-    
+
     // Fallback based on Node Type if model is not explicitly provided
     if (!model) {
         if (node?.type === 'PERPLEXITY') {
@@ -116,13 +134,13 @@ exports.runNode = async (req, res) => {
         // Variable Substitution Helper
         const replaceVariables = (text, ctx) => {
             if (!text) return '';
-            
+
             // Debug: Log context availability once per call if context exists
             // (Using a simple check to avoid spamming logs for every string)
             if (ctx && Object.keys(ctx).length > 0 && text.includes('{{')) {
-                 console.log(`[Controller] replaceVariables: Context keys available: [${Object.keys(ctx).join(', ')}]`);
+                console.log(`[Controller] replaceVariables: Context keys available: [${Object.keys(ctx).join(', ')}]`);
             } else if (text.includes('{{')) {
-                 console.warn('[Controller] replaceVariables: Context is empty or null, but variables are present in text.');
+                console.warn('[Controller] replaceVariables: Context is empty or null, but variables are present in text.');
             }
 
             // Allow optional spaces inside brackets: {{ variable }}
@@ -141,6 +159,11 @@ exports.runNode = async (req, res) => {
                     }
 
                     if (property) {
+                        // Special case: If requesting .output, return the raw node output (entire JSON or string)
+                        if (property === 'output') {
+                            return typeof nodeOutput === 'object' ? JSON.stringify(nodeOutput, null, 2) : String(nodeOutput);
+                        }
+
                         try {
                             // Attempt to parse JSON. 
                             let jsonString = nodeOutput;
@@ -162,7 +185,7 @@ exports.runNode = async (req, res) => {
 
                             const parsed = JSON.parse(jsonString);
                             const val = resolvePath(parsed, property);
-                            
+
                             if (val !== undefined) {
                                 const replacement = typeof val === 'object' ? JSON.stringify(val, null, 2) : String(val);
                                 console.log(`[Controller] Resolved '${variable}' to: ${replacement.substring(0, 50)}${replacement.length > 50 ? '...' : ''}`);
@@ -202,6 +225,14 @@ exports.runNode = async (req, res) => {
         const systemPrompt = replaceVariables(node.systemPrompt || node.data?.systemPrompt, context);
         const userPrompt = replaceVariables(node.userPrompt || node.data?.userPrompt, context);
 
+        const outputMode = node.outputMode || node.data?.outputMode;
+        let schema = node.schema || node.data?.schema;
+
+        if (outputMode === 'free') {
+            console.log('[Controller] Output Mode is FREE. Ignoring schema.');
+            schema = null;
+        }
+
         const output = await llmService.generate({
             model: model,
             systemPrompt,
@@ -209,7 +240,27 @@ exports.runNode = async (req, res) => {
             temperature: node.temperature || node.data?.temperature,
             recency: node.data?.recency,
             citations: node.data?.citations,
-            schema: node.schema || node.data?.schema
+            schema,
+            outputMode
+        });
+
+        // Audit Logging
+        // We run this asynchronously without awaiting to not block the response
+        saveAuditLog({
+            timestamp: new Date().toISOString(),
+            nodeId: node?.id,
+            nodeLabel: node?.data?.label || node?.label || 'Unknown Node',
+            model: model,
+            executionType: 'runNode',
+            input: {
+                systemPrompt,
+                userPrompt,
+                temperature: node.temperature || node.data?.temperature
+            },
+            output: output,
+            contextKeys: context ? Object.keys(context) : [],
+            // Detect if this is a Bio-Lab operation by checking prompt content
+            isEvolution: systemPrompt.includes('Evolutionary Prompt Biologist') || userPrompt.includes('EVOLUTION GOAL')
         });
 
         // Return both input and output for better run tracking
@@ -233,7 +284,7 @@ exports.runNode = async (req, res) => {
 exports.saveRun = async (req, res) => {
     const { type } = req.params;
     const { status, startTime, endTime, results, version } = req.body;
-    
+
     if (!VALID_TYPES.includes(type)) return res.status(400).json({ error: 'Invalid workflow type' });
 
     try {
@@ -273,7 +324,7 @@ exports.chat = async (req, res) => {
         const systemPrompt = "You are a helpful AI assistant in a workflow automation studio. You have access to context data from executed nodes.";
         let userPrompt = message;
         if (context) {
-             userPrompt = `Context Data:\n${JSON.stringify(context, null, 2)}\n\nUser Question: ${message}`;
+            userPrompt = `Context Data:\n${JSON.stringify(context, null, 2)}\n\nUser Question: ${message}`;
         }
 
         const output = await llmService.generate({
@@ -300,8 +351,8 @@ exports.generateVariations = async (req, res) => {
         const variations = await Promise.all(
             instructions.map(async (instruction, index) => {
                 // If instruction is empty, provide a robust default to ensure AI generation
-                const effectiveInstruction = instruction.trim() 
-                    ? instruction 
+                const effectiveInstruction = instruction.trim()
+                    ? instruction
                     : "Improve the prompt's clarity and effectiveness while maintaining the original intent.";
 
                 const systemPrompt = `You are an expert prompt engineer. Your task is to improve and modify prompts based on specific instructions.

@@ -11,26 +11,26 @@ class LLMService {
         }
     }
 
-    async generate({ model, systemPrompt, userPrompt, temperature, recency, citations, schema }) {
+    async generate({ model, systemPrompt, userPrompt, temperature, recency, citations, schema, outputMode }) {
         this._init();
         console.log(`[LLMService] Generating with model: ${model}, schema: ${schema ? 'YES' : 'NO'}`);
 
         if (model.includes('gemini')) {
-            return this._callGemini({ model, systemPrompt, userPrompt, temperature, schema });
+            return this._callGemini({ model, systemPrompt, userPrompt, temperature, schema, outputMode });
         } else if (model.includes('sonar') || model.includes('r1')) {
-            return this._callPerplexity({ model, systemPrompt, userPrompt, temperature, recency, citations, schema });
+            return this._callPerplexity({ model, systemPrompt, userPrompt, temperature, recency, citations, schema, outputMode });
         }
 
         throw new Error(`Unsupported model: ${model}`);
     }
 
-    async _callPerplexity({ model, systemPrompt, userPrompt, temperature, recency, citations, schema }) {
+    async _callPerplexity({ model, systemPrompt, userPrompt, temperature, recency, citations, schema, outputMode }) {
         console.log(`[LLMService] Calling Perplexity API (model: ${model}, recency: ${recency})`);
 
         const apiKey = process.env.PERPLEXITY_API_KEY;
         if (!apiKey) {
-             console.warn("PERPLEXITY_API_KEY not found. Returning mock response.");
-             return `[MOCK] Perplexity (${model}) response. \nRecency: ${recency}\nCitations: ${citations}\nPrompt: ${userPrompt.substring(0, 50)}...`;
+            console.warn("PERPLEXITY_API_KEY not found. Returning mock response.");
+            return `[MOCK] Perplexity (${model}) response. \nRecency: ${recency}\nCitations: ${citations}\nPrompt: ${userPrompt.substring(0, 50)}...`;
         }
 
         // Parse schema if provided
@@ -58,6 +58,9 @@ class LLMService {
         if (parsedSchema && isReasoning) {
             const schemaInstruction = `\n\nIMPORTANT: You MUST respond with valid JSON matching this exact schema:\n${JSON.stringify(parsedSchema, null, 2)}\n\nDo not include any text outside the JSON object.`;
             finalUserPrompt += schemaInstruction;
+        } else if (outputMode === 'free') {
+            const jsonInstruction = `\n\nIMPORTANT: You MUST respond with valid JSON. The structure is flexible, but it must be valid JSON syntax.\n\nDo not include any text outside the JSON object.`;
+            finalUserPrompt += jsonInstruction;
         }
 
         if (isReasoning) {
@@ -80,21 +83,21 @@ class LLMService {
 
         // Apply native JSON schema for non-reasoning models
         if (parsedSchema && !isReasoning) {
-             body.response_format = {
+            body.response_format = {
                 type: 'json_schema',
                 json_schema: {
                     schema: parsedSchema
                 }
-             };
+            };
         }
 
         // Reasoning models do not support temperature (or it should be 1, but omitting is safer)
         if (!isReasoning) {
             body.temperature = temperature || 0.2;
         }
-        
+
         if (recency) {
-             body.search_recency_filter = recency;
+            body.search_recency_filter = recency;
         }
 
         try {
@@ -127,17 +130,17 @@ class LLMService {
             }
 
             if (citations && data.citations && !parsedSchema) {
-                content += "\n\nCitations:\n" + data.citations.map((c, i) => `[${i+1}] ${c}`).join('\n');
+                content += "\n\nCitations:\n" + data.citations.map((c, i) => `[${i + 1}] ${c}`).join('\n');
             }
 
             return content;
         } catch (error) {
-             console.error("Perplexity API Error:", error);
-             throw new Error(`Perplexity API Error: ${error.message}`);
+            console.error("Perplexity API Error:", error);
+            throw new Error(`Perplexity API Error: ${error.message}`);
         }
     }
 
-    async _callGemini({ model, systemPrompt, userPrompt, temperature, schema }) {
+    async _callGemini({ model, systemPrompt, userPrompt, temperature, schema, outputMode }) {
         console.log(`[LLMService] Calling Gemini API (model: ${model}, temp: ${temperature})`);
         if (!this.genAI) {
             throw new Error("GEMINI_API_KEY not found in environment variables.");
@@ -152,7 +155,7 @@ class LLMService {
             try {
                 parsedSchema = typeof schema === 'string' ? JSON.parse(schema) : schema;
                 console.log('[LLMService] Using structured output schema. Keys:', Object.keys(parsedSchema));
-                
+
                 // Helper to recursively normalize schema for Gemini
                 const normalizeSchema = (s) => {
                     if (s === undefined || s === null) return { type: "string" }; // Default to string for missing/null
@@ -161,10 +164,10 @@ class LLMService {
                     // This happens when data is injected into the schema field.
                     // We must convert it to a valid Type Definition.
                     const validTypes = ['string', 'number', 'integer', 'boolean', 'object', 'array', 'null'];
-                    
+
                     if (typeof s === 'string') {
                         if (validTypes.includes(s)) return { type: s }; // It was just "string" -> { type: "string" }
-                        
+
                         // MAGIC FEATURE: Treat the string value as a DESCRIPTION/INSTRUCTION for the field.
                         // This allows users to define schemas using an "Example JSON" where values explain what to generate.
                         // e.g. "intent_sentence": "Write a punchy hook here" -> { type: "string", description: "Write a punchy hook here" }
@@ -173,13 +176,13 @@ class LLMService {
                     }
 
                     if (typeof s === 'boolean') {
-                         console.warn(`[LLMService] invalid schema boolean value "${s}". Replacing with { type: "boolean" }`);
-                         return { type: "boolean" };
+                        console.warn(`[LLMService] invalid schema boolean value "${s}". Replacing with { type: "boolean" }`);
+                        return { type: "boolean" };
                     }
 
                     if (typeof s === 'number') {
-                         console.warn(`[LLMService] invalid schema number value "${s}". Replacing with { type: "number" }`);
-                         return { type: "number" };
+                        console.warn(`[LLMService] invalid schema number value "${s}". Replacing with { type: "number" }`);
+                        return { type: "number" };
                     }
 
                     // Case 2: It is an object
@@ -189,8 +192,8 @@ class LLMService {
 
                         // If it's an array, it's not a valid schema root (unless it's an enum, but usually schema is object)
                         if (Array.isArray(s)) {
-                             console.warn(`[LLMService] invalid schema array found. Defaulting to { type: "array", items: { type: "string" } }`);
-                             return { type: "array", items: { type: "string" } };
+                            console.warn(`[LLMService] invalid schema array found. Defaulting to { type: "array", items: { type: "string" } }`);
+                            return { type: "array", items: { type: "string" } };
                         }
 
                         // If it has NO schema keywords, assume it is a nested properties map
@@ -212,7 +215,7 @@ class LLMService {
                                 s.properties[key] = normalizeSchema(s.properties[key]);
                             });
                         }
-                        
+
                         if (s.items) {
                             s.items = normalizeSchema(s.items);
                         } else if (s.type === 'array') {
@@ -238,7 +241,7 @@ class LLMService {
 
                         return s;
                     }
-                    
+
                     return { type: "string" }; // Catch-all
                 };
 
@@ -250,14 +253,14 @@ class LLMService {
                     parsedSchema = {
                         type: "object",
                         properties: rootKeys.reduce((acc, key) => {
-                             acc[key] = normalizeSchema(parsedSchema[key]);
-                             return acc;
+                            acc[key] = normalizeSchema(parsedSchema[key]);
+                            return acc;
                         }, {}),
                         required: rootKeys // CRITICAL FIX: Force generation of all root fields
                     };
                 } else {
-                     // Even if root is fine, traverse down to fix nested objects
-                     parsedSchema = normalizeSchema(parsedSchema);
+                    // Even if root is fine, traverse down to fix nested objects
+                    parsedSchema = normalizeSchema(parsedSchema);
                 }
 
                 if (parsedSchema.type) console.log('[LLMService] Schema type:', parsedSchema.type);
@@ -282,6 +285,10 @@ class LLMService {
         if (parsedSchema) {
             generationConfig.responseMimeType = 'application/json';
             generationConfig.responseSchema = parsedSchema;
+        } else if (outputMode === 'free') {
+            // Free JSON Mode: Force JSON output but without a strict schema
+            console.log('[LLMService] Using Free JSON Mode (responseMimeType: application/json)');
+            generationConfig.responseMimeType = 'application/json';
         }
 
         try {
