@@ -379,7 +379,7 @@ router.post('/run-box1', async (req, res) => {
 
       try {
         // Execute node via workflow controller
-        const nodeResponse = await fetch('http://localhost:3001/api/workflows/run-node', {
+        const nodeResponse = await fetch('https://backendaos-production.up.railway.app/api/workflows/run-node', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({
