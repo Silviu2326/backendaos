@@ -1,0 +1,891 @@
+{
+  "items": [
+    {
+      "id": "f9717647-7f7a-4f57-985e-dd2a32c33022",
+      "name": "T06_E4 - leads solar reciclados > repetir, OR muy malo",
+      "status": 3,
+      "campaign_schedule": {
+        "schedules": [
+          {
+            "name": "New schedule",
+            "timing": {
+              "from": "09:00",
+              "to": "18:00"
+            },
+            "days": {
+              "1": true,
+              "2": true,
+              "3": true,
+              "4": true,
+              "5": true
+            },
+            "timezone": "America/Detroit"
+          }
+        ],
+        "start_date": null,
+        "end_date": null
+      },
+      "timestamp_created": "2025-10-07T11:10:04.834Z",
+      "timestamp_updated": "2025-10-17T17:07:33.886Z",
+      "sequences": [
+        {
+          "steps": [
+            {
+              "type": "email",
+              "delay": 3,
+              "variants": [
+                {
+                  "subject": "Automate lead-gen & close more deals",
+                  "body": "<div>Hey {{first_name}} ,</div><div><br /></div><div>{{icebreaker}} </div><div><br /></div><div>Would you like to have more customers without doing more work?</div><div><br /></div><div>I’m asking because we help companies like {{company_name}} <strong>fill</strong> their <strong>calendar with new appointments</strong> using our automated systems for finding qualified leads at scale, deeply personalizing and sending emails.</div><div><br /></div><div>We take care of finding the right leads, managing your email campaigns, and the backend work required. </div><div><br /></div><div>Alltogether, we will get you<strong> as many new appointments as your team can handle.</strong> </div><div><br /></div><div>If having<strong> </strong>more customers for less work is something you believe that would help you, </div><div><br /></div><div>I would love to create a <strong>sample of </strong><strong>100 leads</strong> -fully qualified and personalized- so you can see how much we can help you if we do it at scale. </div><div><br /></div><div>Would you like me to prepare it for you?</div><div><br /></div><div><br /></div><div>Best regards,</div><div><br /></div><div><span style=\"font-size:14px\">Alejandro Derqui</span></div><div><span style=\"font-size:14px\">Co-Founder | Business Development &amp; Client Success</span></div><div><span style=\"font-size:14px\">AOS Solutions SL.</span></div><div><span style=\"font-size:14px\">C/Borriana 26, Valencia 46005, Spain</span><br /><span style=\"font-size:14px\">📩 support@aossolutions.ai</span></div><div><span style=\"font-size:14px\">🌐 aossolutions.ai</span></div><div><br /></div><div><br /></div><div><br /></div><div><br /></div><div><br /></div><div><br /></div><div><br /></div><div><a href=\"https://UNSUBSCRIBE_INSTANTLY.ai\" rel=\"noopener noreferrer\"><span style=\"font-size:10px\">unsubscribe</span></a></div>"
+                },
+                {
+                  "subject": "{{company_name}} could be landing 5–15 new B2B appointments/week",
+                  "body": "<div>Hey {{first_name}},</div><div><br /></div><div>Just like {{company_name}}, we help many more in the {{industry}} industry <strong>get more commercial customers automatically</strong>. </div><div><br /></div><div>While everybody competes for solar projects with good commercial clients, like industrial parks, warehouses, logistics centers, hotels, EV charging…</div><div><br /></div><div>It requires more and more time and effort to get new appointments with quality leads .</div><div><br /></div><div>We can solve this issue and <strong>fill your schedule with new appointments</strong>, because we:</div><div><br /></div><ul><li>automate the search and qualification of leads, and we do it at scale</li><li>automate sending emails in mass</li><li>deeply personalize every email automatically based on the information that matters to your leads</li></ul><div>and <strong>we take care of everything</strong> from start to finish, so you won't have to do anything. </div><div><br /></div><div>All you will need to do is close all the new deals.<br /><br />I know not every company looks for more customers, but I thought this might make sense for you.</div><div><br /></div><div>If you want to know more, let me know when it's the best time for us to connect for 10 minutes, and I'll show you everything. </div><div><br /></div><div>While we do it, I will create a <strong>custom sample of 100 leads for you</strong>, so you can see if you like the results first.</div><div><br /></div><div>When is it the best time for you?</div><div><br /></div><div><br /></div><div>Best regards,</div><div><span style=\"font-size:14px\">Alejandro Derqui</span></div><div><span style=\"font-size:14px\">Co-Founder | Business Development &amp; Client Success</span></div><div><span style=\"font-size:14px\">AOS Solutions SL.</span></div><div><span style=\"font-size:14px\">🌐 aossolutions.ai</span><br /><span style=\"font-size:14px\">C/Borriana 26, Valencia 46005, Spain</span></div><div><span style=\"font-size:14px\">📩 support@aossolutions.ai</span></div><div><br /></div><div><br /></div><div><br /></div><div><br /></div><div><br /></div><div><br /></div><div><br /></div><div><br /></div><div><br /></div><div><span style=\"font-size:10px\"><a rel=\"noopener noreferrer\" href=\"https://UNSUBSCRIBE_INSTANTLY.ai\">unsubscribe</a></span></div><div><br /></div>"
+                },
+                {
+                  "subject": "{{company_name}} could be having 5–15 more B2B calls/week",
+                  "body": "<div>Hey {{first_name}},</div><div><br /></div><div>{{icebreaker}}</div><div><br /></div><div>Just like other {{industry}} companies, I want to help you and {{company_name}} <strong>land more commercial clients automatically</strong>, which is what we specialize in. </div><div><br /></div><div>More specifically, <strong>automatically generating 1,000s of qualified and ideal leads every</strong><strong> day</strong>, and sending each one intelligently <strong>personalized cold emails.</strong><br /><br />We handle everything, from start to finish.</div><div><br /></div><div>Here’s how it works:</div><div><br /></div><ul><li>We find up to <strong>2,000 new leads/day, targetting</strong> your ideal customers (ex. industrial parks, warehouses, logistics centers, hotels, EV charging…)</li><li>We extract all the relevant info and verified emails only</li><li>Every <strong>email is deeply personalized</strong> automatically (I'll show you how)</li><li>We manage all your cold email campaigns and guarantee positive replies</li></ul><div>And most importantly,</div><div><br /></div><div>We make it a <strong>h</strong><strong>ands-off</strong> <strong>experience</strong> , so you just manage calls and close deals.</div><div><br /></div><div>If you want to know more details, let's connect on a quick 10 min call and I'll show you everything.<br /><br />I'll throw in a <strong>100-lead sample</strong>, qualified, and personalized, so you can see first if you like the results.</div><div> — on the house.</div><div><br /></div><div>When is it the best time for you?</div><div><br /></div><div><br /></div><div>Best regards,</div><div><span style=\"font-size:14px\">Alejandro Derqui</span></div><div><span style=\"font-size:14px\">Co-Founder | Business Development &amp; Client Success</span></div><div><span style=\"font-size:14px\">AOS Solutions SL.</span></div><div><span style=\"font-size:14px\">🌐 aossolutions.ai</span></div><div><span style=\"font-size:14px\">C/Borriana 26, Valencia 46005, Spain</span></div><div><span style=\"font-size:14px\">📩 support@aossolutions.ai</span></div><div><br /></div><div><br /></div><div><br /></div><div><br /></div><div><br /></div><div><br /></div><div><br /></div><div><a href=\"https://UNSUBSCRIBE_INSTANTLY.ai\" rel=\"noopener noreferrer\"><span style=\"font-size:10px\">unsubscribe</span></a></div>"
+                },
+                {
+                  "subject": "Thought this would make sense to you",
+                  "body": "<div>Hey {{first_name}} ,</div><div><br /></div><div>I believe you will find this very useful.<br /><br />Are you getting all the customers you'd like to have?</div><div><br /></div><div>I’m asking because we help other {{industry}} companies like {{company_name}} <strong>fill their schedule with new appointments</strong> using our automated cold outreach system that can find and contact up to<strong> 2,000 ideal leads every day</strong>.</div><div><br /></div><div><strong>We take care of everything</strong>, so you don't have to find new leads, write personalized emails for all of them, or manage any backend.</div><div><br /></div><div>Meanwhile, we will book you<strong> as many new appointments as your team can handle</strong>.</div><div><br /></div><div>If having new appointments on autopilot is something you believe that would help you, </div><div><br /></div><div>I would love to create a <strong>sample of 100 leads</strong> so you can see if this solution makes sense, and how much we can help you. </div><div><br /></div><div>It won't take more than 5 minutes of your time.</div><div><br /></div><div><strong>Would you like me to prepare it for you?</strong></div><div><br /></div><div>Best regards,</div><div><br /></div><div><span style=\"font-size:14px\">Alejandro Derqui</span></div><div><span style=\"font-size:14px\">Co-Founder | Business Development &amp; Client Success</span></div><div><span style=\"font-size:14px\">AOS Solutions SL.</span></div><div><span style=\"font-size:14px\">C/Borriana 26, Valencia 46005, Spain</span></div><div><span style=\"font-size:14px\">📩 support@aossolutions.ai</span></div><div><span style=\"font-size:14px\">🌐 aossolutions.ai</span></div><div><br /></div><div><br /></div><div><br /></div><div><br /></div><div><br /></div><div><br /></div><div><br /></div><div><a rel=\"noopener noreferrer\" href=\"https://UNSUBSCRIBE_INSTANTLY.ai\"><span style=\"font-size:10px\">unsubscribe</span></a></div>"
+                },
+                {
+                  "subject": "AI that finds & contacts leads for you",
+                  "body": "<div>Hey {{first_name}},</div><div><br /></div><div>{{icebreaker}}</div><div><br /></div><div>Just like {{company_name}}, we help many more in the {{industry}} industry by automatically generating as many appointments as you want to handle, without having to do any more work.</div><div><br /></div><div>We created our solutions to solve the problem most companies in your industry face:  </div><div><br /></div><div><strong>Great offer. Lumpy pipeline. Too much time wasted on outreach.</strong></div><div><br /></div><div>Here’s how we do it:</div><div><br /></div><div>- We generate up to <strong>2,000 new leads/day</strong>, filtered to match your exact <strong>ideal customer</strong> </div><div>- Automated custom icebreakers and <strong>hyper-</strong><strong>personalization for each cold message</strong></div><div><strong>- We fully manage your email campaigns, constantly improving them — </strong>focusing on guaranteed reply and booking rates.</div><div>- We make this a<strong> H</strong><strong>ands-Off experience. </strong>Just manage calls and close deals</div><div><br /></div><div>I want you to see the results first so you can make a better decission.</div><div><br /></div><div>To do so, we will put together <strong>a demo –completely on us– of </strong><strong>100 high-value </strong>leads, fully targeted for your company.</div><div style=\"box-sizing:border-box;font-family:Averta, sans-serif\"><br /></div><div>It won't take more than 5 minutes.</div><div><br /></div><div>If this makes sense to you,</div><div><br /></div><div>When is it a good time for you to connect?</div><div><br /></div><div><br /></div><div>Best regards,</div><div><br /></div><div>Alejandro Derqui</div><div>Co-Founder | Business Development &amp; Client Success</div><div>AOS Solutions SL.</div><div>C/Borriana 26, Valencia 46005, Spain</div><div>📩 support@aossolutions.ai</div><div>🌐 aossolutions.ai</div><div><br /></div><div><br /></div><div><br /></div><div><br /></div><div><br /></div><div><br /></div><div><br /></div><div><br /></div><div><br /></div><div><br /></div><div><br /></div><div><a href=\"https://UNSUBSCRIBE_INSTANTLY.ai\" rel=\"noopener noreferrer\"><span style=\"font-size:10px\">unsubscribe</span></a></div>"
+                }
+              ],
+              "delay_unit": "days",
+              "pre_delay_unit": "days"
+            },
+            {
+              "type": "email",
+              "delay": 4,
+              "variants": [
+                {
+                  "subject": "",
+                  "body": "<div>Hey {{first_name}} ,</div><div><br /></div><div>Just following up in case my last note got buried.</div><div><br /></div><div>I offered to send over a sample — <strong>100</strong> fully personalized, <strong>high-value B2B leads </strong>based on the exact type of clients that bring you the most profits.</div><div><br /></div><div>→ industrial parks, warehouses, logistics centers, hotels, EV charging…</div><div><br /></div><div>This is just a quick peak, but we can do it at scale and bring you <strong>new customers automatically</strong> and regularly.</div><div><br /></div><div>Also, we take care of the whole process from start to finish.</div><div><br /></div><div>We build these solutions for solar teams like {{company_name}} looking to book 5–15+ more calls a week<strong> </strong><strong>withou</strong><strong>t adding </strong><strong>more work, or expensive and inefficient in-house teams</strong>.</div><div><br /></div><div>Let me know if you want to know the details, and I'll show you everything. </div><div><br /></div><div>And of course we'll send the sample over as well :)</div><div><br /></div><div>Interested?</div><div><br /></div><div><br /></div><div>Best regards,</div><div><span style=\"font-size:14px\">Alejandro Derqui</span></div><div><span style=\"font-size:14px\">Co-Founder | Business Development &amp; Client Success</span></div><div><span style=\"font-size:14px\">AOS Solutions SL.</span></div><div><span style=\"font-size:14px\">C/Borriana 26, Valencia 46005, Spain</span></div><div><span style=\"font-size:14px\">📩 support@aossolutions.ai</span></div><div><span style=\"font-size:14px\">🌐 aossolutions.ai</span></div><div><br /></div><div><br /></div><div><br /></div><div><br /></div><div><br /></div><div><br /></div><div><a href=\"https://UNSUBSCRIBE_INSTANTLY.ai\"><span style=\"font-size:10px\">Click here to unsubscribe</span></a></div>"
+                }
+              ],
+              "delay_unit": "days",
+              "pre_delay_unit": "days"
+            },
+            {
+              "type": "email",
+              "delay": 4,
+              "variants": [
+                {
+                  "subject": "",
+                  "body": "<div>Hey {{first_name}} </div><div><br /></div><div>Not sure if this slipped through or just bad timing.</div><div><br /></div><div>Just wanted to share this before I close the loop,</div><div><br /></div><div>If you <strong>get leads</strong> like in our sample on a daily basis, and <strong>automatically</strong>, you will have as many <strong>new customers</strong> as you want, <strong>without doing any extra work</strong>.</div><div><br /></div><div>That’s because:</div><div>- Every lead we target is a high-probability buyer for your niche.</div><div>- Each one is enriched, verified, and all messages are hyper-personalized using the most advanced automations.</div><div>- We do this at scale, everyday</div><div>- And we do the entire outreach for you</div><div><br /></div><div>I think this can be very useful for {{company_name}}, which is why I offer to show you how it works first.</div><div><br /></div><div>This is why <strong>y</strong><strong>our 100 lead sample –on the house</strong> – is still on the table, but I won’t keep bugging you if it’s not a priority right now.</div><div><br /></div><div>If you're interested, just 5 minutes to talk with you and understand your ideal customer in depth should be enough to prepare a really good sample.</div><div><br /></div><div>Would you like to do it?</div><div><br /></div><div><br /></div><div>Best regards,</div><div><br /></div><div><span style=\"font-size:14px\">Alejandro Derqui</span></div><div><span style=\"font-size:14px\">Co-Founder | Business Development &amp; Client Success</span></div><div><span style=\"font-size:14px\">AOS Solutions SL.</span></div><div><span style=\"font-size:14px\">C/Borriana 26, Valencia 46005, Spain</span></div><div><span style=\"font-size:14px\">📩 support@aossolutions.ai</span></div><div><span style=\"font-size:14px\">🌐 aossolutions.ai</span></div><div><br /></div><div><br /></div><div><br /></div><div><br /></div><div><br /></div><div><br /></div><div><br /></div><div><span style=\"font-size:10px\"><a href=\"https://UNSUBSCRIBE_INSTANTLY.ai\">Click here to unsubscribe</a></span></div>"
+                }
+              ],
+              "delay_unit": "days",
+              "pre_delay_unit": "days"
+            },
+            {
+              "type": "email",
+              "delay": 1,
+              "variants": [
+                {
+                  "subject": "Want me to send this 100 lead sample? - final check",
+                  "body": "<div>Hey {{first_name}} , </div><div><br /></div><div>No worries if now’s not the right time. Just closing the loop on this.</div><div><br /></div><div>Before I 'll share a bit more on what you’ll actually get:</div><div><br /></div><div>- The <strong>100 lead sample</strong> <strong>is</strong><strong> just a glimpse</strong></div><div>- We deliver up to <strong>2,000 highly-qualified leads</strong> <strong>per day</strong>, all verified</div><div>- <strong>Every message </strong>we send them is<strong> hyper-personalized</strong> with intelligent icebreakers, based on role, company, activity, niche, personal context...</div><div>- The <strong>messaging</strong> looks and<strong> feels human,</strong> like it came from your own head of sales</div><div><br /></div><div>Summed up, the advantages for you are: </div><div><br /></div><div>Your team won't spend a single more minute looking for new leads. </div><div><strong>We will take care of everything.</strong></div><div>They will get <strong>5-15+ new appointme</strong><strong>nts per week</strong>. Just close new deals.</div><div>You will get <strong>more customers without any extra effort.</strong></div><div><br /></div><div>If you want to see what that looks like — even just the first 100 — let me know and <strong>I’ll create a custom sample for you.</strong> </div><div><br /></div><div>All we need is a quick chat to understand your ideal customer, whenever it's the best time for you.</div><div><br /></div><div>If not, all good.</div><div><br /></div><div>Want us to make your 100 lead sample?</div><div><br /></div><div><br /></div><div>Best regards,</div><div><br /></div><div><span style=\"font-size:14px\">Alejandro Derqui</span></div><div><span style=\"font-size:14px\">Co-Founder | Business Development &amp; Client Success</span></div><div><span style=\"font-size:14px\">AOS Solutions SL.</span></div><div><span style=\"font-size:14px\">C/Borriana 26, Valencia 46005, Spain</span></div><div><span style=\"font-size:14px\">📩 support@aossolutions.ai</span></div><div><span style=\"font-size:14px\">🌐 aossolutions.ai</span></div><div><br /></div><div><br /></div><div><br /></div><div><br /></div><div><br /></div><div><br /></div><div><br /></div><div><br /></div><div><br /></div><div><br /></div><div><br /></div><div><a href=\"https://UNSUBSCRIBE_INSTANTLY.ai\"><span style=\"font-size:10px\">Click here to unsubscribe</span></a><span style=\"font-size:14px\"></span></div>"
+                }
+              ],
+              "delay_unit": "days",
+              "pre_delay_unit": "days"
+            }
+          ]
+        }
+      ],
+      "text_only": false,
+      "first_email_text_only": false,
+      "email_list": [
+        "aderqui@info-aossolutions.com",
+        "alejandro.derqui@info-aossolutions.com",
+        "alex@info-aossolutions.com"
+      ],
+      "daily_limit": 90,
+      "stop_on_reply": true,
+      "email_tag_list": [],
+      "link_tracking": false,
+      "open_tracking": false,
+      "stop_on_auto_reply": false,
+      "prioritize_new_leads": false,
+      "match_lead_esp": false,
+      "stop_for_company": true,
+      "core_variables": {
+        "website": true,
+        "lastName": true,
+        "firstName": true,
+        "companyName": true,
+        "personalization": true
+      },
+      "custom_variables": {
+        "email": true,
+        "title": true,
+        "summary": true,
+        "campaign": true,
+        "industry": true,
+        "last_name": true,
+        "first_name": true,
+        "icebreaker": true,
+        "identifier": true,
+        "pause_until": true,
+        "company_name": true,
+        "personLocation": true,
+        "titleDescription": true
+      },
+      "insert_unsubscribe_header": false,
+      "allow_risky_contacts": false,
+      "disable_bounce_protect": false,
+      "cc_list": [],
+      "bcc_list": [],
+      "organization": "d1f81109-ac1d-4472-b830-c1d294ac453a",
+      "provider_routing_rules": []
+    },
+    {
+      "id": "f5dc19b0-605f-470f-90ca-e25eff84cc8c",
+      "name": "T01_Lap2_Receiver",
+      "status": 0,
+      "campaign_schedule": {},
+      "timestamp_created": "2025-05-06T16:59:10.835Z",
+      "timestamp_updated": "2025-05-06T17:07:08.203Z",
+      "pl_value": 6000,
+      "core_variables": {
+        "website": true,
+        "lastName": true,
+        "firstName": true,
+        "companyName": true,
+        "personalization": true
+      },
+      "custom_variables": {
+        "title": true,
+        "campaign": true,
+        "icebreaker": true,
+        "identifier": true
+      },
+      "organization": "d1f81109-ac1d-4472-b830-c1d294ac453a",
+      "owned_by": "af618d7c-de42-4446-af66-cfa120c51aef"
+    },
+    {
+      "id": "f515fc54-8ca1-4983-afd7-09b5fcf0dee5",
+      "name": "T10 -E4",
+      "status": 3,
+      "campaign_schedule": {
+        "schedules": [
+          {
+            "name": "New schedule",
+            "timing": {
+              "from": "09:00",
+              "to": "18:00"
+            },
+            "days": {
+              "1": true,
+              "2": true,
+              "3": true,
+              "4": true,
+              "5": true
+            },
+            "timezone": "America/Detroit"
+          }
+        ],
+        "start_date": null,
+        "end_date": null
+      },
+      "timestamp_created": "2025-11-24T12:22:46.974Z",
+      "timestamp_updated": "2026-01-16T14:18:21.557Z",
+      "pl_value": 6000,
+      "sequences": [
+        {
+          "steps": [
+            {
+              "type": "email",
+              "delay": 1,
+              "variants": [
+                {
+                  "subject": "{{Subject Line}}",
+                  "body": "<div>{{Hi | Hello | Hey}} {{firstName}},</div><div><br /></div><div>{{Body}} </div><div><br /></div><div><br /></div><div>Best regards, </div><div><span style=\"font-size:14px\">Alejandro Derqui</span></div><div><span style=\"font-size:14px\">Co-Founder | Business Development &amp; Client Success</span></div><div><span style=\"font-size:14px\">AOS Solutions SL.</span></div><div><span style=\"font-size:14px\">C/Borriana 26, Valencia 46005, Spain</span></div><div><span style=\"font-size:14px\">📩 support@aossolutions.ai</span></div><div><span style=\"font-size:14px\">🌐 aossolutions.ai - (currently under maintenance)</span></div><div><br /></div><div><br /></div><div><br /></div><div><br /></div><div><br /></div><div><br /></div><div><br /></div><div><br /></div><div><br /></div><div><br /></div><div><span style=\"font-size:10px\"><br /></span></div><div><span style=\"font-size:10px\"><br /></span></div><div><span style=\"font-size:10px\"><a href=\"https://UNSUBSCRIBE_INSTANTLY.ai\">Click here to unsubscribe</a></span></div>"
+                },
+                {
+                  "subject": "Automate Customer Acquisition",
+                  "body": "<div id=\"isPasted\">{{Hi | Hello | Hey}} {{firstName}},</div><div><br /></div><div>{{Body}} </div><div><br /></div><div><br /></div><div>Best regards, </div><div>Alejandro Derqui</div><div>Co-Founder | Business Development &amp; Client Success</div><div>AOS Solutions SL.</div><div>C/Borriana 26, Valencia 46005, Spain</div><div>📩 support@aossolutions.ai</div><div>🌐 aossolutions.ai - (currently under maintenance)</div>"
+                }
+              ],
+              "delay_unit": "days",
+              "pre_delay_unit": "days"
+            }
+          ]
+        }
+      ],
+      "text_only": false,
+      "first_email_text_only": false,
+      "email_list": [
+        "aderqui@aos-automations.com",
+        "alejandro.derqui@aos-automations.com",
+        "alejandro@aos-automations.com"
+      ],
+      "daily_limit": 90,
+      "stop_on_reply": true,
+      "email_tag_list": [],
+      "link_tracking": false,
+      "open_tracking": false,
+      "stop_on_auto_reply": false,
+      "prioritize_new_leads": false,
+      "match_lead_esp": false,
+      "stop_for_company": false,
+      "core_variables": {
+        "lastName": true,
+        "firstName": true,
+        "companyName": true
+      },
+      "custom_variables": {
+        "icp": true,
+        "Body": true,
+        "TargetID": true,
+        "LeadNumber": true,
+        "pause_until": true,
+        "Subject Line": true
+      },
+      "insert_unsubscribe_header": true,
+      "allow_risky_contacts": false,
+      "disable_bounce_protect": false,
+      "cc_list": [],
+      "bcc_list": [],
+      "organization": "d1f81109-ac1d-4472-b830-c1d294ac453a",
+      "owned_by": "af618d7c-de42-4446-af66-cfa120c51aef",
+      "provider_routing_rules": []
+    },
+    {
+      "id": "ec69fe2b-a9e5-4c9e-91e7-1ddfbf881bcc",
+      "name": "T06_E1",
+      "status": 3,
+      "campaign_schedule": {
+        "schedules": [
+          {
+            "name": "New schedule",
+            "timing": {
+              "from": "09:00",
+              "to": "18:00"
+            },
+            "days": {
+              "0": true,
+              "1": true,
+              "2": true,
+              "3": true,
+              "4": true,
+              "5": true,
+              "6": true
+            },
+            "timezone": "America/Detroit"
+          }
+        ],
+        "start_date": null,
+        "end_date": null
+      },
+      "timestamp_created": "2025-06-07T11:42:23.464Z",
+      "timestamp_updated": "2025-07-08T11:58:12.174Z",
+      "sequences": [
+        {
+          "steps": [
+            {
+              "type": "email",
+              "delay": 4,
+              "variants": [
+                {
+                  "subject": "The cold email system solar CEOs brag about behind closed doors",
+                  "body": "<div>Hey {{first_name}} ,</div><div><br /></div><div>{{icebreaker}}</div><div><br /></div><div>Just like {{company_name}}, I work with solar companies automating their cold email sales systems and scaling their volume — especially for commercial installs where quality leads are very valuable.</div><div><br /></div><div>Instead of ads, overpriced junk lead lists, or slow referrals, here's how we do it: :</div><div><br /></div><div>- <strong>500–2,000 new qualified leads per day</strong> based on your ideal clients  </div><div style=\"margin-left:20px\">→ industrial parks, warehouses, hotels, EV charging…</div><div>- Human-level <strong>hyper-personalization</strong> using AI (custom icebreakers, variables, context)  </div><div>-<strong> Fully managed outreach</strong> — we handle setup, sending, follow-up…  </div><div>-  *Optional* copywriting &amp; campaign optimization — focused on <strong>guaranteed reply and booking rates</strong>.</div><div><br /></div><div><br /></div><div>We built this system to solve the exact problem most solar teams face:  </div><div><br /></div><div><strong>Great offer. Lumpy pipeline. Too much time wasted on outreach.</strong></div><div><br /></div><div>To show how sharp it is, we put together a sample for you:  </div><div><br /></div><div><strong>100 leads</strong> tailored to your market, fully enriched and personalized <strong>–completely on us–.</strong></div><div><br /></div><div>Would you like me to send it over?</div><div><br /></div><div><br /></div><div>Best regards,</div><div><br /></div><div><span style=\"font-size:14px\">Alejandro Derqui</span></div><div><span style=\"font-size:14px\">Co-Founder | Business Development &amp; Client Success</span></div><div><span style=\"font-size:14px\">AOS Solutions SL.</span></div><div><span style=\"font-size:14px\">C/Borriana 26, Valencia 46005, Spain📩 support@aossolutions.ai</span></div><div><span style=\"font-size:14px\">🌐 aossolutions.ai</span></div><div><br /></div><div><br /></div><div><br /></div><div><br /></div><div><br /></div><div><br /></div><div><br /></div><div><a href=\"https://UNSUBSCRIBE_INSTANTLY.ai\"><span style=\"font-size:10px\">Click here to unsubscribe</span></a></div>"
+                },
+                {
+                  "subject": "{{company_name}} could be landing 5–15 B2B installs/week",
+                  "body": "<div>Hey {{first_name}} ,</div><div><br /></div><div>{{icebreaker}}</div><div><br /></div><div>Just like {{company_name}}, we help many more in the solar industry by automatically generating 1000s of highly qualified leads daily (yes, 1000s), and sending them emails hyper-personalized by our powerful AI - all without you lifting a finger. </div><div><br /></div><div><br /></div><div>No ad spend. No slow referrals. No junk lead-gen services.</div><div><br /></div><div>Here’s what it looks like:</div><div>- Up to <strong>2,000 new leads/day</strong>, filtered to match your <strong>exact ideal customer</strong> (REITs, industrial parks, warehouses, hotels, EV charging, and more)</div><div>- AI-written custom icebreakers and <strong>personalization for each message</strong></div><div>- <strong>Hands-off experience</strong> - just manage calls and close deals</div><div>-  *Optional* copywriting &amp; campaign optimization — focused on <strong>guaranteed reply and booking rates</strong>.</div><div><br /></div><div>We don’t want you to just trust our words.</div><div><br /></div><div>We want you to see it works with your own eyes first.</div><div><br /></div><div>We will solve the exact problem most solar companies face:  </div><div>**Great offer. Lumpy pipeline. Too much time wasted on outreach.**</div><div><br /></div><div><br /></div><div>To prove it, we put together a <strong>demo</strong> –<strong>completely on us</strong>– of <strong>100 high-value leads</strong>, fully targeted for your company.</div><div><br /></div><div>Would you like me to send it over?</div><div><br /></div><div><br /></div><div>Best regards,</div><div><br /></div><div><span style=\"font-size:14px\">Alejandro Derqui</span></div><div><span style=\"font-size:14px\">Co-Founder | Business Development &amp; Client Success</span></div><div><span style=\"font-size:14px\">AOS Solutions SL.</span></div><div><span style=\"font-size:14px\">C/Borriana 26, Valencia 46005, Spain</span></div><div><span style=\"font-size:14px\">📩 support@aossolutions.ai</span></div><div><span style=\"font-size:14px\">🌐 aossolutions.ai</span></div><div><br /></div><div><br /></div><div><br /></div><div><br /></div><div><br /></div><div><br /></div><div><br /></div><div><br /></div><div><br /></div><div><br /></div>"
+                },
+                {
+                  "subject": "The only AI that finds + messages 2,000 ideal buyers daily",
+                  "body": "<div>Hey {{first_name}},</div><div><br /></div><div>{{icebreaker}}</div><div><br /></div><div>We help commercial solar companies like {{company_name}} land more high-value commercial clients by <strong>automatically generating 1,000s of hyper-targeted leads every</strong> day and sending each one intelligently <strong>personalized cold emails</strong> — all handled for you, start to finish.</div><div><br /></div><div>No ad spend. No slow referrals. No junk lead lists.</div><div><br /></div><div>Here’s how it works:</div><div>- Up to <strong>2,000 new leads/day, laser-targeted</strong> by role, industry, and deal type (REITs, industrial parks, warehouses, hotels, EV charging, and more)</div><div>- Verified emails + enriched LinkedIn &amp; firmographic data</div><div>- Custom icebreakers + <strong>AI hyper-personalization for each message</strong></div><div>- <strong>Hands-off</strong> experience - just manage calls and close deals</div><div>-  *Optional* copywriting &amp; campaign optimization — focused on guaranteed reply and booking rates.</div><div><br /></div><div>We built this system to solve the exact problem most solar teams face:  </div><div><br /></div><div>**Great offer. Lumpy pipeline. Too much time wasted on outreach.**</div><div><br /></div><div>To prove it, we made for you a **100-lead sample**, laser-targeted, fully enriched and personalized — on the house.</div><div><br /></div><div>Would you like us to send it over?</div><div><br /></div><div><br /></div><div>Best regards,</div><div><br /></div><div><span style=\"font-size:14px\">Alejandro Derqui</span></div><div><span style=\"font-size:14px\">Co-Founder | Business Development &amp; Client Success</span></div><div><span style=\"font-size:14px\">AOS Solutions SL.</span></div><div><span style=\"font-size:14px\">C/Borriana 26, Valencia 46005, Spain</span></div><div><span style=\"font-size:14px\">📩 support@aossolutions.ai</span></div><div><span style=\"font-size:14px\">🌐 aossolutions.ai</span></div><div><br /></div><div><br /></div><div><br /></div><div><br /></div><div><br /></div><div><br /></div><div><br /></div>"
+                },
+                {
+                  "subject": "AI that finds 1000s of leads automatically",
+                  "body": "<div><span style=\"font-size:10px\"></span>Hey {{first_name}} ,</div><div><br /></div><div>{{icebreaker}}</div><div><br /></div><div>We help solar companies like {{company_name}} land more high-value commercial clients by generating <strong>1,000s of highly qualified leads daily</strong> and sending each one<strong> hyper-personalized emails</strong> — all handled for you.</div><div><br /></div><div>No ad spend. No slow referrals. No junk lead lists.</div><div><br /></div><div>Imagine if you could snap your fingers and:</div><div>- Get up to <strong>2,000 new leads/day</strong>, filtered by role, industry, and deal type (REITs, EV charging, logistics centers, hotels, etc…)</div><div>- Send AI-<strong>personalized outreach at scale</strong> — custom icebreakers + smart variables</div><div>- Book <strong>more appointments</strong> than your team can handle</div><div>- Replace hours of prospecting with a <strong>fully managed system that just works</strong></div><div>-  *Optional* have a fully managed copywriting &amp; campaign optimization — focused on <strong>guaranteed reply and booking rates.</strong></div><div><br /></div><div>Let me show you so you can believe your eyes instead of just my words.</div><div><br /></div><div>We’ll put together a <strong>100-lead sample</strong>, laser-targeted, fully enriched and personalized — on the house.</div><div><br /></div><div>Would you like us to send it over?</div><div><br /></div><div><br /></div><div>Best regards,</div><div><br /></div><div><span style=\"font-size:14px\">Alejandro Derqui</span></div><div><span style=\"font-size:14px\">Co-Founder | Business Development &amp; Client Success</span></div><div><span style=\"font-size:14px\">AOS Solutions SL.</span></div><div><span style=\"font-size:14px\">C/Borriana 26, Valencia 46005, Spain</span></div><div><span style=\"font-size:14px\">📩 support@aossolutions.ai</span></div><div><span style=\"font-size:14px\">🌐 aossolutions.ai</span></div><div><br /></div><div><br /></div><div><br /></div><div><br /></div><div><br /></div><div><br /></div><div><span style=\"font-size:10px\"><a href=\"https://UNSUBSCRIBE_INSTANTLY.ai\">Click here to unsubscribe</a></span></div><div><br /></div>"
+                }
+              ],
+              "delay_unit": "days",
+              "pre_delay_unit": "days"
+            },
+            {
+              "type": "email",
+              "delay": 4,
+              "variants": [
+                {
+                  "subject": "",
+                  "body": "<div>Hey {{first_name}} —</div><div><br /></div><div>Just following up in case my last note got buried.</div><div><br /></div><div>I offered to send over a sample — <strong>100</strong> fully personalized, <strong>high-value B2B leads </strong>based on the exact type of clients that bring you the most profits.</div><div><br /></div><div>→ industrial parks, warehouses, hotels, EV charging…</div><div><br /></div><div>We build these for solar teams like {{company_name}} looking to book 5–15+ more calls a week without ad spend or hired guns.</div><div><br /></div><div>Let me know if you'd like it and we'll send it over.</div><div><br /></div><div><br /></div><div>Best regards,</div><div><br /></div><div><span style=\"font-size:14px\">Alejandro Derqui</span></div><div><span style=\"font-size:14px\">Co-Founder | Business Development &amp; Client Success</span></div><div><span style=\"font-size:14px\">AOS Solutions SL.</span></div><div><span style=\"font-size:14px\">C/Borriana 26, Valencia 46005, Spain</span></div><div><span style=\"font-size:14px\">📩 support@aossolutions.ai</span></div><div><span style=\"font-size:14px\">🌐 aossolutions.ai</span></div><div><br /></div><div><br /></div><div><br /></div><div><br /></div><div><br /></div><div><br /></div><div><br /></div>"
+                }
+              ],
+              "delay_unit": "days",
+              "pre_delay_unit": "days"
+            },
+            {
+              "type": "email",
+              "delay": 4,
+              "variants": [
+                {
+                  "subject": "",
+                  "body": "<div>Hey {{first_name}} —</div><div><br /></div><div>Not sure if this slipped through or just bad timing.</div><div><br /></div><div>Just wanted to share this before I close the loop — most solar teams who try the 100-lead sample end up asking how to scale it to 1,000/day.     </div><div><br /></div><div>That’s because:</div><div>- Every lead’s tied to a high-probability buyer segment (REITs, industrial parks, logistics centers, etc.)</div><div>- Each one is enriched, verified, and all messages are hyper-personalized using the most advanced AI models</div><div>- And we do the entire outreach for you — no interns, no freelancers, no guesswork</div><div><br /></div><div>Your 100 lead sample –on the house – is still on the table, but I won’t keep bugging you if it’s not a priority right now.</div><div><br /></div><div>Want me to send the sample over?</div><div><br /></div><div><br /></div><div>Best regards,</div><div><br /></div><div><span style=\"font-size:14px\">Alejandro Derqui</span></div><div><span style=\"font-size:14px\">Co-Founder | Business Development &amp; Client Success</span></div><div><span style=\"font-size:14px\">AOS Solutions SL.</span></div><div><span style=\"font-size:14px\">C/Borriana 26, Valencia 46005, Spain</span></div><div><span style=\"font-size:14px\">📩 support@aossolutions.ai</span></div><div><span style=\"font-size:14px\">🌐 aossolutions.ai</span></div><div><br /></div><div><br /></div><div><br /></div><div><br /></div><div><br /></div><div><br /></div><div><br /></div><div><br /></div>"
+                }
+              ],
+              "delay_unit": "days",
+              "pre_delay_unit": "days"
+            },
+            {
+              "type": "email",
+              "delay": 1,
+              "variants": [
+                {
+                  "subject": "Want me to send this 100 lead sample? - final check",
+                  "body": "<div>Hey {{first_name}} —</div><div><br /></div><div>No worries if now’s not the right time. Just closing the loop on this.</div><div><br /></div><div>Before I do, thought I’d share a bit more on what you’d actually be getting:</div><div><br /></div><div>- <strong>100 leads</strong> isn’t the offer — <strong>it’s just a glimpse</strong></div><div>- We deliver up to <strong>2,000 highly-targeted B2B leads</strong> <strong>per day</strong>, enriched + verified</div><div>- <strong>Every message </strong>is<strong> hyper-personalized</strong> with intelligent icebreakers, based on role, company, activity, niche, personal context...</div><div>- The <strong>messaging</strong> looks and<strong> feels human</strong> — like it came from your own head of sales</div><div><br /></div><div>Teams we work with don’t chase leads.  </div><div>They log in to booked calls and close deals.</div><div><br /></div><div>This isn’t a list. It’s a growth engine.</div><div><br /></div><div>If you want to see what that looks like — even just the first 100 — let me know and I’ll send the sample –completely on us– . </div><div><br /></div><div>If not, all good.</div><div><br /></div><div>Want us to send it over?</div><div><br /></div><div><br /></div><div>Best regards,</div><div><br /></div><div><span style=\"font-size:14px\">Alejandro Derqui</span></div><div><span style=\"font-size:14px\">Co-Founder | Business Development &amp; Client Success</span></div><div><span style=\"font-size:14px\">AOS Solutions SL.</span></div><div><span style=\"font-size:14px\">C/Borriana 26, Valencia 46005, Spain</span></div><div><span style=\"font-size:14px\">📩 support@aossolutions.ai</span></div><div><span style=\"font-size:14px\">🌐 aossolutions.ai</span></div><div><br /></div><div><br /></div><div><br /></div><div><br /></div><div><br /></div><div><br /></div><div><br /></div><div><br /></div><div><br /></div><div><br /></div><div><br /></div><div><br /></div><div><a href=\"https://UNSUBSCRIBE_INSTANTLY.ai\"><span style=\"font-size:10px\">Click here to unsubscribe</span></a><span style=\"font-size:14px\"></span></div>"
+                }
+              ],
+              "delay_unit": "days",
+              "pre_delay_unit": "days"
+            }
+          ]
+        }
+      ],
+      "text_only": false,
+      "first_email_text_only": false,
+      "email_list": [
+        "a.derqui@try-aossolutions.com",
+        "alejandro.derqui@try-aossolutions.com",
+        "alejandro@try-aossolutions.com"
+      ],
+      "daily_limit": 90,
+      "stop_on_reply": true,
+      "email_tag_list": [],
+      "link_tracking": false,
+      "open_tracking": true,
+      "stop_on_auto_reply": false,
+      "core_variables": {
+        "phone": true,
+        "website": true,
+        "lastName": true,
+        "firstName": true,
+        "companyName": true,
+        "personalization": true
+      },
+      "custom_variables": {
+        "email": true,
+        "title": true,
+        "summary": true,
+        "campaign": true,
+        "industry": true,
+        "last_name": true,
+        "first_name": true,
+        "icebreaker": true,
+        "identifier": true,
+        "company_name": true,
+        "personLocation": true,
+        "titleDescription": true
+      },
+      "organization": "d1f81109-ac1d-4472-b830-c1d294ac453a",
+      "provider_routing_rules": []
+    },
+    {
+      "id": "ebca1ba7-4eb4-45a6-8d6d-246c83d9b969",
+      "name": "T09_E3",
+      "status": 3,
+      "campaign_schedule": {
+        "schedules": [
+          {
+            "name": "New schedule",
+            "timing": {
+              "from": "09:00",
+              "to": "18:00"
+            },
+            "days": {
+              "1": true,
+              "2": true,
+              "3": true,
+              "4": true,
+              "5": true
+            },
+            "timezone": "America/Detroit"
+          }
+        ],
+        "start_date": null,
+        "end_date": null
+      },
+      "timestamp_created": "2025-09-24T16:14:28.545Z",
+      "timestamp_updated": "2025-10-15T19:09:41.445Z",
+      "sequences": [
+        {
+          "steps": [
+            {
+              "type": "email",
+              "delay": 4,
+              "variants": [
+                {
+                  "subject": "Automate lead-gen & close more deals",
+                  "body": "<div>Hey {{first_name}} ,</div><div><br /></div><div>{{icebreaker}} </div><div><br /></div><div>Would you like to have more customers without doing more work?</div><div><br /></div><div>I’m asking because we help other {{industry}} companies like {{company_name}} fill their calendar with new appointments using our automated systems for finding qualified leads at scale, deeply personalizing and sending emails.</div><div><br /></div><div>We take care of finding the right leads, managing your email campaigns, and the backend work required, ultimately <strong>yielding you as many new appointments as your team can handle.</strong> </div><div><br /></div><div>If <strong>having new appointments on autopilot</strong> is something you believe that would help you, </div><div><br /></div><div>I would love to create a <strong>sample of </strong><strong>100 leads</strong> -fully enriched and personalized- so you can see how much we can help you if we do it at scale. </div><div><br /></div><div>Would you like me to prepare it for you?</div><div><br /></div><div><br /></div><div>Best regards,</div><div><br /></div><div><span style=\"font-size:14px\">Alejandro Derqui</span></div><div><span style=\"font-size:14px\">Co-Founder | Business Development &amp; Client Success</span></div><div><span style=\"font-size:14px\">AOS Solutions SL.</span></div><div><span style=\"font-size:14px\">C/Borriana 26, Valencia 46005, Spain</span><br /><span style=\"font-size:14px\">📩 support@aossolutions.ai</span></div><div><span style=\"font-size:14px\">🌐 aossolutions.ai</span></div><div><br /></div><div><br /></div><div><br /></div><div><br /></div><div><br /></div><div><br /></div><div><br /></div><div><a href=\"https://UNSUBSCRIBE_INSTANTLY.ai\" rel=\"noopener noreferrer\"><span style=\"font-size:10px\">unsubscribe</span></a></div>"
+                },
+                {
+                  "subject": "{{company_name}} could be landing 5–15 new B2B appointments/week",
+                  "body": "<div>Hey {{first_name}},</div><div><br /></div><div>Just like {{company_name}}, we help many more in the {{industry}} industry <strong>get more customers automatically</strong>. </div><div><br /></div><div>With the boom of AI, now it's harder to find new B2B customers because you have to proof to them that you are actually the real deal, and not just another wrapper with fancy titles and no real value.</div><div><br /></div><div>We can solve this issue and <strong>fill your schedule with new appointments</strong>, because we:</div><div><br /></div><ul><li>automate the search and qualification of leads, and we do it at scale</li><li>automate sending emails in mass</li><li>deeply personalize every email automatically based on the information that matters to your leads</li></ul><div>and <strong>we take care of everything</strong> from start to finish, so you won't have to do anything. </div><div><br /></div><div>All you will need to do is close all the new deals.<br /><br />I know not every company looks for more customers, but I thought this might make sense for you.</div><div><br /></div><div>If you want to know more, let me know when it's the best time for us to connect for 10 minutes, and I'll show you everything. </div><div><br /></div><div>While we do it, I will create a <strong>custom sample of 100 leads for you</strong>, so you can see if you like the results first.</div><div><br /></div><div>When is it the best time for you?</div><div><br /></div><div><br /></div><div>Best regards,</div><div><span style=\"font-size:14px\">Alejandro Derqui</span></div><div><span style=\"font-size:14px\">Co-Founder | Business Development &amp; Client Success</span></div><div><span style=\"font-size:14px\">AOS Solutions SL.</span></div><div><span style=\"font-size:14px\">🌐 aossolutions.ai</span><br /><span style=\"font-size:14px\">C/Borriana 26, Valencia 46005, Spain</span></div><div><span style=\"font-size:14px\">📩 support@aossolutions.ai</span></div><div><br /></div><div><br /></div><div><br /></div><div><br /></div><div><br /></div><div><br /></div><div><br /></div><div><br /></div><div><br /></div><div><span style=\"font-size:10px\"><a rel=\"noopener noreferrer\" href=\"https://UNSUBSCRIBE_INSTANTLY.ai\">unsubscribe</a></span></div><div><br /></div>"
+                },
+                {
+                  "subject": "{{company_name}} could be having 5–15 more B2B calls/week",
+                  "body": "<div>Hey {{first_name}},</div><div><br /></div><div>{{icebreaker}}</div><div><br /></div><div>Just like other {{industry}} companies, I want to help you and {{company_name}} <strong>land more high-value clients automatically</strong>, which is what we specialize in. </div><div><br /></div><div>More specifically, <strong>automatically generating 1,000s of hyper-targeted leads every</strong> day, and sending each one intelligently <strong>personalized cold emails.</strong><br /><br />We handle everything, from start to finish.</div><div><br /></div><div>Here’s how it works:</div><div><br /></div><ul><li>We find up to <strong>2,000 new leads/day, targetting</strong> your ideal customers (ex. Fast growing SaaS companies, industrial companies in expansion, mid-size B2B businesses...)</li><li>We extract all the relevant info and verified emails only</li><li>Every <strong>email is deeply personalized</strong> automatically</li><li>We manage all your cold email campaigns and guarantee positive replies</li></ul><div>And most importantly,</div><div><br /></div><div>We make it a <strong>h</strong><strong>ands-off</strong> <strong>experience</strong> , so you just manage calls and close deals.</div><div><br /></div><div>If you want to know more details, let's connect on a quick 10 min call and I'll show you everything.<br /><br />I'll throw in a <strong>100-lead sample</strong>, qualified, and personalized, so you can see first if you like the results.</div><div> — on the house.</div><div><br /></div><div>When is it the best time for you?</div><div><br /></div><div><br /></div><div>Best regards,</div><div><span style=\"font-size:14px\">Alejandro Derqui</span></div><div><span style=\"font-size:14px\">Co-Founder | Business Development &amp; Client Success</span></div><div><span style=\"font-size:14px\">AOS Solutions SL.</span></div><div><span style=\"font-size:14px\">🌐 aossolutions.ai</span></div><div><span style=\"font-size:14px\">C/Borriana 26, Valencia 46005, Spain</span></div><div><span style=\"font-size:14px\">📩 support@aossolutions.ai</span></div><div><br /></div><div><br /></div><div><br /></div><div><br /></div><div><br /></div><div><br /></div><div><br /></div><div><a href=\"https://UNSUBSCRIBE_INSTANTLY.ai\" rel=\"noopener noreferrer\"><span style=\"font-size:10px\">unsubscribe</span></a></div>"
+                },
+                {
+                  "subject": "AI that finds & contacts leads for you",
+                  "body": "<div>Hey {{first_name}} ,</div><div><br /></div><div>{{icebreaker}} - are you getting all the customers you'd like to have?</div><div><br /></div><div>I’m asking because we help other {{industry}} companies like {{company_name}} <strong>fill their schedule with new appointments</strong> using our automated cold outreach system that can find and contact up to<strong> 2,000 ideal leads every day</strong>.</div><div><br /></div><div>We take care of everything, so you don't have to find new leads, email them and manage any backend, while <strong>y</strong><strong>ielding you as many new appointments as your team can handle</strong>.</div><div><br /></div><div>If having new appointments on autopilot is something you believe that would help you, </div><div><br /></div><div>I would love to create a <strong>sample of 100 leads</strong> so you can see if this makes sense, and how much we can help you. </div><div><br /></div><div>It won't take more than 5 minutes of your time.</div><div><br /></div><div><strong>Would you like me to prepare it for you?</strong></div><div><br /></div><div>Best regards,</div><div><br /></div><div><span style=\"font-size:14px\">Alejandro Derqui</span></div><div><span style=\"font-size:14px\">Co-Founder | Business Development &amp; Client Success</span></div><div><span style=\"font-size:14px\">AOS Solutions SL.</span></div><div><span style=\"font-size:14px\">C/Borriana 26, Valencia 46005, Spain</span></div><div><span style=\"font-size:14px\">📩 support@aossolutions.ai</span></div><div><span style=\"font-size:14px\">🌐 aossolutions.ai</span></div><div><br /></div><div><br /></div><div><br /></div><div><br /></div><div><br /></div><div><br /></div><div><br /></div><div><a rel=\"noopener noreferrer\" href=\"https://UNSUBSCRIBE_INSTANTLY.ai\"><span style=\"font-size:10px\">unsubscribe</span></a></div>"
+                },
+                {
+                  "subject": "AI that finds & contacts leads for you",
+                  "body": "<div>Hey {{first_name}},</div><div><br /></div><div>{{icebreaker}}</div><div><br /></div><div>Just like {{company_name}}, we help many more in the {{industry}} industry by automatically generating 1<strong>000s of highly qualified leads daily</strong> (yes, 1000s), and sending them <strong>emails </strong>that are<strong> hyper-personalized</strong> by our powerful AI - all <strong>without you lifting a finger</strong>. </div><div><br /></div><div>No ad spend. No slow referrals. No junk lead-gen services.</div><div><br /></div><div>Here’s what it looks like:</div><div>- Up to <strong>2,000 new leads/day</strong>, filtered to match your exact <strong>ideal customer</strong> (Fast growing SaaS companies, industrial companies, mid-size B2B businesses...)</div><div>- AI-written custom icebreakers and <strong>personalization for each message</strong></div><div>- H<strong>ands-off experience</strong> - just manage calls and close deals</div><div>-  *Optional* copywriting &amp; campaign optimization — focused on <strong>guaranteed reply and booking rates</strong>.</div><div><br /></div><div>We don’t want you to just trust our words.</div><div><br /></div><div>We want you to see the results first so you can make a better decission.</div><div><br /></div><div>To prove it, we will put together <strong>a demo –completely on us– of </strong><strong>100 high-value </strong>leads, fully targeted for your company.</div><div style=\"box-sizing:border-box;font-family:Averta, sans-serif\"><br /></div><div>It won't take more than 5 minutes of your time, and we will solve the exact problem most companies in your industry face:  </div><div><br /></div><div><strong>Great offer. Lumpy pipeline. Too much time wasted on outreach.</strong></div><div><br /></div><div><br /></div><div>Would you like me to send the sample over?</div><div><br /></div><div><br /></div><div>Best regards,</div><div><br /></div><div>Alejandro Derqui</div><div>Co-Founder | Business Development &amp; Client Success</div><div>AOS Solutions SL.</div><div>C/Borriana 26, Valencia 46005, Spain</div><div>📩 support@aossolutions.ai</div><div>🌐 aossolutions.ai</div><div><br /></div><div><br /></div><div><br /></div><div><br /></div><div><br /></div><div><br /></div><div><br /></div><div><br /></div><div><br /></div><div><br /></div><div><br /></div><div><a rel=\"noopener noreferrer\" href=\"https://UNSUBSCRIBE_INSTANTLY.ai\"><span style=\"font-size:10px\">unsubscribe</span></a></div>"
+                }
+              ],
+              "delay_unit": "days",
+              "pre_delay_unit": "days"
+            },
+            {
+              "type": "email",
+              "delay": 4,
+              "variants": [
+                {
+                  "subject": "",
+                  "body": "<div>Hey {{first_name}} ,</div><div><br /></div><div>Just following up in case my last note got buried.</div><div><br /></div><div>I offered to send over a sample — <strong>100</strong> fully personalized, <strong>high-value B2B leads </strong>based on the exact type of clients that bring you the most profits.</div><div><br /></div><div>→ Fast growing SaaS companies, industrial companies, mid-size B2B businesses...</div><div><br /></div><div>This is just a quick peak, but we can do it at scale and bring you <strong>new customers automatically</strong> and regularly.</div><div><br /></div><div>Also, we take care of the whole process from start to finish.</div><div><br /></div><div>We build these solutions for tech teams like {{company_name}} looking to book 5–15+ more calls a week<strong> </strong><strong>withou</strong><strong>t adding </strong><strong>more work, or expensive and inefficient in-house teams</strong>.</div><div><br /></div><div>Let me know if you want to know the details, and I'll show you everything. </div><div><br /></div><div>And of course we'll send the sample over as well :)</div><div><br /></div><div>Interested?</div><div><br /></div><div><br /></div><div>Best regards,</div><div><span style=\"font-size:14px\">Alejandro Derqui</span></div><div><span style=\"font-size:14px\">Co-Founder | Business Development &amp; Client Success</span></div><div><span style=\"font-size:14px\">AOS Solutions SL.</span></div><div><span style=\"font-size:14px\">C/Borriana 26, Valencia 46005, Spain</span></div><div><span style=\"font-size:14px\">📩 support@aossolutions.ai</span></div><div><span style=\"font-size:14px\">🌐 aossolutions.ai</span></div><div><br /></div><div><br /></div><div><br /></div><div><br /></div><div><br /></div><div><br /></div><div><a href=\"https://UNSUBSCRIBE_INSTANTLY.ai\"><span style=\"font-size:10px\">Click here to unsubscribe</span></a></div>"
+                }
+              ],
+              "delay_unit": "days",
+              "pre_delay_unit": "days"
+            },
+            {
+              "type": "email",
+              "delay": 4,
+              "variants": [
+                {
+                  "subject": "",
+                  "body": "<div>Hey {{first_name}} —</div><div><br /></div><div>Not sure if this slipped through or just bad timing.</div><div><br /></div><div>Just wanted to share this before I close the loop,</div><div><br /></div><div>Most tech teams who try the 100-lead sample end up asking how to scale it to 1,000/day.     </div><div><br /></div><div>That’s because:</div><div>- Every lead’s tied to a high-probability buyer segment.</div><div>- Each one is enriched, verified, and all messages are hyper-personalized using the most advanced automations.</div><div>- And we do the entire outreach for you — no interns, no freelancers, no guesswork</div><div><br /></div><div><strong>Your 100 lead sample –on the house</strong> – is still on the table, but I won’t keep bugging you if it’s not a priority right now.</div><div><br /></div><div>Want me to send the sample over?</div><div><br /></div><div><br /></div><div>Best regards,</div><div><br /></div><div><span style=\"font-size:14px\">Alejandro Derqui</span></div><div><span style=\"font-size:14px\">Co-Founder | Business Development &amp; Client Success</span></div><div><span style=\"font-size:14px\">AOS Solutions SL.</span></div><div><span style=\"font-size:14px\">C/Borriana 26, Valencia 46005, Spain</span></div><div><span style=\"font-size:14px\">📩 support@aossolutions.ai</span></div><div><span style=\"font-size:14px\">🌐 aossolutions.ai</span></div><div><br /></div><div><br /></div><div><br /></div><div><br /></div><div><br /></div><div><br /></div><div><br /></div><div><span style=\"font-size:10px\"><a href=\"https://UNSUBSCRIBE_INSTANTLY.ai\">Click here to unsubscribe</a></span></div>"
+                }
+              ],
+              "delay_unit": "days",
+              "pre_delay_unit": "days"
+            },
+            {
+              "type": "email",
+              "delay": 1,
+              "variants": [
+                {
+                  "subject": "Want me to send this 100 lead sample? - final check",
+                  "body": "<div>Hey {{first_name}} , </div><div><br /></div><div>No worries if now’s not the right time. Just closing the loop on this.</div><div><br /></div><div>Before I 'll share a bit more on what you’ll actually get:</div><div><br /></div><div>- <strong>100 leads</strong> <strong>is</strong><strong> just a glimpse</strong></div><div>- We deliver up to <strong>2,000 highly-targeted B2B leads</strong> <strong>per day</strong>, all verified</div><div>- <strong>Every message </strong>we send them is<strong> hyper-personalized</strong> with intelligent icebreakers, based on role, company, activity, niche, personal context...</div><div>- The <strong>messaging</strong> looks and<strong> feels human,</strong> like it came from your own head of sales</div><div><br /></div><div>Summed up, the advantages for you are: </div><div><br /></div><div>Your team won't spend a single more minute looking for new leads. <strong>We will take care of everything.</strong></div><div>They will get <strong>5-15+ new appointments per week</strong>. Just close new deals.</div><div>You will get <strong>more customers without any extra effort.</strong></div><div><br /></div><div>If you want to see what that looks like — even just the first 100 — let me know and I’ll create a custom sample for you. </div><div><br /></div><div>All we need is a quick chat to understand your ideal customer, whenever it's the best time for you.</div><div><br /></div><div>If not, all good.</div><div><br /></div><div>Want us to make your 100 lead sample?</div><div><br /></div><div><br /></div><div>Best regards,</div><div><br /></div><div><span style=\"font-size:14px\">Alejandro Derqui</span></div><div><span style=\"font-size:14px\">Co-Founder | Business Development &amp; Client Success</span></div><div><span style=\"font-size:14px\">AOS Solutions SL.</span></div><div><span style=\"font-size:14px\">C/Borriana 26, Valencia 46005, Spain</span></div><div><span style=\"font-size:14px\">📩 support@aossolutions.ai</span></div><div><span style=\"font-size:14px\">🌐 aossolutions.ai</span></div><div><br /></div><div><br /></div><div><br /></div><div><br /></div><div><br /></div><div><br /></div><div><br /></div><div><br /></div><div><br /></div><div><br /></div><div><br /></div><div><a href=\"https://UNSUBSCRIBE_INSTANTLY.ai\"><span style=\"font-size:10px\">Click here to unsubscribe</span></a><span style=\"font-size:14px\"></span></div>"
+                }
+              ],
+              "delay_unit": "days",
+              "pre_delay_unit": "days"
+            }
+          ]
+        }
+      ],
+      "text_only": false,
+      "first_email_text_only": false,
+      "email_list": [
+        "aderqui@getaossolutions.com",
+        "alejandro.derqui@getaossolutions.com",
+        "alex@getaossolutions.com",
+        "alejandro.derqui@aossolutions.co"
+      ],
+      "daily_limit": 120,
+      "stop_on_reply": true,
+      "email_tag_list": [],
+      "link_tracking": false,
+      "open_tracking": true,
+      "stop_on_auto_reply": false,
+      "prioritize_new_leads": false,
+      "match_lead_esp": false,
+      "stop_for_company": true,
+      "core_variables": {
+        "phone": true,
+        "website": true,
+        "lastName": true,
+        "firstName": true,
+        "companyName": true,
+        "personalization": true
+      },
+      "custom_variables": {
+        "email": true,
+        "title": true,
+        "summary": true,
+        "campaign": true,
+        "industry": true,
+        "last_name": true,
+        "first_name": true,
+        "icebreaker": true,
+        "identifier": true,
+        "pause_until": true,
+        "company_name": true,
+        "personLocation": true,
+        "titleDescription": true
+      },
+      "insert_unsubscribe_header": false,
+      "allow_risky_contacts": false,
+      "disable_bounce_protect": false,
+      "cc_list": [],
+      "bcc_list": [],
+      "organization": "d1f81109-ac1d-4472-b830-c1d294ac453a",
+      "provider_routing_rules": []
+    },
+    {
+      "id": "e8d7e71d-8823-4b88-b096-8184b9a02e3e",
+      "name": "T5_E1_C2",
+      "status": 3,
+      "campaign_schedule": {
+        "schedules": [
+          {
+            "name": "New schedule",
+            "timing": {
+              "from": "09:00",
+              "to": "18:00"
+            },
+            "days": {
+              "0": true,
+              "1": true,
+              "2": true,
+              "3": true,
+              "4": true,
+              "5": true,
+              "6": true
+            },
+            "timezone": "America/Detroit"
+          }
+        ],
+        "start_date": null,
+        "end_date": null
+      },
+      "timestamp_created": "2025-05-22T14:47:09.119Z",
+      "timestamp_updated": "2025-05-22T16:11:18.504Z",
+      "sequences": [
+        {
+          "steps": [
+            {
+              "type": "email",
+              "delay": 4,
+              "variants": [
+                {
+                  "subject": "AI-powered Outreach at Scale",
+                  "body": "<div>Hi {{first_name}}  </div><div><br /></div><div>{{icebreaker}}  </div><div><br /></div><div>I’m reaching out because we help companies like {{company_name}}  to find substantially more clients using a fully automated AI outreach system. </div><div><br /></div><div><strong>More specifically, we find 1000s of prospects daily and contact them for you.</strong></div><div><br /></div><div>Imagine if you could snap your fingers and:</div><ul style=\"margin-top:0;margin-bottom:0;padding-inline-start:48px\"><li style=\"list-style-type:disc;font-size:16px;font-family:Arial, sans-serif;color:rgb(0, 0, 0);background-color:transparent;font-weight:bold;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre\" dir=\"ltr\"><div><strong>Gather 1000s of qualified prospects daily.</strong></div></li><li style=\"list-style-type:disc;font-size:16px;font-family:Arial, sans-serif;color:rgb(0, 0, 0);background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre\" dir=\"ltr\"><div>Send<strong> hyper-personalized cold emails at scale</strong> to all your leads.</div></li><li style=\"list-style-type:disc;font-size:16px;font-family:Arial, sans-serif;color:rgb(0, 0, 0);background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre\" dir=\"ltr\"><div>Book <strong>more appointments than your team can handle</strong></div></li><li style=\"list-style-type:disc;font-size:16px;font-family:Arial, sans-serif;color:rgb(0, 0, 0);background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre\" dir=\"ltr\"><div>And replaces 100s of hours of manual prospecting — <strong>with just 5 minutes of setup.</strong></div></li></ul><div><br /></div><div>We’d love to send you a test run -- completely on us -- so you can see the results you will obtain.</div><div><br /></div><div><strong>Would you like us to?</strong></div><div><br /></div><div>Best regards,</div><div><span style=\"font-size:14px\">Alejandro Derqui</span></div><div><span style=\"font-size:14px\">Co-Founder | Business Development &amp; Client Success</span></div><div><span style=\"font-size:14px\">AOS Solutions SL.</span></div><div><span style=\"font-size:14px\">C/Borriana 26, Valencia 46005, Spain<br />📩 support@aossolutions.ai</span></div><div><span style=\"font-size:14px\">🌐 aossolutions.ai</span><br /><span style=\"font-size:14px\"></span><br /><span style=\"font-size:14px\"></span><br /><span style=\"font-size:14px\"></span><br /><span style=\"font-size:14px\"></span><br /><span style=\"font-size:14px\"></span><br /><a href=\"https://UNSUBSCRIBE_INSTANTLY.ai\"><span style=\"font-size:10px\">Click here to unsubscribe</span></a></div><div><br /></div>"
+                },
+                {
+                  "subject": "AI that finds & contacts leads for you",
+                  "body": "<div>Hi {{first_name}} , </div><div><br /></div><div>{{icebreaker}}</div><div><br /></div><div>I’m reaching out because we help companies like {{company_name}} to close significantly more clients using a fully automated AI lead-gen &amp; outreach system. </div><div><br /></div><div><strong>More specifically, we find 1000s of qualified prospects daily and contact them for you.</strong></div><div><br /></div><div>You won't have to lift a finger, and the system will:</div><ul style=\"margin-top:0;margin-bottom:0;padding-inline-start:48px\"><li style=\"list-style-type:disc;font-size:16px;font-family:Arial, sans-serif;color:rgb(0, 0, 0);background-color:transparent;font-weight:bold;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre\" dir=\"ltr\"><div>Gather 1000s of qualified leads daily.</div></li><li style=\"list-style-type:disc;font-size:16px;font-family:Arial, sans-serif;color:rgb(0, 0, 0);background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre\" dir=\"ltr\"><div>Send <strong>hyper-personalized messages at scale</strong> to all your leads.</div></li><li style=\"list-style-type:disc;font-size:16px;font-family:Arial, sans-serif;color:rgb(0, 0, 0);background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre\" dir=\"ltr\"><div>Book so many<strong> appointments that your team can't take more.</strong></div></li><li style=\"list-style-type:disc;font-size:16px;font-family:Arial, sans-serif;color:rgb(0, 0, 0);background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre\" dir=\"ltr\"><div>And <strong>replace 100s of hours</strong> of manual prospecting — with <strong>just 5 minutes of setup.</strong></div></li></ul><div><br /></div><div>No long onboarding. No effort from your side. Just results.</div><div><br /></div><div>We’d love to send you a demo -completely on us- so you can personally see the advantages.</div><div><strong><br /></strong></div><div><strong>Would you like us to?</strong></div><div><br /></div><div>Best regards,</div><div><span style=\"font-size:14px\">Alejandro Derqui</span></div><div><span style=\"font-size:14px\">Co-Founder | Business Development &amp; Client Success</span></div><div><span style=\"font-size:14px\">AOS Solutions SL.</span></div><div><span style=\"font-size:14px\">C/Borriana 26, Valencia 46005, Spain</span><br /><span style=\"font-size:14px\">📩 support@aossolutions.ai</span></div><div><span style=\"font-size:14px\">🌐 aossolutions.ai</span></div><div><br /></div><div><br /></div><div><br /></div><div><br /></div><div><br /></div><div><br /><br /><br /><a href=\"https://UNSUBSCRIBE_INSTANTLY.ai\"><span style=\"font-size:10px\">Click here to unsubscribe</span></a></div>"
+                }
+              ],
+              "delay_unit": "days",
+              "pre_delay_unit": "days"
+            },
+            {
+              "type": "email",
+              "delay": 4,
+              "variants": [
+                {
+                  "subject": "",
+                  "body": "<div>Hey {{first_name}} </div><div><br /></div><div>I’m just following up in case my email was buried in your inbox. <br /><br /></div><div>If your team spends too much time looking for new leads and writing personalized emails, we can automate the process for you. <br /><br />You can automate your email outreach with a powerful cold email AI that will:</div><ul style=\"margin-top:0;margin-bottom:0;padding-inline-start:48px\"><li style=\"list-style-type:disc;font-size:16px;font-family:Arial, sans-serif;color:rgb(0, 0, 0);background-color:transparent;font-weight:bold;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre\" dir=\"ltr\"><div>Gather 1000s of quality prospects every day.</div></li><li style=\"list-style-type:disc;font-size:16px;font-family:Arial, sans-serif;color:rgb(0, 0, 0);background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre\" dir=\"ltr\"><div><strong>Send hyper-personalized cold emails at scale</strong> to all your prospects.</div></li><li style=\"list-style-type:disc;font-size:16px;font-family:Arial, sans-serif;color:rgb(0, 0, 0);background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre\" dir=\"ltr\"><div>Book <strong>more appointments than your team can handle.</strong></div></li><li style=\"list-style-type:disc;font-size:16px;font-family:Arial, sans-serif;color:rgb(0, 0, 0);background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre\" dir=\"ltr\"><div>And replaces 100s of hours of manual prospecting — <strong>with just 5 minutes of setup.</strong></div></li></ul><div><br /></div><div>We would like to show you the results so you can see this with your own eyes before you take any decision.</div><div><br /></div><div>If you think this could help your company, <strong>would you mind if we send you a demonstration?</strong></div><div><br /></div><div>Best regards,</div><div><br /></div><div><span style=\"font-size:14px\">Alejandro Derqui</span></div><div><span style=\"font-size:14px\">Co-Founder | Business Development &amp; Client Success</span></div><div><span style=\"font-size:14px\">AOS Solutions SL.</span></div><div><span style=\"font-size:14px\">C/Borriana 26, Valencia 46005, Spain</span><br /><span style=\"font-size:14px\">📩 support@aossolutions.ai</span></div><div><span style=\"font-size:14px\">🌐 aossolutions.ai</span></div><div><br /></div><div><br /></div><div><br /></div><div><br /></div><div><br /></div><div><br /></div><div><br /></div><div><br /></div><div><br /></div><div><a href=\"https://UNSUBSCRIBE_INSTANTLY.ai\"><span style=\"font-size:10px\">Click here to unsubscribe</span></a></div>"
+                },
+                {
+                  "subject": "",
+                  "body": "<div>Hey {{first_name}} </div><div><br /></div><div>I’m just following up in case my email was buried in your inbox. </div><div><br /></div><div>If your team spends too much time looking for new leads and writing personalized emails, we can automate the process for you. </div><div><br /></div><div>You can automate your email outreach with a powerful cold email AI that will:</div><ul style=\"margin-top:0;margin-bottom:0;padding-inline-start:48px\"><li style=\"list-style-type:disc;font-size:16px;font-family:Arial, sans-serif;color:rgb(0, 0, 0);background-color:transparent;font-weight:bold;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre\" dir=\"ltr\"><div>Gather 1000s of quality prospects every day.</div></li><li style=\"list-style-type:disc;font-size:16px;font-family:Arial, sans-serif;color:rgb(0, 0, 0);background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre\" dir=\"ltr\"><div><strong>Send hyper-personalized cold emails at scale</strong> to all your prospects.</div></li><li style=\"list-style-type:disc;font-size:16px;font-family:Arial, sans-serif;color:rgb(0, 0, 0);background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre\" dir=\"ltr\"><div>Book <strong>more appointments than your team can handle.</strong></div></li><li style=\"list-style-type:disc;font-size:16px;font-family:Arial, sans-serif;color:rgb(0, 0, 0);background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre\" dir=\"ltr\"><div>And replaces 100s of hours of manual prospecting — <strong>with just 5 minutes of setup.</strong></div></li></ul><div><br /></div><div>We would like to show you the results so you can see this with your own eyes before you take any decision.</div><div><br /></div><div>If you think this could help your company, <strong>would you mind if we send you a demonstration?</strong></div><div><br /></div><div>Best regards,</div><div><br /></div><div><span style=\"font-size:14px\">Alejandro Derqui</span></div><div><span style=\"font-size:14px\">Co-Founder | Business Development &amp; Client Success</span></div><div><span style=\"font-size:14px\">AOS Solutions SL.</span></div><div><span style=\"font-size:14px\">C/Borriana 26, Valencia 46005, Spain</span><br /><span style=\"font-size:14px\">📩 support@aossolutions.ai</span></div><div><span style=\"font-size:14px\">🌐 aossolutions.ai</span></div><div><br /></div><div><br /></div><div><br /></div><div><br /></div><div><br /></div><div><br /></div><div><br /></div><div><br /></div><div><br /></div><div><a href=\"https://UNSUBSCRIBE_INSTANTLY.ai\"><span style=\"font-size:10px\">Click here to unsubscribe</span></a></div>"
+                }
+              ],
+              "delay_unit": "days",
+              "pre_delay_unit": "days"
+            },
+            {
+              "type": "email",
+              "delay": 4,
+              "variants": [
+                {
+                  "subject": "",
+                  "body": "<div>Hi {{first_name}} ,</div><div><br /></div><div>I made sure to write an email that you will find valuable before I stop taking more of your time (I know you’re very busy).<br /><br /></div><div>Right now, businesses that automate their email outreach are<strong> reaching thousands of leads daily, booking more calls, and closing more deals</strong>—while others are still stuck in slow, manual processes.<br /><br /></div><div>If you want to be ahead of your competition rather than catching up later, I’ve laid out exactly how this works <a href=\"http://aossolutions.ai/home\">here.</a></div><div><br />No pressure, but if scaling your sales without extra effort sounds valuable,  <strong>we would like to send you a demonstration to show you the results you can achieve.</strong></div><div><br /></div><div>Feel free to reach out anytime so we can set it up for you.</div><div><br /></div><div>Wishing you continued prosperity,</div><div><br /></div><div><span style=\"font-size:14px\">Alejandro Derqui</span></div><div><span style=\"font-size:14px\">Co-Founder | Business Development &amp; Client Success</span></div><div><span style=\"font-size:14px\">AOS Solutions SL.</span></div><div><span style=\"font-size:14px\">C/Borriana 26, Valencia 46005, Spain</span><br /><span style=\"font-size:14px\">📩 support@aossolutions.ai</span></div><div><span style=\"font-size:14px\">🌐 aossolutions.ai</span></div><div><br /></div><div><br /></div><div><br /></div><div><br /></div><div><br /></div><div><br /></div><div><br /></div><div><br /></div><div><br /></div><div><br /></div><div><br /></div><div><span style=\"font-size:10px\"><br /></span></div><div><span style=\"font-size:10px\"><a href=\"https://UNSUBSCRIBE_INSTANTLY.ai\">Click here to unsubscribe</a></span></div>"
+                },
+                {
+                  "subject": "",
+                  "body": "<div>Hi {{first_name}} , </div><div><br /></div><div>I made sure to write an email that you will find valuable before I stop taking more of your time (I know you’re very busy).</div><div><br /></div><div>Right now, businesses that automate their email outreach are <strong>r</strong><strong>eaching thousands of leads daily, booking more calls, and closing more deals</strong>—while others are still stuck in slow, manual processes.</div><div><br /></div><div>If you want to be ahead of your competition rather than catching up later, I’ve laid out exactly how this works <a href=\"http://aossolutions.ai\">here</a>.</div><div><br /></div><div>No pressure, but if scaling your sales without extra effort sounds valuable,  <strong>we would like to send you a demonstration to show you the results you can achieve.</strong></div><div><br /></div><div>Feel free to reach out anytime so we can set it up for you.</div><div><br /></div><div>Wishing you continued prosperity,</div><div><br /></div><div><span style=\"font-size:14px\">Alejandro Derqui</span></div><div><span style=\"font-size:14px\">Co-Founder | Business Development &amp; Client Success</span></div><div><span style=\"font-size:14px\">AOS Solutions SL.</span></div><div><span style=\"font-size:14px\">C/Borriana 26, Valencia 46005, Spain<br />📩 support@aossolutions.ai</span></div><div><span style=\"font-size:14px\">🌐 aossolutions.ai</span></div><div><br /></div><div><br /></div><div><br /></div><div><br /></div><div><br /></div><div><br /></div><div><br /></div><div><br /></div><div><span style=\"font-size:10px\"><a href=\"https://UNSUBSCRIBE_INSTANTLY.ai\">Click here to unsubscribe</a></span></div>"
+                }
+              ],
+              "delay_unit": "days",
+              "pre_delay_unit": "days"
+            },
+            {
+              "type": "email",
+              "delay": 1,
+              "variants": [
+                {
+                  "subject": "",
+                  "body": "<div>Hi {{first_name}}, </div><div><br /></div><div>This is just a quick reminder that we put together a <strong>demo of 150 qualified leads (completely on us) with personalized emails for you,</strong> and you can get it whenever you want.</div><div><br /></div><div>This is just a small demonstration of what our automated lead-gen and email outreach system can do. </div><div><br /></div><div>You can start using the demonstration easily and without charge before next week.</div><div><br /></div><div>All we need is to have a quick talk with you to set up the final touches.</div><div><br /></div><div>Let me know when you want it, so we can get it done. </div><div><br /></div><div><br /></div><div>Best regards, </div><div><br /></div><div><span style=\"font-size:14px\">Alejandro Derqui</span></div><div><span style=\"font-size:14px\">Co-Founder | Business Development &amp; Client Success</span></div><div><span style=\"font-size:14px\">AOS Solutions SL. </span></div><div><span style=\"font-size:14px\">C/Borriana 26, Valencia 46005, Spain</span></div><div><span style=\"font-size:14px\">📩 support@aossolutions.ai</span></div><div><span style=\"font-size:14px\">🌐aossolutions.ai</span></div><div><br /></div><div><br /></div><div><br /></div><div><br /></div><div><br /></div><div><br /></div><div><br /></div><div><br /></div><div><span style=\"font-size:10px\"><a href=\"https://UNSUBSCRIBE_INSTANTLY.ai\">Click here to unsubscribe</a></span></div>"
+                },
+                {
+                  "subject": "",
+                  "body": "<div>Hi {{first_name}}, </div><div><br /></div><div>This is just a quick reminder that <strong>we put together a demo of 150 qualified leads (completely on us) with personalized emails for you</strong>, and you can get it whenever you want.</div><div><br /></div><div>This is just a small demonstration of what our automated lead-gen and email outreach system can do. </div><div><br /></div><div>You can start using the demonstration easily and without charge before next week.</div><div><br /></div><div>All we need is to have a quick talk with you to set up the final touches.</div><div><br /></div><div>Let me know when you want it, so we can get it done. </div><div><br /></div><div><br /></div><div>Best regards, </div><div><br /></div><div><span style=\"font-size:14px\">Alejandro Derqui</span></div><div><span style=\"font-size:14px\">Co-Founder | Business Development &amp; Client Success</span></div><div><span style=\"font-size:14px\">AOS Solutions SL. </span></div><div><span style=\"font-size:14px\">C/Borriana 26, Valencia 46005, Spain</span></div><div><span style=\"font-size:14px\">📩 support@aossolutions.ai</span></div><div><span style=\"font-size:14px\">🌐aossolutions.ai</span></div><div><br /></div><div><br /></div><div><br /></div><div><br /></div><div><br /></div><div><br /></div><div><span style=\"font-size:10px\"><a href=\"https://UNSUBSCRIBE_INSTANTLY.ai\">Click here to unsubscribe</a></span></div>"
+                }
+              ],
+              "delay_unit": "days",
+              "pre_delay_unit": "days"
+            }
+          ]
+        }
+      ],
+      "text_only": false,
+      "first_email_text_only": false,
+      "email_list": [
+        "a.derqui@get-aos.com",
+        "alejandro@get-aos.com",
+        "alejandro.derqui@get-aos.com"
+      ],
+      "daily_limit": 90,
+      "stop_on_reply": true,
+      "email_tag_list": [],
+      "link_tracking": false,
+      "open_tracking": true,
+      "stop_on_auto_reply": false,
+      "core_variables": {
+        "website": true,
+        "lastName": true,
+        "firstName": true,
+        "companyName": true,
+        "personalization": true
+      },
+      "custom_variables": {
+        "title": true,
+        "summary": true,
+        "campaign": true,
+        "industry": true,
+        "icebreaker": true,
+        "identifier": true,
+        "pause_until": true,
+        "personLocation": true,
+        "titleDescription": true
+      },
+      "organization": "d1f81109-ac1d-4472-b830-c1d294ac453a",
+      "provider_routing_rules": []
+    },
+    {
+      "id": "e68dac28-c648-41cf-bbb7-740eaa77dfa0",
+      "name": "Leads T09",
+      "status": 0,
+      "campaign_schedule": {},
+      "timestamp_created": "2025-09-15T11:57:37.348Z",
+      "timestamp_updated": "2025-10-06T12:08:44.785Z",
+      "pl_value": 6000,
+      "core_variables": {
+        "phone": true,
+        "website": true,
+        "lastName": true,
+        "firstName": true,
+        "companyName": true,
+        "personalization": true
+      },
+      "custom_variables": {
+        "email": true,
+        "title": true,
+        "summary": true,
+        "campaign": true,
+        "industry": true,
+        "last_name": true,
+        "first_name": true,
+        "icebreaker": true,
+        "identifier": true,
+        "company_name": true,
+        "personLocation": true,
+        "titleDescription": true
+      },
+      "organization": "d1f81109-ac1d-4472-b830-c1d294ac453a",
+      "owned_by": "af618d7c-de42-4446-af66-cfa120c51aef"
+    },
+    {
+      "id": "dd2c1ea6-af52-46ff-a6bc-d8cbbbf4a2ff",
+      "name": "T4_E1 ",
+      "status": 2,
+      "campaign_schedule": {
+        "schedules": [
+          {
+            "name": "New schedule",
+            "timing": {
+              "from": "09:00",
+              "to": "18:00"
+            },
+            "days": {
+              "0": true,
+              "1": true,
+              "2": true,
+              "3": true,
+              "4": true,
+              "5": true,
+              "6": true
+            },
+            "timezone": "America/Detroit"
+          }
+        ],
+        "start_date": null,
+        "end_date": null
+      },
+      "timestamp_created": "2025-05-05T18:51:23.470Z",
+      "timestamp_updated": "2025-05-18T15:12:45.011Z",
+      "sequences": [
+        {
+          "steps": [
+            {
+              "type": "email",
+              "delay": 4,
+              "variants": [
+                {
+                  "subject": "AI-powered Outreach at Scale",
+                  "body": "<div>Hi {{first_name}}  </div><div><br /></div><div>{{icebreaker}}  </div><div><br /></div><div>I’m reaching out because we help companies like {{company_name}}  to find substantially more clients using a fully automated AI outreach system. </div><div><br /></div><div><strong>More specifically, we find 1000s of prospects daily and contact them for you.</strong></div><div><br /></div><div>Imagine if you could snap your fingers and:</div><ul style=\"margin-top:0;margin-bottom:0;padding-inline-start:48px\"><li dir=\"ltr\" style=\"list-style-type:disc;font-size:16px;font-family:Arial, sans-serif;color:rgb(0, 0, 0);background-color:transparent;font-weight:bold;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre\"><div><strong>Gather 1000s of qualified prospects daily.</strong></div></li><li dir=\"ltr\" style=\"list-style-type:disc;font-size:16px;font-family:Arial, sans-serif;color:rgb(0, 0, 0);background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre\"><div>Send<strong> hyper-personalized cold emails at scale</strong> to all your leads.</div></li><li dir=\"ltr\" style=\"list-style-type:disc;font-size:16px;font-family:Arial, sans-serif;color:rgb(0, 0, 0);background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre\"><div>Book <strong>more appointments than your team can handle</strong></div></li><li dir=\"ltr\" style=\"list-style-type:disc;font-size:16px;font-family:Arial, sans-serif;color:rgb(0, 0, 0);background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre\"><div>And replaces 100s of hours of manual prospecting — <strong>with just 5 minutes of setup.</strong></div></li></ul><div><br /></div><div>We’d love to send you a test run -- completely on us -- so you can see the results you will obtain.</div><div><br /></div><div><strong>Would you like us to?</strong></div><div><br /></div><div>Best regards,</div><div><span style=\"font-size:14px\">Alejandro Derqui</span></div><div><span style=\"font-size:14px\">Co-Founder | Business Development &amp; Client Success</span></div><div><span style=\"font-size:14px\">AOS Solutions SL.</span></div><div><span style=\"font-size:14px\">C/Borriana 26, Valencia 46005, Spain<br />📩 support@aossolutions.ai</span></div><div><span style=\"font-size:14px\">🌐 aossolutions.ai</span><br /><span style=\"font-size:14px\"></span><br /><span style=\"font-size:14px\"></span><br /><span style=\"font-size:14px\"></span><br /><span style=\"font-size:14px\"></span><br /><span style=\"font-size:14px\"></span><br /><a href=\"https://UNSUBSCRIBE_INSTANTLY.ai\" class=\"spam-content\" target=\"_blank\" rel=\"noopener noreferrer\"><span style=\"font-size:10px\">I don't want to hear from you again</span></a></div><div><br /></div>"
+                },
+                {
+                  "subject": "AI that finds & contacts leads for you",
+                  "body": "<div>Hi {{first_name}} , </div><div><br /></div><div>{{icebreaker}}</div><div><br /></div><div>I’m reaching out because we help companies like {{company_name}} to close significantly more clients using a fully automated AI lead-gen &amp; outreach system. </div><div><br /></div><div><strong>More specifically, we find 1000s of qualified prospects daily and contact them for you.</strong></div><div><br /></div><div>You won't have to lift a finger, and the system will:</div><ul style=\"margin-top:0;margin-bottom:0;padding-inline-start:48px\"><li dir=\"ltr\" style=\"list-style-type:disc;font-size:16px;font-family:Arial, sans-serif;color:rgb(0, 0, 0);background-color:transparent;font-weight:bold;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre\"><div>Gather 1000s of qualified leads daily.</div></li><li dir=\"ltr\" style=\"list-style-type:disc;font-size:16px;font-family:Arial, sans-serif;color:rgb(0, 0, 0);background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre\"><div>Send <strong>hyper-personalized messages at scale</strong> to all your leads.</div></li><li dir=\"ltr\" style=\"list-style-type:disc;font-size:16px;font-family:Arial, sans-serif;color:rgb(0, 0, 0);background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre\"><div>Book so many<strong> appointments that your team can't take more.</strong></div></li><li dir=\"ltr\" style=\"list-style-type:disc;font-size:16px;font-family:Arial, sans-serif;color:rgb(0, 0, 0);background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre\"><div>And <strong>replace 100s of hours</strong> of manual prospecting — with <strong>just 5 minutes of setup.</strong></div></li></ul><div><br /></div><div>No long onboarding. No effort from your side. Just results.</div><div><br /></div><div>We’d love to send you a demo -completely on us- so you can personally see the advantages.</div><div><strong><br /></strong></div><div><strong>Would you like us to?</strong></div><div><br /></div><div>Best regards,</div><div><span style=\"font-size:14px\">Alejandro Derqui</span></div><div><span style=\"font-size:14px\">Co-Founder | Business Development &amp; Client Success</span></div><div><span style=\"font-size:14px\">AOS Solutions SL.</span></div><div><span style=\"font-size:14px\">C/Borriana 26, Valencia 46005, Spain</span><br /><span style=\"font-size:14px\">📩 support@aossolutions.ai</span></div><div><span style=\"font-size:14px\">🌐 aossolutions.ai</span></div><div><br /></div><div><br /></div><div><br /></div><div><br /></div><div><br /></div><div><br /><br /><br /><span style=\"font-size:10px\"><a href=\"https://UNSUBSCRIBE_INSTANTLY.ai\" target=\"_blank\" rel=\"noopener noreferrer\">I don't want to hear from you again</a></span></div>"
+                }
+              ],
+              "delay_unit": "days",
+              "pre_delay_unit": "days"
+            },
+            {
+              "type": "email",
+              "delay": 4,
+              "variants": [
+                {
+                  "subject": "",
+                  "body": "<div>Hey {{first_name}} </div><div><br /></div><div>I’m just following up in case my email was buried in your inbox. <br /><br /></div><div>If your team spends too much time looking for new leads and writing personalized emails, we can automate the process for you. <br /><br />You can automate your email outreach with a powerful cold email AI that will:</div><ul style=\"margin-top:0;margin-bottom:0;padding-inline-start:48px\"><li dir=\"ltr\" style=\"list-style-type:disc;font-size:16px;font-family:Arial, sans-serif;color:rgb(0, 0, 0);background-color:transparent;font-weight:bold;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre\"><div>Gather 1000s of quality prospects every day.</div></li><li dir=\"ltr\" style=\"list-style-type:disc;font-size:16px;font-family:Arial, sans-serif;color:rgb(0, 0, 0);background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre\"><div><strong>Send hyper-personalized cold emails at scale</strong> to all your prospects.</div></li><li dir=\"ltr\" style=\"list-style-type:disc;font-size:16px;font-family:Arial, sans-serif;color:rgb(0, 0, 0);background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre\"><div>Book <strong>more appointments than your team can handle.</strong></div></li><li dir=\"ltr\" style=\"list-style-type:disc;font-size:16px;font-family:Arial, sans-serif;color:rgb(0, 0, 0);background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre\"><div>And replaces 100s of hours of manual prospecting — <strong>with just 5 minutes of setup.</strong></div></li></ul><div><br /></div><div>We would like to show you the results so you can see this with your own eyes before you take any decision.</div><div><br /></div><div>If you think this could help your company, <strong>would you mind if we send you a demonstration?</strong></div><div><br /></div><div>Best regards,</div><div><br /></div><div><span style=\"font-size:14px\">Alejandro Derqui</span></div><div><span style=\"font-size:14px\">Co-Founder | Business Development &amp; Client Success</span></div><div><span style=\"font-size:14px\">AOS Solutions SL.</span></div><div><span style=\"font-size:14px\">C/Borriana 26, Valencia 46005, Spain</span><br /><span style=\"font-size:14px\">📩 support@aossolutions.ai</span></div><div><span style=\"font-size:14px\">🌐 aossolutions.ai</span></div><div><br /></div><div><br /></div><div><br /></div><div><br /></div><div><br /></div><div><br /></div><div><br /></div><div><br /></div><div><br /></div><div><a href=\"https://UNSUBSCRIBE_INSTANTLY.ai\" target=\"_blank\" rel=\"noopener noreferrer\"><span style=\"font-size:10px\">I don't want to receive more messages from you</span></a></div>"
+                },
+                {
+                  "subject": "",
+                  "body": "<div>Hey {{first_name}} </div><div><br /></div><div>I’m just following up in case my email was buried in your inbox. </div><div><br /></div><div>If your team spends too much time looking for new leads and writing personalized emails, we can automate the process for you. </div><div><br /></div><div>You can automate your email outreach with a powerful cold email AI that will:</div><ul style=\"margin-top:0;margin-bottom:0;padding-inline-start:48px\"><li dir=\"ltr\" style=\"list-style-type:disc;font-size:16px;font-family:Arial, sans-serif;color:rgb(0, 0, 0);background-color:transparent;font-weight:bold;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre\"><div>Gather 1000s of quality prospects every day.</div></li><li dir=\"ltr\" style=\"list-style-type:disc;font-size:16px;font-family:Arial, sans-serif;color:rgb(0, 0, 0);background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre\"><div><strong>Send hyper-personalized cold emails at scale</strong> to all your prospects.</div></li><li dir=\"ltr\" style=\"list-style-type:disc;font-size:16px;font-family:Arial, sans-serif;color:rgb(0, 0, 0);background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre\"><div>Book <strong>more appointments than your team can handle.</strong></div></li><li dir=\"ltr\" style=\"list-style-type:disc;font-size:16px;font-family:Arial, sans-serif;color:rgb(0, 0, 0);background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre\"><div>And replaces 100s of hours of manual prospecting — <strong>with just 5 minutes of setup.</strong></div></li></ul><div><br /></div><div>We would like to show you the results so you can see this with your own eyes before you take any decision.</div><div><br /></div><div>If you think this could help your company, <strong>would you mind if we send you a demonstration?</strong></div><div><br /></div><div>Best regards,</div><div><br /></div><div><span style=\"font-size:14px\">Alejandro Derqui</span></div><div><span style=\"font-size:14px\">Co-Founder | Business Development &amp; Client Success</span></div><div><span style=\"font-size:14px\">AOS Solutions SL.</span></div><div><span style=\"font-size:14px\">C/Borriana 26, Valencia 46005, Spain</span><br /><span style=\"font-size:14px\">📩 support@aossolutions.ai</span></div><div><span style=\"font-size:14px\">🌐 aossolutions.ai</span></div><div><br /></div><div><br /></div><div><br /></div><div><br /></div><div><br /></div><div><br /></div><div><br /></div><div><br /></div><div><br /></div><div><span style=\"font-size:10px\"><a href=\"https://UNSUBSCRIBE_INSTANTLY.ai\" target=\"_blank\">Click here to unsubscribe</a></span></div>"
+                }
+              ],
+              "delay_unit": "days",
+              "pre_delay_unit": "days"
+            },
+            {
+              "type": "email",
+              "delay": 4,
+              "variants": [
+                {
+                  "subject": "",
+                  "body": "<div>Hi {{first_name}} ,</div><div><br /></div><div>I made sure to write an email that you will find valuable before I stop taking more of your time (I know you’re very busy).<br /><br /></div><div>Right now, businesses that automate their email outreach are<strong> reaching thousands of leads daily, booking more calls, and closing more deals</strong>—while others are still stuck in slow, manual processes.<br /><br /></div><div>If you want to be ahead of your competition rather than catching up later, I’ve laid out exactly how this works <a href=\"http://aossolutions.ai/home\" target=\"_blank\">here.</a></div><div><br />No pressure, but if scaling your sales without extra effort sounds valuable,  <strong>we would like to send you a demonstration to show you the results you can achieve.</strong></div><div><br /></div><div>Feel free to reach out anytime so we can set it up for you.</div><div><br /></div><div>Wishing you continued prosperity,</div><div><br /></div><div><span style=\"font-size:14px\">Alejandro Derqui</span></div><div><span style=\"font-size:14px\">Co-Founder | Business Development &amp; Client Success</span></div><div><span style=\"font-size:14px\">AOS Solutions SL.</span></div><div><span style=\"font-size:14px\">C/Borriana 26, Valencia 46005, Spain</span><br /><span style=\"font-size:14px\">📩 support@aossolutions.ai</span></div><div><span style=\"font-size:14px\">🌐 aossolutions.ai</span></div><div><br /></div><div><br /></div><div><br /></div><div><br /></div><div><br /></div><div><br /></div><div><br /></div><div><br /></div><div><br /></div><div><br /></div><div><br /></div><div><span style=\"font-size:10px\"><br /></span></div><div><span style=\"font-size:10px\"><a href=\"https://UNSUBSCRIBE_INSTANTLY.ai\" target=\"_blank\" rel=\"noopener noreferrer\">I don't want to hear from you again</a></span></div>"
+                },
+                {
+                  "subject": "",
+                  "body": "<div>Hi {{first_name}} , </div><div><br /></div><div>I made sure to write an email that you will find valuable before I stop taking more of your time (I know you’re very busy).</div><div><br /></div><div>Right now, businesses that automate their email outreach are <strong>r</strong><strong>eaching thousands of leads daily, booking more calls, and closing more deals</strong>—while others are still stuck in slow, manual processes.</div><div><br /></div><div>If you want to be ahead of your competition rather than catching up later, I’ve laid out exactly how this works <a href=\"http://aossolutions.ai\" target=\"_blank\">here</a>.</div><div><br /></div><div>No pressure, but if scaling your sales without extra effort sounds valuable,  <strong>we would like to send you a demonstration to show you the results you can achieve.</strong></div><div><br /></div><div>Feel free to reach out anytime so we can set it up for you.</div><div><br /></div><div>Wishing you continued prosperity,</div><div><br /></div><div><span style=\"font-size:14px\">Alejandro Derqui</span></div><div><span style=\"font-size:14px\">Co-Founder | Business Development &amp; Client Success</span></div><div><span style=\"font-size:14px\">AOS Solutions SL.</span></div><div><span style=\"font-size:14px\">C/Borriana 26, Valencia 46005, Spain<br />📩 support@aossolutions.ai</span></div><div><span style=\"font-size:14px\">🌐 aossolutions.ai</span></div><div><br /></div><div><br /></div><div><br /></div><div><br /></div><div><br /></div><div><br /></div><div><br /></div><div><br /></div><div><span style=\"font-size:10px\"><a href=\"https://UNSUBSCRIBE_INSTANTLY.ai\" target=\"_blank\">Click here to unsubscribe</a></span></div>"
+                }
+              ],
+              "delay_unit": "days",
+              "pre_delay_unit": "days"
+            },
+            {
+              "type": "email",
+              "delay": 1,
+              "variants": [
+                {
+                  "subject": "",
+                  "body": "<div>Hi {{first_name}}, </div><div><br /></div><div>This is just a quick reminder that we put together a <strong>demo of 150 qualified leads (completely on us) with personalized emails for you,</strong> and you can get it whenever you want.</div><div><br /></div><div>This is just a small demonstration of what our automated lead-gen and email outreach system can do. </div><div><br /></div><div>You can start using the demonstration easily and without charge before next week.</div><div><br /></div><div>All we need is to have a quick talk with you to set up the final touches.</div><div><br /></div><div>Let me know when you want it, so we can get it done. </div><div><br /></div><div><br /></div><div>Best regards, </div><div><br /></div><div><span style=\"font-size:14px\">Alejandro Derqui</span></div><div><span style=\"font-size:14px\">Co-Founder | Business Development &amp; Client Success</span></div><div><span style=\"font-size:14px\">AOS Solutions SL. </span></div><div><span style=\"font-size:14px\">C/Borriana 26, Valencia 46005, Spain</span></div><div><span style=\"font-size:14px\">📩 support@aossolutions.ai</span></div><div><span style=\"font-size:14px\">🌐aossolutions.ai</span></div><div><br /></div><div><br /></div><div><br /></div><div><br /></div><div><br /></div><div><br /></div><div><br /></div><div><br /></div><div><span style=\"font-size:10px\"><a href=\"https://UNSUBSCRIBE_INSTANTLY.ai\" target=\"_blank\" rel=\"noopener noreferrer\">opt out of future emails</a></span></div>"
+                },
+                {
+                  "subject": "",
+                  "body": "<div>Hi {{first_name}}, </div><div><br /></div><div>This is just a quick reminder that <strong>we put together a demo of 150 qualified leads (completely on us) with personalized emails for you</strong>, and you can get it whenever you want.</div><div><br /></div><div>This is just a small demonstration of what our automated lead-gen and email outreach system can do. </div><div><br /></div><div>You can start using the demonstration easily and without charge before next week.</div><div><br /></div><div>All we need is to have a quick talk with you to set up the final touches.</div><div><br /></div><div>Let me know when you want it, so we can get it done. </div><div><br /></div><div><br /></div><div>Best regards, </div><div><br /></div><div><span style=\"font-size:14px\">Alejandro Derqui</span></div><div><span style=\"font-size:14px\">Co-Founder | Business Development &amp; Client Success</span></div><div><span style=\"font-size:14px\">AOS Solutions SL. </span></div><div><span style=\"font-size:14px\">C/Borriana 26, Valencia 46005, Spain</span></div><div><span style=\"font-size:14px\">📩 support@aossolutions.ai</span></div><div><span style=\"font-size:14px\">🌐aossolutions.ai</span></div><div><br /></div><div><br /></div><div><br /></div><div><br /></div><div><br /></div><div><br /></div><div><span style=\"font-size:10px\"><a href=\"https://UNSUBSCRIBE_INSTANTLY.ai\" target=\"_blank\" rel=\"noopener noreferrer\">I don't want to hear from you again</a></span></div>"
+                }
+              ],
+              "delay_unit": "days",
+              "pre_delay_unit": "days"
+            }
+          ]
+        }
+      ],
+      "text_only": false,
+      "first_email_text_only": false,
+      "email_list": [
+        "alejandro.derqui@info-aossolutions.com",
+        "alex@info-aossolutions.com",
+        "aderqui@info-aossolutions.com"
+      ],
+      "daily_limit": 90,
+      "stop_on_reply": true,
+      "email_tag_list": [],
+      "link_tracking": false,
+      "open_tracking": true,
+      "stop_on_auto_reply": false,
+      "core_variables": {
+        "website": true,
+        "lastName": true,
+        "firstName": true,
+        "companyName": true,
+        "personalization": true
+      },
+      "custom_variables": {
+        "title": true,
+        "campaign": true,
+        "icebreaker": true,
+        "identifier": true,
+        "pause_until": true
+      },
+      "organization": "d1f81109-ac1d-4472-b830-c1d294ac453a",
+      "provider_routing_rules": []
+    },
+    {
+      "id": "d5a655c0-ebfb-4988-a336-46d7e38dee06",
+      "name": "follow ups pendientes",
+      "status": 0,
+      "campaign_schedule": {},
+      "timestamp_created": "2026-01-13T15:31:17.885Z",
+      "timestamp_updated": "2026-01-14T14:46:24.633Z",
+      "pl_value": 6000,
+      "core_variables": {
+        "lastName": true,
+        "firstName": true,
+        "companyName": true
+      },
+      "custom_variables": {
+        "Body": true,
+        "email": true,
+        "TargetID": true,
+        "LeadNumber": true,
+        "pause_until": true,
+        "Subject Line": true
+      },
+      "organization": "d1f81109-ac1d-4472-b830-c1d294ac453a",
+      "owned_by": "af618d7c-de42-4446-af66-cfa120c51aef"
+    },
+    {
+      "id": "ce172f3b-f436-4008-8865-2bd71d2723e7",
+      "name": "almacen leads t8",
+      "status": 0,
+      "campaign_schedule": {},
+      "timestamp_created": "2025-07-12T13:28:59.682Z",
+      "timestamp_updated": "2025-07-12T13:30:26.470Z",
+      "pl_value": 6000,
+      "core_variables": {
+        "phone": true,
+        "website": true,
+        "lastName": true,
+        "firstName": true,
+        "companyName": true,
+        "personalization": true
+      },
+      "custom_variables": {
+        "email": true,
+        "title": true,
+        "summary": true,
+        "campaign": true,
+        "industry": true,
+        "last_name": true,
+        "first_name": true,
+        "icebreaker": true,
+        "identifier": true,
+        "pause_until": true,
+        "company_name": true,
+        "personLocation": true,
+        "titleDescription": true
+      },
+      "organization": "d1f81109-ac1d-4472-b830-c1d294ac453a",
+      "owned_by": "af618d7c-de42-4446-af66-cfa120c51aef"
+    }
+  ],
+  "next_starting_after": "ce172f3b-f436-4008-8865-2bd71d2723e7"
+}

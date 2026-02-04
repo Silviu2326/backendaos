@@ -1,0 +1,9 @@
+{
+  "permissions": {
+    "allow": [
+      "WebSearch",
+      "WebFetch(domain:help.instantly.ai)",
+      "WebFetch(domain:developer.instantly.ai)"
+    ]
+  }
+}

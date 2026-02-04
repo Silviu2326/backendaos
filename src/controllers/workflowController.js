@@ -43,15 +43,36 @@ exports.getWorkflow = async (req, res) => {
 // Saves a new version
 exports.saveWorkflow = async (req, res) => {
     const { type } = req.params;
-    const { nodes, edges, label } = req.body;
-    console.log(`[Controller] saveWorkflow: saving new version for ${type} (label: ${label})`);
+    const { nodes, edges, label, folder } = req.body;
+    console.log(`[Controller] saveWorkflow: saving new version for ${type} (label: ${label}, folder: ${folder})`);
 
     if (!VALID_TYPES.includes(type)) {
         return res.status(400).json({ error: 'Invalid workflow type' });
     }
 
     try {
-        const result = await WorkflowModel.saveNewVersion(type, { nodes, edges, label });
+        const result = await WorkflowModel.saveNewVersion(type, { nodes, edges, label, folder });
+        res.json({ success: true, ...result });
+    } catch (error) {
+        res.status(500).json({ error: error.message });
+    }
+};
+
+// PATCH /api/workflows/:type/versions/:version
+// Updates a version (label, folder)
+exports.updateVersion = async (req, res) => {
+    const { type, version } = req.params;
+    const { label, folder } = req.body;
+
+    if (!VALID_TYPES.includes(type)) {
+        return res.status(400).json({ error: 'Invalid workflow type' });
+    }
+
+    try {
+        const result = await WorkflowModel.updateVersion(type, parseInt(version), { label, folder });
+        if (!result) {
+            return res.status(404).json({ error: 'Version not found' });
+        }
         res.json({ success: true, ...result });
     } catch (error) {
         res.status(500).json({ error: error.message });
@@ -222,6 +243,410 @@ exports.runNode = async (req, res) => {
             return res.json({ success: true, output });
         }
 
+        // LEAD_INPUT: Fetch leads from database
+        if (node.data?.type === 'LEAD_INPUT' || node.type === 'LEAD_INPUT') {
+            console.log(`[Controller] LEAD_INPUT: Fetching leads from database`);
+            const LeadModel = require('../models/LeadModel');
+            const statusFilter = node.data?.statusFilter || 'pending_verification';
+            const limit = node.data?.limit || 100;
+            
+            try {
+                const leads = await LeadModel.getLeadsByStatus(statusFilter, limit);
+                const leadsArray = Array.isArray(leads) ? leads : [];
+                console.log(`[Controller] LEAD_INPUT: Found ${leadsArray.length} leads`);
+                return res.json({ 
+                    success: true, 
+                    output: JSON.stringify({
+                        leads: leadsArray,
+                        leadCount: leadsArray.length
+                    }, null, 2)
+                });
+            } catch (error) {
+                console.error('[Controller] LEAD_INPUT error:', error);
+                return res.status(500).json({ error: error.message });
+            }
+        }
+
+        // BOX1_INPUT: Use leads data passed from context (from /run-box1 endpoint)
+        if (node.data?.type === 'BOX1_INPUT' || node.type === 'BOX1_INPUT') {
+            console.log(`[Controller] BOX1_INPUT: Processing leads from context`);
+            
+            try {
+                // Get leads from context (passed from /run-box1 endpoint)
+                let leads = [];
+                if (context && typeof context === 'object') {
+                    for (const [nodeId, nodeResult] of Object.entries(context)) {
+                        if (nodeResult && typeof nodeResult === 'object' && nodeResult.output) {
+                            try {
+                                const output = typeof nodeResult.output === 'string' 
+                                    ? JSON.parse(nodeResult.output) 
+                                    : nodeResult.output;
+                                if (output.leads) {
+                                    leads = output.leads;
+                                    break;
+                                } else if (Array.isArray(output)) {
+                                    leads = output;
+                                    break;
+                                } else if (output.data && Array.isArray(output.data)) {
+                                    leads = output.data;
+                                    break;
+                                }
+                            } catch (e) {
+                                console.warn(`[Controller] BOX1_INPUT: Error parsing context output from ${nodeId}:`, e.message);
+                            }
+                        }
+                    }
+                }
+
+                // If no leads found in context, try to get from database using status
+                if (leads.length === 0) {
+                    console.log(`[Controller] BOX1_INPUT: No leads in context, fetching from database...`);
+                    const LeadModel = require('../models/LeadModel');
+                    leads = await LeadModel.getBox1Input(100);
+                }
+
+                const leadsArray = Array.isArray(leads) ? leads : [];
+                console.log(`[Controller] BOX1_INPUT: Found ${leadsArray.length} leads for Box1 processing`);
+                return res.json({ 
+                    success: true, 
+                    output: JSON.stringify({
+                        leads: leadsArray,
+                        leadCount: leadsArray.length
+                    }, null, 2)
+                });
+            } catch (error) {
+                console.error('[Controller] BOX1_INPUT error:', error);
+                return res.status(500).json({ error: error.message });
+            }
+        }
+
+        // BOX1_OUTPUT: Mark leads as developed and move to email stock
+        if (node.data?.type === 'BOX1_OUTPUT' || node.type === 'BOX1_OUTPUT') {
+            console.log(`[Controller] BOX1_OUTPUT: Marking leads as developed, moving to email stock`);
+            const LeadModel = require('../models/LeadModel');
+            
+            try {
+                // Get Box1 results from context
+                let box1Results = [];
+                if (context && typeof context === 'object') {
+                    for (const [nodeId, nodeResult] of Object.entries(context)) {
+                        if (nodeResult && typeof nodeResult === 'object' && nodeResult.output) {
+                            try {
+                                const output = typeof nodeResult.output === 'string' 
+                                    ? JSON.parse(nodeResult.output) 
+                                    : nodeResult.output;
+                                if (output.leads) {
+                                    box1Results = output.leads;
+                                    break;
+                                } else if (output.status) {
+                                    // Single lead result
+                                    box1Results = [output];
+                                    break;
+                                }
+                            } catch (e) {
+                                console.warn(`[Controller] BOX1_OUTPUT: Error parsing context output from ${nodeId}:`, e.message);
+                            }
+                        }
+                    }
+                }
+
+                if (!box1Results || box1Results.length === 0) {
+                    return res.json({
+                        success: true,
+                        output: JSON.stringify({
+                            updated: 0,
+                            message: 'No Box1 results to process'
+                        }, null, 2)
+                    });
+                }
+
+                // Update each lead
+                const results = [];
+                for (const box1Result of box1Results) {
+                    const leadNumber = box1Result.LeadNumber || box1Result.lead_number || box1Result.leadNumber;
+                    if (!leadNumber) continue;
+
+                    const status = box1Result.status || 'FIT';
+                    const reasoning = box1Result.reasoning || '';
+                    const instantly_body = box1Result.instantly_body || {};
+
+                    // Only move to email stock if status is FIT or HIT
+                    const shouldMoveToStock = status === 'FIT' || status === 'HIT';
+                    const stepStatus = shouldMoveToStock 
+                        ? {
+                            export: true,
+                            verification: 'completed',
+                            compScrap: 'completed',
+                            box1: 'completed',
+                            instantly: 'pending'  // Ready for email outreach
+                        }
+                        : {
+                            export: true,
+                            verification: 'completed',
+                            compScrap: 'completed',
+                            box1: 'completed',  // Box1 processed even if DROP
+                            instantly: 'dropped'  // Skip email outreach
+                        };
+
+                    const updateData = {
+                        step_status: stepStatus,
+                        box1_result: {
+                            status: status,
+                            confidence: box1Result.confidence || 0,
+                            reasoning: reasoning,
+                            instantly_body: instantly_body,
+                            processed_at: new Date().toISOString()
+                        },
+                        // Mark as developed (ready for next step or dropped)
+                        developed: true,
+                        developed_at: new Date().toISOString()
+                    };
+
+                    // If FIT/HIT, move to email stock (Instantly)
+                    if (shouldMoveToStock) {
+                        updateData.instantly_status = 'pending';
+                    }
+
+                    await LeadModel.update(leadNumber, updateData);
+                    results.push({
+                        leadNumber,
+                        status,
+                        movedToStock: shouldMoveToStock
+                    });
+                }
+
+                const movedToStock = results.filter(r => r.movedToStock).length;
+                console.log(`[Controller] BOX1_OUTPUT: Processed ${results.length} leads, ${movedToStock} moved to email stock`);
+
+                return res.json({
+                    success: true,
+                    output: JSON.stringify({
+                        updated: results.length,
+                        movedToStock: movedToStock,
+                        dropped: results.length - movedToStock,
+                        results: results,
+                        timestamp: new Date().toISOString()
+                    }, null, 2)
+                });
+            } catch (error) {
+                console.error('[Controller] BOX1_OUTPUT error:', error);
+                return res.status(500).json({ error: error.message });
+            }
+        }
+
+        // LEAD_OUTPUT: Save results to leads table
+        if (node.data?.type === 'LEAD_OUTPUT' || node.type === 'LEAD_OUTPUT') {
+            console.log(`[Controller] LEAD_OUTPUT: Saving results to leads`);
+            const LeadModel = require('../models/LeadModel');
+            
+            try {
+                // Get the data to update from context
+                const inputData = context || {};
+                const updateField = node.data?.updateField;
+                const customField = node.data?.customField;
+                const markAsSent = node.data?.markAsSent || false;
+                
+                // Find leads data from previous node
+                let leads = [];
+                if (inputData && typeof inputData === 'object') {
+                    for (const [nodeId, nodeResult] of Object.entries(inputData)) {
+                        if (nodeResult && typeof nodeResult === 'object' && nodeResult.output) {
+                            try {
+                                const output = typeof nodeResult.output === 'string' 
+                                    ? JSON.parse(nodeResult.output) 
+                                    : nodeResult.output;
+                                if (output.leads) {
+                                    leads = output.leads;
+                                    break;
+                                }
+                            } catch (e) {}
+                        }
+                    }
+                }
+
+                // Save results for each lead
+                const results = [];
+                for (const lead of leads) {
+                    const leadNumber = lead.LeadNumber || lead.lead_number;
+                    if (!leadNumber) continue;
+
+                    // Prepare update data
+                    const updateData = {};
+                    if (updateField === 'verification_result' && lead.verification_result) {
+                        updateData.verification_result = lead.verification_result;
+                    } else if (updateField === 'compscrap_result' && lead.compscrap_result) {
+                        updateData.compscrap_result = lead.compscrap_result;
+                    } else if (updateField === 'box1_result' && lead.box1_result) {
+                        updateData.box1_result = lead.box1_result;
+                    } else if (updateField === 'custom' && customField) {
+                        updateData[customField] = lead;
+                    }
+
+                    // Mark as sent to next step if configured
+                    if (markAsSent) {
+                        // Check verification result status
+                        const verificationStatus = lead.verification_result?.status;
+                        
+                        if (updateField === 'verification_result') {
+                            // Special handling for verification:
+                            // - If valid: mark as verified AND ready for compScrap (pending)
+                            // - If invalid: mark as failed, stays in verification step
+                            // - Otherwise: just mark as sent
+                            if (verificationStatus === 'valid') {
+                                updateData.step_status = {
+                                    export: true,
+                                    verification: 'verified',
+                                    compScrap: 'pending',  // Ready for next step
+                                    box1: 'pending',
+                                    instantly: 'pending'
+                                };
+                            } else if (verificationStatus === 'invalid') {
+                                updateData.step_status = {
+                                    export: true,
+                                    verification: 'failed',
+                                    compScrap: 'pending',
+                                    box1: 'pending',
+                                    instantly: 'pending'
+                                };
+                            } else {
+                                // Default behavior: just mark as sent
+                                updateData.step_status = {
+                                    export: lead.step_status?.export ?? true,
+                                    verification: 'sent',
+                                    compScrap: lead.step_status?.compScrap ?? 'pending',
+                                    box1: lead.step_status?.box1 ?? 'pending',
+                                    instantly: lead.step_status?.instantly ?? 'pending'
+                                };
+                            }
+                        } else {
+                            // For other steps (compScrap, box1, instantly)
+                            updateData.step_status = {
+                                export: lead.step_status?.export ?? true,
+                                verification: updateField === 'verification_result' ? 'sent' : (lead.step_status?.verification ?? 'pending'),
+                                compScrap: updateField === 'compscrap_result' ? 'sent' : (lead.step_status?.compScrap ?? 'pending'),
+                                box1: updateField === 'box1_result' ? 'sent' : (lead.step_status?.box1 ?? 'pending'),
+                                instantly: updateField === 'instantly_result' ? 'sent' : (lead.step_status?.instantly ?? 'pending')
+                            };
+                        }
+                    }
+
+                    if (Object.keys(updateData).length > 0) {
+                        await LeadModel.update(leadNumber, updateData);
+                        results.push(leadNumber);
+                    }
+                }
+
+                console.log(`[Controller] LEAD_OUTPUT: Saved ${results.length} leads`);
+                return res.json({ 
+                    success: true, 
+                    output: JSON.stringify({
+                        updated: results.length,
+                        leadNumbers: results,
+                        timestamp: new Date().toISOString()
+                    }, null, 2)
+                });
+            } catch (error) {
+                console.error('[Controller] LEAD_OUTPUT error:', error);
+                return res.status(500).json({ error: error.message });
+            }
+        }
+
+        // ANYMAILFINDER: Verify emails using AnymailFinder API
+        if (node.data?.type === 'ANYMAILFINDER' || node.type === 'ANYMAILFINDER') {
+            console.log(`[Controller] ANYMAILFINDER: Verifying emails`);
+            const apiKey = node.data?.apiKey || process.env.ANYMAILFINDER_API_KEY;
+            
+            if (!apiKey) {
+                return res.status(400).json({ error: 'AnymailFinder API key is required' });
+            }
+            
+            try {
+                // Get leads from context
+                let leads = [];
+                if (context && typeof context === 'object') {
+                    for (const [nodeId, nodeResult] of Object.entries(context)) {
+                        if (nodeResult && typeof nodeResult === 'object' && nodeResult.output) {
+                            try {
+                                const output = typeof nodeResult.output === 'string' 
+                                    ? JSON.parse(nodeResult.output) 
+                                    : nodeResult.output;
+                                if (output.leads) {
+                                    leads = output.leads;
+                                    break;
+                                }
+                            } catch (e) {}
+                        }
+                    }
+                }
+
+                if (!leads || leads.length === 0) {
+                    return res.json({
+                        success: true,
+                        output: JSON.stringify({
+                            leads: [],
+                            message: 'No leads to verify'
+                        }, null, 2)
+                    });
+                }
+
+                // Verify each email using AnymailFinder API
+                const results = [];
+                for (const lead of leads) {
+                    const email = lead.email;
+                    if (!email) continue;
+
+                    try {
+                        const response = await fetch('https://anymailfinder.com/api/v5/verify/email', {
+                            method: 'POST',
+                            headers: {
+                                'Authorization': `Bearer ${apiKey}`,
+                                'Content-Type': 'application/json'
+                            },
+                            body: JSON.stringify({ email })
+                        });
+
+                        const data = await response.json();
+                        
+                        results.push({
+                            LeadNumber: lead.LeadNumber || lead.lead_number,
+                            email: email,
+                            verification_result: {
+                                status: data.result?.status || 'unknown',
+                                is_valid: data.result?.is_valid || false,
+                                is_disposable: data.result?.is_disposable || false,
+                                is_role: data.result?.is_role || false,
+                                is_catchall: data.result?.is_catchall || false,
+                                confidence: data.result?.confidence || 0
+                            }
+                        });
+                    } catch (err) {
+                        console.error(`[Controller] Error verifying ${email}:`, err.message);
+                        results.push({
+                            LeadNumber: lead.LeadNumber || lead.lead_number,
+                            email: email,
+                            verification_result: {
+                                status: 'error',
+                                error: err.message
+                            }
+                        });
+                    }
+                }
+
+                console.log(`[Controller] ANYMAILFINDER: Verified ${results.length} emails`);
+                return res.json({
+                    success: true,
+                    output: JSON.stringify({
+                        leads: results,
+                        verifiedCount: results.filter(r => r.verification_result?.status === 'valid').length,
+                        invalidCount: results.filter(r => r.verification_result?.status === 'invalid').length
+                    }, null, 2)
+                });
+            } catch (error) {
+                console.error('[Controller] ANYMAILFINDER error:', error);
+                return res.status(500).json({ error: error.message });
+            }
+        }
+
         const systemPrompt = replaceVariables(node.systemPrompt || node.data?.systemPrompt, context);
         const userPrompt = replaceVariables(node.userPrompt || node.data?.userPrompt, context);
 
@@ -313,6 +738,36 @@ exports.getRun = async (req, res) => {
         const run = await WorkflowModel.getRunDetails(id);
         if (!run) return res.status(404).json({ error: 'Run not found' });
         res.json(run);
+    } catch (error) {
+        res.status(500).json({ error: error.message });
+    }
+};
+
+// GET /api/workflows/runs
+// Returns all runs from all types
+exports.listAllRuns = async (req, res) => {
+    try {
+        const allRuns = [];
+        
+        // Get runs from both precrafter and crafter
+        for (const type of VALID_TYPES) {
+            try {
+                const runs = await WorkflowModel.getRunsList(type);
+                // Add type to each run
+                const typedRuns = runs.map(run => ({
+                    ...run,
+                    type
+                }));
+                allRuns.push(...typedRuns);
+            } catch (error) {
+                console.error(`Error fetching runs for ${type}:`, error.message);
+            }
+        }
+
+        // Sort by startTime descending (most recent first)
+        allRuns.sort((a, b) => new Date(b.startTime) - new Date(a.startTime));
+
+        res.json({ runs: allRuns });
     } catch (error) {
         res.status(500).json({ error: error.message });
     }

@@ -14,10 +14,11 @@ class WorkflowModel {
                 content JSONB NOT NULL,
                 created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
                 label TEXT,
+                folder TEXT DEFAULT 'Main',
                 UNIQUE(type, version)
             );
         `;
-        
+
         const createRunsTable = `
             CREATE TABLE IF NOT EXISTS workflow_runs (
                 id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
@@ -34,6 +35,12 @@ class WorkflowModel {
         try {
             await db.query(createVersionsTable);
             await db.query(createRunsTable);
+            // Simple migration for existing tables
+            try {
+                await db.query(`ALTER TABLE workflow_versions ADD COLUMN IF NOT EXISTS folder TEXT DEFAULT 'Main'`);
+            } catch (e) {
+                // Ignore if specific column error or already exists check fails subtly
+            }
             console.log('[Model] Ensure tables exist (versions, runs)');
         } catch (error) {
             console.error('[Model] Error ensuring table exists:', error);
@@ -45,7 +52,7 @@ class WorkflowModel {
     async getLatestWorkflow(type) {
         try {
             const query = `
-                SELECT content, version, label, created_at 
+                SELECT content, version, label, folder, created_at 
                 FROM workflow_versions 
                 WHERE type = $1 
                 ORDER BY version DESC 
@@ -53,7 +60,7 @@ class WorkflowModel {
             `;
             const res = await db.query(query, [type]);
             if (res.rows.length > 0) {
-                return { ...res.rows[0].content, _version: res.rows[0].version, _label: res.rows[0].label };
+                return { ...res.rows[0].content, _version: res.rows[0].version, _label: res.rows[0].label, _folder: res.rows[0].folder };
             } else {
                 return { nodes: [], edges: [], _version: 0 };
             }
@@ -66,13 +73,13 @@ class WorkflowModel {
     async getWorkflowByVersion(type, version) {
         try {
             const query = `
-                SELECT content, version, label, created_at 
+                SELECT content, version, label, folder, created_at 
                 FROM workflow_versions 
                 WHERE type = $1 AND version = $2
             `;
             const res = await db.query(query, [type, version]);
             if (res.rows.length > 0) {
-                return { ...res.rows[0].content, _version: res.rows[0].version, _label: res.rows[0].label };
+                return { ...res.rows[0].content, _version: res.rows[0].version, _label: res.rows[0].label, _folder: res.rows[0].folder };
             }
             return null;
         } catch (error) {
@@ -84,7 +91,7 @@ class WorkflowModel {
     async getVersionsList(type) {
         try {
             const query = `
-                SELECT version, label, created_at 
+                SELECT version, label, folder, created_at 
                 FROM workflow_versions 
                 WHERE type = $1 
                 ORDER BY version DESC
@@ -97,22 +104,58 @@ class WorkflowModel {
         }
     }
 
-    async saveNewVersion(type, { nodes, edges, label }) {
+    async saveNewVersion(type, { nodes, edges, label, folder }) {
         const content = { nodes, edges };
         try {
             const maxRes = await db.query('SELECT MAX(version) as v FROM workflow_versions WHERE type = $1', [type]);
             const currentVersion = maxRes.rows[0].v || 0;
             const newVersion = currentVersion + 1;
+            const effectiveFolder = folder || 'Main';
 
             const insertQuery = `
-                INSERT INTO workflow_versions (type, version, content, label)
-                VALUES ($1, $2, $3, $4)
+                INSERT INTO workflow_versions (type, version, content, label, folder)
+                VALUES ($1, $2, $3, $4, $5)
                 RETURNING version, created_at;
             `;
-            const res = await db.query(insertQuery, [type, newVersion, content, label]);
-            return { version: res.rows[0].version, created_at: res.rows[0].created_at, label };
+            const res = await db.query(insertQuery, [type, newVersion, content, label, effectiveFolder]);
+            return { version: res.rows[0].version, created_at: res.rows[0].created_at, label, folder: effectiveFolder };
         } catch (error) {
             console.error(`[Model] Error saving new version for ${type}:`, error);
+            throw error;
+        }
+    }
+
+    async updateVersion(type, version, { label, folder }) {
+        try {
+            // Build dynamic query
+            const updates = [];
+            const values = [type, version];
+            let idx = 3;
+
+            if (label !== undefined) {
+                updates.push(`label = $${idx}`);
+                values.push(label);
+                idx++;
+            }
+            if (folder !== undefined) {
+                updates.push(`folder = $${idx}`);
+                values.push(folder);
+                idx++;
+            }
+
+            if (updates.length === 0) return null; // Nothing to update
+
+            const query = `
+                UPDATE workflow_versions 
+                SET ${updates.join(', ')}
+                WHERE type = $1 AND version = $2
+                RETURNING *
+            `;
+
+            const res = await db.query(query, values);
+            return res.rows[0];
+        } catch (error) {
+            console.error(`[Model] Error updating version ${type} v${version}:`, error);
             throw error;
         }
     }
