@@ -12,8 +12,25 @@ const pool = new Pool({
   connectionString: process.env.DATABASE_URL,
   ssl: {
     rejectUnauthorized: false
-  }
+  },
+  connectionTimeoutMillis: 10000,
+  idleTimeoutMillis: 30000,
+  max: 20
 });
+
+// Test connection and log status
+pool.on('connect', () => {
+  console.log('[DB] Database connection established');
+});
+
+pool.on('error', (err) => {
+  console.error('[DB] Unexpected database error:', err.message);
+});
+
+// Test initial connection
+pool.query('SELECT NOW()')
+  .then(() => console.log('[DB] Database connection test successful'))
+  .catch(err => console.error('[DB] Database connection test failed:', err.message));
 
 module.exports = {
   query: (text, params) => pool.query(text, params),

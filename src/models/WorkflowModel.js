@@ -2,7 +2,10 @@ const db = require('../config/db');
 
 class WorkflowModel {
     constructor() {
-        this._ensureTableExists();
+        this.initialized = false;
+        this._ensureTableExists().catch(err => {
+            console.error('[Model] Failed to initialize database:', err.message);
+        });
     }
 
     async _ensureTableExists() {
@@ -41,9 +44,12 @@ class WorkflowModel {
             } catch (e) {
                 // Ignore if specific column error or already exists check fails subtly
             }
-            console.log('[Model] Ensure tables exist (versions, runs)');
+            console.log('[Model] Tables initialized successfully (versions, runs)');
+            this.initialized = true;
         } catch (error) {
-            console.error('[Model] Error ensuring table exists:', error);
+            console.error('[Model] Error ensuring table exists:', error.message);
+            console.warn('[Model] Database operations will fail until connection is established');
+            throw error;
         }
     }
 
